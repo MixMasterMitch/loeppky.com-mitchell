@@ -1,0 +1,6053 @@
+<html>
+<head><meta charset="UTF-8" /><script>
+var $gwt_version = "2.3.0";
+var $wnd = parent;
+var $doc = $wnd.document;
+var $moduleName, $moduleBase;
+var $strongName = '7C52F107C2C4116CE936D1162D25375A';
+var $stats = $wnd.__gwtStatsEvent ? function(a) {return $wnd.__gwtStatsEvent(a);} : null,
+$sessionId = $wnd.__gwtStatsSessionId ? $wnd.__gwtStatsSessionId : null;
+$stats && $stats({moduleName:'spadesscores',sessionId:$sessionId,subSystem:'startup',evtGroup:'moduleStartup',millis:(new Date()).getTime(),type:'moduleEvalStart'});
+</script></head>
+<body>
+<script><!--
+var _;
+function nullMethod(){
+}
+
+function Object_0(){
+}
+
+_ = Object_0.prototype = {};
+_.equals$ = function equals(other){
+  return this === other;
+}
+;
+_.hashCode$ = function hashCode_0(){
+  return this.$H || (this.$H = ++sNextHashId);
+}
+;
+_.typeMarker$ = nullMethod;
+_.castableTypeMap$ = {};
+function $cancel(this$static){
+  if (!this$static.running) {
+    return;
+  }
+  $remove_9(animations, this$static);
+  this$static.started && $onComplete(this$static);
+  this$static.started = false;
+  this$static.running = false;
+}
+
+function $run(this$static, startTime){
+  $cancel(this$static);
+  this$static.running = true;
+  this$static.duration = 200;
+  this$static.startTime = startTime;
+  if ($update(this$static, (new Date).getTime())) {
+    return;
+  }
+  if (!animations) {
+    animations = new ArrayList_0;
+    animationTimer = new Animation$1_0;
+  }
+  $add_5(animations, this$static);
+  animations.size == 1 && $schedule(animationTimer, 25);
+}
+
+function $update(this$static, curTime){
+  var finished, progress;
+  finished = curTime >= this$static.startTime + this$static.duration;
+  if (this$static.started && !finished) {
+    progress = (curTime - this$static.startTime) / this$static.duration;
+    $onUpdate(this$static, (1 + Math.cos(3.141592653589793 + progress * 3.141592653589793)) / 2);
+    return false;
+  }
+  if (!this$static.started && curTime >= this$static.startTime) {
+    this$static.started = true;
+    this$static.offsetHeight_0 = parseInt(this$static.curPanel.element['offsetHeight']) || 0;
+    this$static.offsetWidth_0 = parseInt(this$static.curPanel.element['offsetWidth']) || 0;
+    this$static.curPanel.element.style['overflow'] = 'hidden';
+    $onUpdate(this$static, (1 + Math.cos(3.141592653589793)) / 2);
+  }
+  if (finished) {
+    $onComplete(this$static);
+    this$static.started = false;
+    this$static.running = false;
+    return true;
+  }
+  return false;
+}
+
+function updateAnimations(){
+  var animation, animation$index, animation$max, curAnimations, curTime;
+  curAnimations = initDim(_3Lcom_google_gwt_animation_client_Animation_2_classLit, {2:1, 74:1}, 62, animations.size, 0);
+  curAnimations = dynamicCast($toArray(animations, curAnimations), 2);
+  curTime = (new Date).getTime();
+  for (animation$index = 0 , animation$max = curAnimations.length; animation$index < animation$max; ++animation$index) {
+    animation = curAnimations[animation$index];
+    animation.running && $update(animation, curTime) && $remove_9(animations, animation);
+  }
+  animations.size > 0 && $schedule(animationTimer, 25);
+}
+
+function Animation(){
+}
+
+_ = Animation.prototype = new Object_0;
+_.castableTypeMap$ = {62:1};
+_.duration = -1;
+_.running = false;
+_.startTime = -1;
+_.started = false;
+var animationTimer = null, animations = null;
+function $clinit(){
+  $clinit = nullMethod;
+  timers = new ArrayList_0;
+  addCloseHandler(new Timer$1_0);
+}
+
+function $cancel_0(this$static){
+  this$static.isRepeating?($wnd.clearInterval(this$static.timerId) , undefined):($wnd.clearTimeout(this$static.timerId) , undefined);
+  $remove_9(timers, this$static);
+}
+
+function $schedule(this$static, delayMillis){
+  if (delayMillis <= 0) {
+    throw new IllegalArgumentException_0('must be positive');
+  }
+  this$static.isRepeating?($wnd.clearInterval(this$static.timerId) , undefined):($wnd.clearTimeout(this$static.timerId) , undefined);
+  $remove_9(timers, this$static);
+  this$static.isRepeating = false;
+  this$static.timerId = createTimeout(this$static, delayMillis);
+  $add_5(timers, this$static);
+}
+
+function createTimeout(timer, delay){
+  return $wnd.setTimeout($entry(function(){
+    timer.fire();
+  }
+  ), delay);
+}
+
+function Timer(){
+}
+
+_ = Timer.prototype = new Object_0;
+_.fire = function fire(){
+  this.isRepeating || $remove_9(timers, this);
+  this.run();
+}
+;
+_.castableTypeMap$ = {17:1};
+_.isRepeating = false;
+_.timerId = 0;
+var timers;
+function Animation$1_0(){
+  $clinit();
+}
+
+function Animation$1(){
+}
+
+_ = Animation$1_0.prototype = Animation$1.prototype = new Timer;
+_.run = function run(){
+  updateAnimations();
+}
+;
+_.castableTypeMap$ = {17:1};
+function $setStackTrace(stackTrace){
+  var c, copy, i;
+  copy = initDim(_3Ljava_lang_StackTraceElement_2_classLit, {74:1}, 79, stackTrace.length, 0);
+  for (i = 0 , c = stackTrace.length; i < c; ++i) {
+    if (!stackTrace[i]) {
+      throw new NullPointerException_0;
+    }
+    copy[i] = stackTrace[i];
+  }
+}
+
+function Throwable(){
+}
+
+_ = Throwable.prototype = new Object_0;
+_.castableTypeMap$ = {15:1, 74:1};
+function Exception(){
+}
+
+_ = Exception.prototype = new Throwable;
+_.castableTypeMap$ = {15:1, 74:1};
+function RuntimeException_0(message){
+  $fillInStackTrace();
+}
+
+function RuntimeException_1(){
+  $fillInStackTrace();
+}
+
+function RuntimeException(){
+}
+
+_ = RuntimeException_0.prototype = RuntimeException.prototype = new Exception;
+_.castableTypeMap$ = {3:1, 15:1, 74:1};
+function JavaScriptException_0(e){
+  $fillInStackTrace();
+  this.e = e;
+  $createStackTrace(this);
+}
+
+function JavaScriptException(){
+}
+
+_ = JavaScriptException_0.prototype = JavaScriptException.prototype = new RuntimeException;
+_.castableTypeMap$ = {3:1, 15:1, 74:1};
+_.e = null;
+function equals__devirtual$(this$static, other){
+  var maybeJsoInvocation;
+  return maybeJsoInvocation = this$static , maybeJsoInvocation.typeMarker$ == nullMethod || maybeJsoInvocation.castableTypeMap$ && !!maybeJsoInvocation.castableTypeMap$[1]?maybeJsoInvocation.equals$(other):maybeJsoInvocation === other;
+}
+
+function hashCode__devirtual$(this$static){
+  var maybeJsoInvocation;
+  return maybeJsoInvocation = this$static , maybeJsoInvocation.typeMarker$ == nullMethod || maybeJsoInvocation.castableTypeMap$ && !!maybeJsoInvocation.castableTypeMap$[1]?maybeJsoInvocation.hashCode$():maybeJsoInvocation.$H || (maybeJsoInvocation.$H = ++sNextHashId);
+}
+
+function Scheduler(){
+}
+
+_ = Scheduler.prototype = new Object_0;
+_.castableTypeMap$ = {};
+function apply(jsFunction, thisObj, arguments_0){
+  return jsFunction.apply(thisObj, arguments_0);
+  var __0;
+}
+
+function enter(){
+  if (entryDepth++ == 0) {
+    $flushEntryCommands(($clinit_0() , INSTANCE));
+    return true;
+  }
+  return false;
+}
+
+function entry_0(jsFunction){
+  return function(){
+    try {
+      return entry0(jsFunction, this, arguments);
+    }
+     catch (e) {
+      throw e;
+    }
+  }
+  ;
+}
+
+function entry0(jsFunction, thisObj, arguments_0){
+  var initialEntry;
+  initialEntry = enter();
+  try {
+    return apply(jsFunction, thisObj, arguments_0);
+  }
+   finally {
+    initialEntry && $flushFinallyCommands(($clinit_0() , INSTANCE));
+    --entryDepth;
+  }
+}
+
+var entryDepth = 0, sNextHashId = 0;
+function $clinit_0(){
+  $clinit_0 = nullMethod;
+  INSTANCE = new SchedulerImpl_0;
+}
+
+function $flushEntryCommands(this$static){
+  var oldQueue, rescheduled;
+  if (this$static.entryCommands) {
+    rescheduled = null;
+    do {
+      oldQueue = this$static.entryCommands;
+      this$static.entryCommands = null;
+      rescheduled = runScheduledTasks(oldQueue, rescheduled);
+    }
+     while (this$static.entryCommands);
+    this$static.entryCommands = rescheduled;
+  }
+}
+
+function $flushFinallyCommands(this$static){
+  var oldQueue, rescheduled;
+  if (this$static.finallyCommands) {
+    rescheduled = null;
+    do {
+      oldQueue = this$static.finallyCommands;
+      this$static.finallyCommands = null;
+      rescheduled = runScheduledTasks(oldQueue, rescheduled);
+    }
+     while (this$static.finallyCommands);
+    this$static.finallyCommands = rescheduled;
+  }
+}
+
+function SchedulerImpl_0(){
+}
+
+function push(queue, task){
+  !queue && (queue = []);
+  queue[queue.length] = task;
+  return queue;
+}
+
+function runScheduledTasks(tasks, rescheduled){
+  var $e0, i, j, t;
+  for (i = 0 , j = tasks.length; i < j; ++i) {
+    t = tasks[i];
+    try {
+      t[1]?t[0].nullMethod() && (rescheduled = push(rescheduled, t)):t[0].execute();
+    }
+     catch ($e0) {
+      $e0 = caught_0($e0);
+      if (!instanceOf($e0, 3))
+        throw $e0;
+    }
+  }
+  return rescheduled;
+}
+
+function SchedulerImpl(){
+}
+
+_ = SchedulerImpl_0.prototype = SchedulerImpl.prototype = new Scheduler;
+_.castableTypeMap$ = {};
+_.entryCommands = null;
+_.finallyCommands = null;
+var INSTANCE;
+function extractNameFromToString(fnToString){
+  var index, start, toReturn;
+  toReturn = '';
+  fnToString = $trim(fnToString);
+  index = fnToString.indexOf('(');
+  if (index != -1) {
+    start = fnToString.indexOf('function') == 0?8:0;
+    toReturn = $trim(fnToString.substr(start, index - start));
+  }
+  return toReturn.length > 0?toReturn:'anonymous';
+}
+
+function $collect(this$static){
+  var seen = {};
+  var toReturn = [];
+  var callee = arguments.callee.caller.caller;
+  while (callee) {
+    var name_0 = this$static.extractName(callee.toString());
+    toReturn.push(name_0);
+    var keyName = ':' + name_0;
+    var withThisName = seen[keyName];
+    if (withThisName) {
+      var i, j;
+      for (i = 0 , j = withThisName.length; i < j; i++) {
+        if (withThisName[i] === callee) {
+          return toReturn;
+        }
+      }
+    }
+    (withThisName || (seen[keyName] = [])).push(callee);
+    callee = callee.caller;
+  }
+  return toReturn;
+}
+
+function $createStackTrace(e){
+  var i, j, stack, stackTrace;
+  stack = (instanceOfJso(e.e)?dynamicCastJso(e.e):null , []);
+  stackTrace = initDim(_3Ljava_lang_StackTraceElement_2_classLit, {74:1}, 79, stack.length, 0);
+  for (i = 0 , j = stackTrace.length; i < j; ++i) {
+    stackTrace[i] = new StackTraceElement_0(stack[i]);
+  }
+  $setStackTrace(stackTrace);
+}
+
+function $fillInStackTrace(){
+  var i, j, stack, stackTrace;
+  stack = $collect(new StackTraceCreator$Collector_0);
+  stackTrace = initDim(_3Ljava_lang_StackTraceElement_2_classLit, {74:1}, 79, stack.length, 0);
+  for (i = 0 , j = stackTrace.length; i < j; ++i) {
+    stackTrace[i] = new StackTraceElement_0(stack[i]);
+  }
+  $setStackTrace(stackTrace);
+}
+
+function StackTraceCreator$Collector_0(){
+}
+
+function StackTraceCreator$Collector(){
+}
+
+_ = StackTraceCreator$Collector_0.prototype = StackTraceCreator$Collector.prototype = new Object_0;
+_.extractName = function extractName(fnToString){
+  return extractNameFromToString(fnToString);
+}
+;
+_.castableTypeMap$ = {};
+function is(o){
+  try {
+    return !!o && !!o.nodeType;
+  }
+   catch (e) {
+    return false;
+  }
+}
+
+function $addClassName(this$static, className){
+  var idx, last, lastPos, oldClassName;
+  className = $trim(className);
+  oldClassName = this$static.className;
+  idx = oldClassName.indexOf(className);
+  while (idx != -1) {
+    if (idx == 0 || oldClassName.charCodeAt(idx - 1) == 32) {
+      last = idx + className.length;
+      lastPos = oldClassName.length;
+      if (last == lastPos || last < lastPos && oldClassName.charCodeAt(last) == 32) {
+        break;
+      }
+    }
+    idx = oldClassName.indexOf(className, idx + 1);
+  }
+  if (idx == -1) {
+    oldClassName.length > 0 && (oldClassName += ' ');
+    this$static.className = oldClassName + className;
+  }
+}
+
+function $getPropertyString(this$static, name_0){
+  return this$static[name_0] == null?null:String(this$static[name_0]);
+}
+
+function $removeClassName(this$static, className){
+  var begin, end, idx, last, lastPos, newClassName, oldStyle;
+  className = $trim(className);
+  oldStyle = this$static.className;
+  idx = oldStyle.indexOf(className);
+  while (idx != -1) {
+    if (idx == 0 || oldStyle.charCodeAt(idx - 1) == 32) {
+      last = idx + className.length;
+      lastPos = oldStyle.length;
+      if (last == lastPos || last < lastPos && oldStyle.charCodeAt(last) == 32) {
+        break;
+      }
+    }
+    idx = oldStyle.indexOf(className, idx + 1);
+  }
+  if (idx != -1) {
+    begin = $trim(oldStyle.substr(0, idx - 0));
+    end = $trim($substring(oldStyle, idx + className.length));
+    begin.length == 0?(newClassName = end):end.length == 0?(newClassName = begin):(newClassName = begin + ' ' + end);
+    this$static.className = newClassName;
+  }
+}
+
+function is_0(o){
+  if (is(o)) {
+    return !!o && o.nodeType == 1;
+  }
+  return false;
+}
+
+function $createScriptElement(doc, source){
+  var elem;
+  elem = $createElement(doc, 'script');
+  elem.text = source;
+  return elem;
+}
+
+function $getFirstChildElement(elem){
+  var child = elem.firstChild;
+  while (child && child.nodeType != 1)
+    child = child.nextSibling;
+  return child;
+}
+
+function $getParentElement(node){
+  var parent_0 = node.parentNode;
+  (!parent_0 || parent_0.nodeType != 1) && (parent_0 = null);
+  return parent_0;
+}
+
+function $createElement(doc, tagName){
+  var container, elem;
+  if (tagName.indexOf(':') != -1) {
+    container = (!doc.__gwt_container && (doc.__gwt_container = doc.createElement('div')) , doc.__gwt_container);
+    container.innerHTML = '<' + tagName + '/>' || '';
+    elem = $getFirstChildElement(container);
+    container.removeChild(elem);
+    return elem;
+  }
+  return doc.createElement(tagName);
+}
+
+function $getBoundingClientRectLeft(elem){
+  try {
+    return elem.getBoundingClientRect().left;
+  }
+   catch (e) {
+    return 0;
+  }
+}
+
+function $getBoundingClientRectTop(elem){
+  try {
+    return elem.getBoundingClientRect().top;
+  }
+   catch (e) {
+    return 0;
+  }
+}
+
+function $getTagName(elem){
+  var scopeName, tagName;
+  tagName = elem.tagName;
+  scopeName = elem.scopeName;
+  if (scopeName == null || $equalsIgnoreCase('html', scopeName)) {
+    return tagName;
+  }
+  return scopeName + ':' + tagName;
+}
+
+function $isOrHasChild(parent_0, child){
+  if (parent_0.nodeType != 1 && parent_0.nodeType != 9) {
+    return parent_0 == child;
+  }
+  if (child.nodeType != 1) {
+    child = child.parentNode;
+    if (!child) {
+      return false;
+    }
+  }
+  return parent_0 === child || parent_0.contains(child);
+}
+
+var currentEventTarget = null;
+function $getAbsoluteLeft(elem){
+  var doc;
+  doc = elem.ownerDocument;
+  return round_int(Math.floor($getBoundingClientRectLeft(elem) / $getZoomMultiple(doc) + $getScrollLeft($equals(doc.compatMode, 'CSS1Compat')?doc.documentElement:doc.body)));
+}
+
+function $getAbsoluteTop(elem){
+  var doc;
+  doc = elem.ownerDocument;
+  return round_int(Math.floor($getBoundingClientRectTop(elem) / $getZoomMultiple(doc) + (($equals(doc.compatMode, 'CSS1Compat')?doc.documentElement:doc.body).scrollTop || 0)));
+}
+
+function $getScrollLeft(elem){
+  if (elem.currentStyle.direction == 'rtl') {
+    return (elem.scrollLeft || 0) - ((elem.scrollWidth || 0) - elem.clientWidth);
+  }
+  return elem.scrollLeft || 0;
+}
+
+function $getZoomMultiple(doc){
+  var bodyOffset, parent_0;
+  if ($equals(doc.compatMode, 'CSS1Compat')) {
+    return 1;
+  }
+   else {
+    bodyOffset = doc.body.offsetWidth || 0;
+    return bodyOffset == 0?1:~~(((parent_0 = doc.body.parentNode , (!parent_0 || parent_0.nodeType != 1) && (parent_0 = null) , parent_0).offsetWidth || 0) / bodyOffset);
+  }
+}
+
+function $getBodyOffsetLeft(this$static){
+  return ($equals(this$static.compatMode, 'CSS1Compat')?this$static.documentElement:this$static.body).clientLeft;
+}
+
+function $getBodyOffsetTop(this$static){
+  return ($equals(this$static.compatMode, 'CSS1Compat')?this$static.documentElement:this$static.body).clientTop;
+}
+
+function $getClientHeight(this$static){
+  return ($equals(this$static.compatMode, 'CSS1Compat')?this$static.documentElement:this$static.body).clientHeight;
+}
+
+function $getClientWidth(this$static){
+  return ($equals(this$static.compatMode, 'CSS1Compat')?this$static.documentElement:this$static.body).clientWidth;
+}
+
+function $getScrollHeight(this$static){
+  return ($equals(this$static.compatMode, 'CSS1Compat')?this$static.documentElement:this$static.body).scrollHeight || 0;
+}
+
+function $getScrollLeft_0(this$static){
+  return $getScrollLeft($equals(this$static.compatMode, 'CSS1Compat')?this$static.documentElement:this$static.body);
+}
+
+function $getScrollTop(this$static){
+  return ($equals(this$static.compatMode, 'CSS1Compat')?this$static.documentElement:this$static.body).scrollTop || 0;
+}
+
+function $getScrollWidth(this$static){
+  return ($equals(this$static.compatMode, 'CSS1Compat')?this$static.documentElement:this$static.body).scrollWidth || 0;
+}
+
+function Enum(){
+}
+
+_ = Enum.prototype = new Object_0;
+_.equals$ = function equals_0(other){
+  return this === other;
+}
+;
+_.hashCode$ = function hashCode_1(){
+  return this.$H || (this.$H = ++sNextHashId);
+}
+;
+_.castableTypeMap$ = {74:1, 76:1, 77:1};
+_.ordinal = 0;
+function $clinit_1(){
+  $clinit_1 = nullMethod;
+  NONE = new Style$Display$1_0;
+  BLOCK = new Style$Display$2_0;
+  INLINE = new Style$Display$3_0;
+  INLINE_BLOCK = new Style$Display$4_0;
+  initValues(_3Lcom_google_gwt_dom_client_Style$Display_2_classLit, {74:1}, 63, [NONE, BLOCK, INLINE, INLINE_BLOCK]);
+}
+
+function Style$Display(){
+}
+
+_ = Style$Display.prototype = new Enum;
+_.castableTypeMap$ = {63:1, 64:1, 74:1, 76:1, 77:1};
+var BLOCK, INLINE, INLINE_BLOCK, NONE;
+function Style$Display$1_0(){
+  this.ordinal = 0;
+}
+
+function Style$Display$1(){
+}
+
+_ = Style$Display$1_0.prototype = Style$Display$1.prototype = new Style$Display;
+_.castableTypeMap$ = {63:1, 64:1, 74:1, 76:1, 77:1};
+function Style$Display$2_0(){
+  this.ordinal = 1;
+}
+
+function Style$Display$2(){
+}
+
+_ = Style$Display$2_0.prototype = Style$Display$2.prototype = new Style$Display;
+_.castableTypeMap$ = {63:1, 64:1, 74:1, 76:1, 77:1};
+function Style$Display$3_0(){
+  this.ordinal = 2;
+}
+
+function Style$Display$3(){
+}
+
+_ = Style$Display$3_0.prototype = Style$Display$3.prototype = new Style$Display;
+_.castableTypeMap$ = {63:1, 64:1, 74:1, 76:1, 77:1};
+function Style$Display$4_0(){
+  this.ordinal = 3;
+}
+
+function Style$Display$4(){
+}
+
+_ = Style$Display$4_0.prototype = Style$Display$4.prototype = new Style$Display;
+_.castableTypeMap$ = {63:1, 64:1, 74:1, 76:1, 77:1};
+function $clinit_2(){
+  $clinit_2 = nullMethod;
+  STATIC = new Style$Position$1_0;
+  RELATIVE = new Style$Position$2_0;
+  ABSOLUTE = new Style$Position$3_0;
+  FIXED = new Style$Position$4_0;
+  initValues(_3Lcom_google_gwt_dom_client_Style$Position_2_classLit, {74:1}, 65, [STATIC, RELATIVE, ABSOLUTE, FIXED]);
+}
+
+function Style$Position(){
+}
+
+_ = Style$Position.prototype = new Enum;
+_.castableTypeMap$ = {64:1, 65:1, 74:1, 76:1, 77:1};
+var ABSOLUTE, FIXED, RELATIVE, STATIC;
+function Style$Position$1_0(){
+  this.ordinal = 0;
+}
+
+function Style$Position$1(){
+}
+
+_ = Style$Position$1_0.prototype = Style$Position$1.prototype = new Style$Position;
+_.castableTypeMap$ = {64:1, 65:1, 74:1, 76:1, 77:1};
+function Style$Position$2_0(){
+  this.ordinal = 1;
+}
+
+function Style$Position$2(){
+}
+
+_ = Style$Position$2_0.prototype = Style$Position$2.prototype = new Style$Position;
+_.castableTypeMap$ = {64:1, 65:1, 74:1, 76:1, 77:1};
+function Style$Position$3_0(){
+  this.ordinal = 2;
+}
+
+function Style$Position$3(){
+}
+
+_ = Style$Position$3_0.prototype = Style$Position$3.prototype = new Style$Position;
+_.castableTypeMap$ = {64:1, 65:1, 74:1, 76:1, 77:1};
+function Style$Position$4_0(){
+  this.ordinal = 3;
+}
+
+function Style$Position$4(){
+}
+
+_ = Style$Position$4_0.prototype = Style$Position$4.prototype = new Style$Position;
+_.castableTypeMap$ = {64:1, 65:1, 74:1, 76:1, 77:1};
+function $clinit_3(){
+  $clinit_3 = nullMethod;
+  PX = new Style$Unit$1_0;
+  PCT = new Style$Unit$2_0;
+  EM = new Style$Unit$3_0;
+  EX = new Style$Unit$4_0;
+  PT = new Style$Unit$5_0;
+  PC = new Style$Unit$6_0;
+  IN = new Style$Unit$7_0;
+  CM = new Style$Unit$8_0;
+  MM = new Style$Unit$9_0;
+  initValues(_3Lcom_google_gwt_dom_client_Style$Unit_2_classLit, {74:1}, 66, [PX, PCT, EM, EX, PT, PC, IN, CM, MM]);
+}
+
+function Style$Unit(){
+}
+
+_ = Style$Unit.prototype = new Enum;
+_.castableTypeMap$ = {66:1, 74:1, 76:1, 77:1};
+var CM, EM, EX, IN, MM, PC, PCT, PT, PX;
+function Style$Unit$1_0(){
+  this.ordinal = 0;
+}
+
+function Style$Unit$1(){
+}
+
+_ = Style$Unit$1_0.prototype = Style$Unit$1.prototype = new Style$Unit;
+_.castableTypeMap$ = {66:1, 74:1, 76:1, 77:1};
+function Style$Unit$2_0(){
+  this.ordinal = 1;
+}
+
+function Style$Unit$2(){
+}
+
+_ = Style$Unit$2_0.prototype = Style$Unit$2.prototype = new Style$Unit;
+_.castableTypeMap$ = {66:1, 74:1, 76:1, 77:1};
+function Style$Unit$3_0(){
+  this.ordinal = 2;
+}
+
+function Style$Unit$3(){
+}
+
+_ = Style$Unit$3_0.prototype = Style$Unit$3.prototype = new Style$Unit;
+_.castableTypeMap$ = {66:1, 74:1, 76:1, 77:1};
+function Style$Unit$4_0(){
+  this.ordinal = 3;
+}
+
+function Style$Unit$4(){
+}
+
+_ = Style$Unit$4_0.prototype = Style$Unit$4.prototype = new Style$Unit;
+_.castableTypeMap$ = {66:1, 74:1, 76:1, 77:1};
+function Style$Unit$5_0(){
+  this.ordinal = 4;
+}
+
+function Style$Unit$5(){
+}
+
+_ = Style$Unit$5_0.prototype = Style$Unit$5.prototype = new Style$Unit;
+_.castableTypeMap$ = {66:1, 74:1, 76:1, 77:1};
+function Style$Unit$6_0(){
+  this.ordinal = 5;
+}
+
+function Style$Unit$6(){
+}
+
+_ = Style$Unit$6_0.prototype = Style$Unit$6.prototype = new Style$Unit;
+_.castableTypeMap$ = {66:1, 74:1, 76:1, 77:1};
+function Style$Unit$7_0(){
+  this.ordinal = 6;
+}
+
+function Style$Unit$7(){
+}
+
+_ = Style$Unit$7_0.prototype = Style$Unit$7.prototype = new Style$Unit;
+_.castableTypeMap$ = {66:1, 74:1, 76:1, 77:1};
+function Style$Unit$8_0(){
+  this.ordinal = 7;
+}
+
+function Style$Unit$8(){
+}
+
+_ = Style$Unit$8_0.prototype = Style$Unit$8.prototype = new Style$Unit;
+_.castableTypeMap$ = {66:1, 74:1, 76:1, 77:1};
+function Style$Unit$9_0(){
+  this.ordinal = 8;
+}
+
+function Style$Unit$9(){
+}
+
+_ = Style$Unit$9_0.prototype = Style$Unit$9.prototype = new Style$Unit;
+_.castableTypeMap$ = {66:1, 74:1, 76:1, 77:1};
+function Event_0(){
+}
+
+_ = Event_0.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.source = null;
+function GwtEvent(){
+}
+
+_ = GwtEvent.prototype = new Event_0;
+_.revive = function revive(){
+  this.dead = false;
+  this.source = null;
+}
+;
+_.castableTypeMap$ = {};
+_.dead = false;
+function fireNativeEvent(nativeEvent, handlerSource, relativeElem){
+  var currentNative, currentRelativeElem, typeKey;
+  if (registered) {
+    typeKey = dynamicCast(registered.map[nativeEvent.type], 5);
+    if (typeKey) {
+      currentNative = typeKey.flyweight.nativeEvent;
+      currentRelativeElem = typeKey.flyweight.relativeElem;
+      typeKey.flyweight.nativeEvent = nativeEvent;
+      typeKey.flyweight.relativeElem = relativeElem;
+      $fireEvent_0(handlerSource, typeKey.flyweight);
+      typeKey.flyweight.nativeEvent = currentNative;
+      typeKey.flyweight.relativeElem = currentRelativeElem;
+    }
+  }
+}
+
+function DomEvent(){
+}
+
+_ = DomEvent.prototype = new GwtEvent;
+_.getAssociatedType = function getAssociatedType(){
+  return this.getAssociatedType_0();
+}
+;
+_.castableTypeMap$ = {};
+_.nativeEvent = null;
+_.relativeElem = null;
+var registered = null;
+function HumanInputEvent(){
+}
+
+_ = HumanInputEvent.prototype = new DomEvent;
+_.castableTypeMap$ = {};
+function $getX(this$static){
+  var relativeElem, e;
+  relativeElem = this$static.relativeElem;
+  if (relativeElem) {
+    return e = this$static.nativeEvent , (e.clientX || 0) - $getAbsoluteLeft(relativeElem) + $getScrollLeft(relativeElem) + $getScrollLeft_0(relativeElem.ownerDocument);
+  }
+  return this$static.nativeEvent.clientX || 0;
+}
+
+function $getY(this$static){
+  var relativeElem, e;
+  relativeElem = this$static.relativeElem;
+  if (relativeElem) {
+    return e = this$static.nativeEvent , (e.clientY || 0) - $getAbsoluteTop(relativeElem) + (relativeElem.scrollTop || 0) + $getScrollTop(relativeElem.ownerDocument);
+  }
+  return this$static.nativeEvent.clientY || 0;
+}
+
+function MouseEvent_0(){
+}
+
+_ = MouseEvent_0.prototype = new HumanInputEvent;
+_.castableTypeMap$ = {};
+function $clinit_4(){
+  $clinit_4 = nullMethod;
+  TYPE = new DomEvent$Type_0('click', new ClickEvent_0);
+}
+
+function ClickEvent_0(){
+}
+
+function ClickEvent(){
+}
+
+_ = ClickEvent_0.prototype = ClickEvent.prototype = new MouseEvent_0;
+_.dispatch = function dispatch(handler){
+  dynamicCast(handler, 4).onClick(this);
+}
+;
+_.getAssociatedType_0 = function getAssociatedType_0(){
+  return TYPE;
+}
+;
+_.castableTypeMap$ = {};
+var TYPE;
+function Event$Type(){
+}
+
+_ = Event$Type.prototype = new Object_0;
+_.hashCode$ = function hashCode_2(){
+  return this.index;
+}
+;
+_.castableTypeMap$ = {};
+_.index = 0;
+var nextHashCode = 0;
+function GwtEvent$Type_0(){
+  this.index = ++nextHashCode;
+}
+
+function GwtEvent$Type(){
+}
+
+_ = GwtEvent$Type_0.prototype = GwtEvent$Type.prototype = new Event$Type;
+_.castableTypeMap$ = {};
+function DomEvent$Type_0(eventName, flyweight){
+  this.index = ++nextHashCode;
+  this.flyweight = flyweight;
+  !registered && (registered = new PrivateMap_0);
+  registered.map[eventName] = this;
+  this.name_0 = eventName;
+}
+
+function DomEvent$Type(){
+}
+
+_ = DomEvent$Type_0.prototype = DomEvent$Type.prototype = new GwtEvent$Type;
+_.castableTypeMap$ = {5:1};
+_.flyweight = null;
+_.name_0 = null;
+function $clinit_5(){
+  $clinit_5 = nullMethod;
+  TYPE_0 = new DomEvent$Type_0('mousedown', new MouseDownEvent_0);
+}
+
+function MouseDownEvent_0(){
+}
+
+function MouseDownEvent(){
+}
+
+_ = MouseDownEvent_0.prototype = MouseDownEvent.prototype = new MouseEvent_0;
+_.dispatch = function dispatch_0(handler){
+  $beginDragging(dynamicCast(handler, 6).this$0, this);
+}
+;
+_.getAssociatedType_0 = function getAssociatedType_1(){
+  return TYPE_0;
+}
+;
+_.castableTypeMap$ = {};
+var TYPE_0;
+function $clinit_6(){
+  $clinit_6 = nullMethod;
+  TYPE_1 = new DomEvent$Type_0('mousemove', new MouseMoveEvent_0);
+}
+
+function MouseMoveEvent_0(){
+}
+
+function MouseMoveEvent(){
+}
+
+_ = MouseMoveEvent_0.prototype = MouseMoveEvent.prototype = new MouseEvent_0;
+_.dispatch = function dispatch_1(handler){
+  $continueDragging(dynamicCast(handler, 7).this$0, this);
+}
+;
+_.getAssociatedType_0 = function getAssociatedType_2(){
+  return TYPE_1;
+}
+;
+_.castableTypeMap$ = {};
+var TYPE_1;
+function $clinit_7(){
+  $clinit_7 = nullMethod;
+  TYPE_2 = new DomEvent$Type_0('mouseout', new MouseOutEvent_0);
+}
+
+function MouseOutEvent_0(){
+}
+
+function MouseOutEvent(){
+}
+
+_ = MouseOutEvent_0.prototype = MouseOutEvent.prototype = new MouseEvent_0;
+_.dispatch = function dispatch_2(handler){
+  dynamicCast(handler, 8).onMouseOut(this);
+}
+;
+_.getAssociatedType_0 = function getAssociatedType_3(){
+  return TYPE_2;
+}
+;
+_.castableTypeMap$ = {};
+var TYPE_2;
+function $clinit_8(){
+  $clinit_8 = nullMethod;
+  TYPE_3 = new DomEvent$Type_0('mouseover', new MouseOverEvent_0);
+}
+
+function MouseOverEvent_0(){
+}
+
+function MouseOverEvent(){
+}
+
+_ = MouseOverEvent_0.prototype = MouseOverEvent.prototype = new MouseEvent_0;
+_.dispatch = function dispatch_3(handler){
+  dynamicCast(handler, 9).onMouseOver(this);
+}
+;
+_.getAssociatedType_0 = function getAssociatedType_4(){
+  return TYPE_3;
+}
+;
+_.castableTypeMap$ = {};
+var TYPE_3;
+function $clinit_9(){
+  $clinit_9 = nullMethod;
+  TYPE_4 = new DomEvent$Type_0('mouseup', new MouseUpEvent_0);
+}
+
+function MouseUpEvent_0(){
+}
+
+function MouseUpEvent(){
+}
+
+_ = MouseUpEvent_0.prototype = MouseUpEvent.prototype = new MouseEvent_0;
+_.dispatch = function dispatch_4(handler){
+  $endDragging(dynamicCast(handler, 10).this$0, this);
+}
+;
+_.getAssociatedType_0 = function getAssociatedType_5(){
+  return TYPE_4;
+}
+;
+_.castableTypeMap$ = {};
+var TYPE_4;
+function PrivateMap_0(){
+  this.map = {};
+}
+
+function PrivateMap(){
+}
+
+_ = PrivateMap_0.prototype = PrivateMap.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.map = null;
+function CloseEvent_0(){
+}
+
+function fire_0(source){
+  var event_0;
+  if (TYPE_5) {
+    event_0 = new CloseEvent_0;
+    source.fireEvent_0(event_0);
+  }
+}
+
+function CloseEvent(){
+}
+
+_ = CloseEvent_0.prototype = CloseEvent.prototype = new GwtEvent;
+_.dispatch = function dispatch_5(handler){
+  dynamicCast(handler, 11).onClose(this);
+}
+;
+_.getAssociatedType = function getAssociatedType_6(){
+  return TYPE_5;
+}
+;
+_.castableTypeMap$ = {};
+var TYPE_5 = null;
+function ResizeEvent_0(width){
+  this.width_0 = width;
+}
+
+function fire_1(source, width){
+  var event_0;
+  if (TYPE_6) {
+    event_0 = new ResizeEvent_0(width);
+    $fireEvent(source, event_0);
+  }
+}
+
+function ResizeEvent(){
+}
+
+_ = ResizeEvent_0.prototype = ResizeEvent.prototype = new GwtEvent;
+_.dispatch = function dispatch_6(handler){
+  dynamicCast(handler, 12).onResize(this);
+}
+;
+_.getAssociatedType = function getAssociatedType_7(){
+  return TYPE_6;
+}
+;
+_.castableTypeMap$ = {};
+_.width_0 = 0;
+var TYPE_6 = null;
+function $dispatch(handler){
+  handler.this$0.autoHideOnHistoryEvents && handler.this$0.hide();
+}
+
+function ValueChangeEvent_0(){
+}
+
+function fire_2(source){
+  var event_0;
+  if (TYPE_7) {
+    event_0 = new ValueChangeEvent_0;
+    $fireEvent(source.handlers, event_0);
+  }
+}
+
+function ValueChangeEvent(){
+}
+
+_ = ValueChangeEvent_0.prototype = ValueChangeEvent.prototype = new GwtEvent;
+_.dispatch = function dispatch_7(handler){
+  $dispatch(dynamicCast(handler, 13));
+}
+;
+_.getAssociatedType = function getAssociatedType_8(){
+  return TYPE_7;
+}
+;
+_.castableTypeMap$ = {};
+var TYPE_7 = null;
+function $fireEvent(this$static, event_0){
+  var $e0, e, oldSource;
+  !event_0.dead || event_0.revive();
+  oldSource = event_0.source;
+  event_0.source = this$static.source;
+  try {
+    $doFire(this$static.eventBus, event_0);
+  }
+   catch ($e0) {
+    $e0 = caught_0($e0);
+    if (instanceOf($e0, 14)) {
+      e = $e0;
+      throw new UmbrellaException_2(e.causes);
+    }
+     else 
+      throw $e0;
+  }
+   finally {
+    oldSource == null?(event_0.dead = true , event_0.source = null):(event_0.source = oldSource);
+  }
+}
+
+function HandlerManager_0(source){
+  this.eventBus = new HandlerManager$Bus_0(false);
+  this.source = source;
+}
+
+function HandlerManager_1(source, fireInReverseOrder){
+  this.eventBus = new HandlerManager$Bus_0(fireInReverseOrder);
+  this.source = source;
+}
+
+function HandlerManager(){
+}
+
+_ = HandlerManager_1.prototype = HandlerManager_0.prototype = HandlerManager.prototype = new Object_0;
+_.fireEvent_0 = function fireEvent(event_0){
+  $fireEvent(this, event_0);
+}
+;
+_.castableTypeMap$ = {68:1};
+_.eventBus = null;
+_.source = null;
+function EventBus(){
+}
+
+_ = EventBus.prototype = new Object_0;
+_.castableTypeMap$ = {};
+function $defer(this$static, command){
+  !this$static.deferredDeltas && (this$static.deferredDeltas = new ArrayList_0);
+  $add_5(this$static.deferredDeltas, command);
+}
+
+--></script>
+<script><!--
+function $doAdd(this$static, type, handler){
+  var l;
+  if (!type) {
+    throw new NullPointerException_1('Cannot add a handler with a null type');
+  }
+  if (!handler) {
+    throw new NullPointerException_1('Cannot add a null handler');
+  }
+  this$static.firingDepth > 0?$defer(this$static, new SimpleEventBus$2_0(this$static, type, handler)):(l = $ensureHandlerList(this$static, type) , l.add(handler) , undefined);
+  return new SimpleEventBus$1_0(this$static, type, handler);
+}
+
+function $doAddNow(this$static, type, handler){
+  var l;
+  l = $ensureHandlerList(this$static, type);
+  l.add(handler);
+}
+
+function $doFire(this$static, event_0){
+  var $e0, causes, e, handler, handlers, it, old;
+  if (!event_0) {
+    throw new NullPointerException_1('Cannot fire null event');
+  }
+  try {
+    ++this$static.firingDepth;
+    handlers = $getHandlerList(this$static, event_0.getAssociatedType());
+    causes = null;
+    it = this$static.isReverseOrder?handlers.listIterator_0(handlers.size_0()):handlers.listIterator();
+    while (this$static.isReverseOrder?it.i > 0:it.i < it.this$0_0.size_0()) {
+      handler = this$static.isReverseOrder?$previous(it):$next_3(it);
+      try {
+        event_0.dispatch(dynamicCast(handler, 55));
+      }
+       catch ($e0) {
+        $e0 = caught_0($e0);
+        if (instanceOf($e0, 15)) {
+          e = $e0;
+          !causes && (causes = new HashSet_0);
+          old = $put_0(causes.map, e, causes);
+        }
+         else 
+          throw $e0;
+      }
+    }
+    if (causes) {
+      throw new UmbrellaException_1(causes);
+    }
+  }
+   finally {
+    --this$static.firingDepth;
+    this$static.firingDepth == 0 && $handleQueuedAddsAndRemoves(this$static);
+  }
+}
+
+function $doRemoveNow(this$static, type, handler){
+  var l, removed, sourceMap;
+  l = $getHandlerList(this$static, type);
+  removed = l.remove_1(handler);
+  removed && l.isEmpty() && (sourceMap = dynamicCast($get_0(this$static.map, type), 56) , dynamicCast($removeNullSlot(sourceMap), 57) , sourceMap.size == 0 && $remove_5(this$static.map, type) , undefined);
+}
+
+function $ensureHandlerList(this$static, type){
+  var handlers, sourceMap;
+  sourceMap = dynamicCast($get_0(this$static.map, type), 56);
+  if (!sourceMap) {
+    sourceMap = new HashMap_0;
+    $put_0(this$static.map, type, sourceMap);
+  }
+  handlers = dynamicCast(sourceMap.nullSlot, 57);
+  if (!handlers) {
+    handlers = new ArrayList_0;
+    $putNullSlot(sourceMap, handlers);
+  }
+  return handlers;
+}
+
+function $getHandlerList(this$static, type){
+  var handlers, sourceMap;
+  sourceMap = dynamicCast($get_0(this$static.map, type), 56);
+  if (!sourceMap) {
+    return $clinit_22() , $clinit_22() , EMPTY_LIST;
+  }
+  handlers = dynamicCast(sourceMap.nullSlot, 57);
+  if (!handlers) {
+    return $clinit_22() , $clinit_22() , EMPTY_LIST;
+  }
+  return handlers;
+}
+
+function $handleQueuedAddsAndRemoves(this$static){
+  var c, c$iterator;
+  if (this$static.deferredDeltas) {
+    try {
+      for (c$iterator = new AbstractList$IteratorImpl_0(this$static.deferredDeltas); c$iterator.i < c$iterator.this$0_0.size_0();) {
+        c = dynamicCast($next_3(c$iterator), 58);
+        c.execute();
+      }
+    }
+     finally {
+      this$static.deferredDeltas = null;
+    }
+  }
+}
+
+function SimpleEventBus(){
+}
+
+_ = SimpleEventBus.prototype = new EventBus;
+_.doRemove = function doRemove(type, source, handler){
+  this.firingDepth > 0?$defer(this, new SimpleEventBus$3_0(this, type, handler)):$doRemoveNow(this, type, handler);
+}
+;
+_.castableTypeMap$ = {};
+_.deferredDeltas = null;
+_.firingDepth = 0;
+_.isReverseOrder = false;
+function HandlerManager$Bus_0(fireInReverseOrder){
+  this.map = new HashMap_0;
+  this.isReverseOrder = fireInReverseOrder;
+}
+
+function HandlerManager$Bus(){
+}
+
+_ = HandlerManager$Bus_0.prototype = HandlerManager$Bus.prototype = new SimpleEventBus;
+_.doRemove = function doRemove_0(type, source, handler){
+  this.firingDepth > 0?$defer(this, new SimpleEventBus$3_0(this, type, handler)):$doRemoveNow(this, type, handler);
+}
+;
+_.castableTypeMap$ = {};
+function LegacyHandlerWrapper_0(real){
+  this.real = real;
+}
+
+function LegacyHandlerWrapper(){
+}
+
+_ = LegacyHandlerWrapper_0.prototype = LegacyHandlerWrapper.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.real = null;
+function UmbrellaException_1(causes){
+  RuntimeException_1.call(this, causes.size_0() == 0?null:dynamicCast(causes.toArray(initDim(_3Ljava_lang_Throwable_2_classLit, {59:1, 74:1}, 15, 0, 0)), 59)[0]);
+  this.causes = causes;
+}
+
+function UmbrellaException_0(){
+}
+
+_ = UmbrellaException_1.prototype = UmbrellaException_0.prototype = new RuntimeException;
+_.castableTypeMap$ = {3:1, 14:1, 15:1, 74:1};
+_.causes = null;
+function UmbrellaException_2(causes){
+  UmbrellaException_1.call(this, causes);
+}
+
+function UmbrellaException(){
+}
+
+_ = UmbrellaException_2.prototype = UmbrellaException.prototype = new UmbrellaException_0;
+_.castableTypeMap$ = {3:1, 14:1, 15:1, 74:1};
+function AutoDirectionHandler_0(){
+}
+
+function AutoDirectionHandler(){
+}
+
+_ = AutoDirectionHandler_0.prototype = AutoDirectionHandler.prototype = new Object_0;
+_.castableTypeMap$ = {55:1};
+function getDirectionOnElement(elem){
+  var dirPropertyValue;
+  dirPropertyValue = elem['dir'] == null?null:String(elem['dir']);
+  if ($equalsIgnoreCase('rtl', dirPropertyValue)) {
+    return $clinit_10() , RTL;
+  }
+   else if ($equalsIgnoreCase('ltr', dirPropertyValue)) {
+    return $clinit_10() , LTR;
+  }
+  return $clinit_10() , DEFAULT;
+}
+
+function setDirectionOnElement(elem, direction){
+  switch (direction.ordinal) {
+    case 0:
+      {
+        elem['dir'] = 'rtl';
+        break;
+      }
+
+    case 1:
+      {
+        elem['dir'] = 'ltr';
+        break;
+      }
+
+    case 2:
+      {
+        getDirectionOnElement(elem) != ($clinit_10() , DEFAULT) && (elem['dir'] = '' , undefined);
+        break;
+      }
+
+  }
+}
+
+function $clinit_10(){
+  $clinit_10 = nullMethod;
+  RTL = new HasDirection$Direction_0('RTL', 0);
+  LTR = new HasDirection$Direction_0('LTR', 1);
+  DEFAULT = new HasDirection$Direction_0('DEFAULT', 2);
+  initValues(_3Lcom_google_gwt_i18n_client_HasDirection$Direction_2_classLit, {74:1}, 69, [RTL, LTR, DEFAULT]);
+}
+
+function HasDirection$Direction_0(enum$name, enum$ordinal){
+  this.ordinal = enum$ordinal;
+}
+
+function HasDirection$Direction(){
+}
+
+_ = HasDirection$Direction_0.prototype = HasDirection$Direction.prototype = new Enum;
+_.castableTypeMap$ = {69:1, 74:1, 76:1, 77:1};
+var DEFAULT, LTR, RTL;
+function Array_1(){
+}
+
+function createFrom(array, length_0){
+  var a, result;
+  a = array;
+  result = createFromSeed(0, length_0);
+  initValues(a.arrayClass$, a.castableTypeMap$, a.queryId$, result);
+  return result;
+}
+
+function createFromSeed(seedType, length_0){
+  var array = new Array(length_0);
+  if (seedType == 3) {
+    for (var i = 0; i < length_0; ++i) {
+      var value = new Object;
+      value.l = value.m = value.h = 0;
+      array[i] = value;
+    }
+  }
+   else if (seedType > 0) {
+    var value = [null, 0, false][seedType];
+    for (var i = 0; i < length_0; ++i) {
+      array[i] = value;
+    }
+  }
+  return array;
+}
+
+function initDim(arrayClass, castableTypeMap, queryId, length_0, seedType){
+  var result;
+  result = createFromSeed(seedType, length_0);
+  $clinit_11();
+  wrapArray(result, expandoNames_0, expandoValues_0);
+  result.arrayClass$ = arrayClass;
+  result.castableTypeMap$ = castableTypeMap;
+  result.queryId$ = queryId;
+  return result;
+}
+
+function initValues(arrayClass, castableTypeMap, queryId, array){
+  $clinit_11();
+  wrapArray(array, expandoNames_0, expandoValues_0);
+  array.arrayClass$ = arrayClass;
+  array.castableTypeMap$ = castableTypeMap;
+  array.queryId$ = queryId;
+  return array;
+}
+
+function setCheck(array, index, value){
+  if (value != null) {
+    if (array.queryId$ > 0 && !canCastUnsafe(value, array.queryId$)) {
+      throw new ArrayStoreException_0;
+    }
+    if (array.queryId$ < 0 && (value.typeMarker$ == nullMethod || value.castableTypeMap$ && !!value.castableTypeMap$[1])) {
+      throw new ArrayStoreException_0;
+    }
+  }
+  return array[index] = value;
+}
+
+function Array_0(){
+}
+
+_ = Array_1.prototype = Array_0.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.arrayClass$ = null;
+_.queryId$ = 0;
+function $clinit_11(){
+  $clinit_11 = nullMethod;
+  expandoNames_0 = [];
+  expandoValues_0 = [];
+  initExpandos(new Array_1, expandoNames_0, expandoValues_0);
+}
+
+function initExpandos(protoType, expandoNames, expandoValues){
+  var i = 0, value;
+  for (var name_0 in protoType) {
+    if (value = protoType[name_0]) {
+      expandoNames[i] = name_0;
+      expandoValues[i] = value;
+      ++i;
+    }
+  }
+}
+
+function wrapArray(array, expandoNames, expandoValues){
+  $clinit_11();
+  for (var i = 0, c = expandoNames.length; i < c; ++i) {
+    array[expandoNames[i]] = expandoValues[i];
+  }
+}
+
+var expandoNames_0, expandoValues_0;
+function canCastUnsafe(src, dstId){
+  return src.castableTypeMap$ && src.castableTypeMap$[dstId];
+}
+
+function dynamicCast(src, dstId){
+  if (src != null && !(src.castableTypeMap$ && src.castableTypeMap$[dstId])) {
+    throw new ClassCastException_0;
+  }
+  return src;
+}
+
+function dynamicCastJso(src){
+  if (src != null && (src.typeMarker$ == nullMethod || src.castableTypeMap$ && !!src.castableTypeMap$[1])) {
+    throw new ClassCastException_0;
+  }
+  return src;
+}
+
+function instanceOf(src, dstId){
+  return src != null && src.castableTypeMap$ && !!src.castableTypeMap$[dstId];
+}
+
+function instanceOfJso(src){
+  return src != null && src.typeMarker$ != nullMethod && !(src.castableTypeMap$ && !!src.castableTypeMap$[1]);
+}
+
+function round_int(x){
+  return ~~Math.max(Math.min(x, 2147483647), -2147483648);
+}
+
+function throwClassCastExceptionUnlessNull(o){
+  if (o != null) {
+    throw new ClassCastException_0;
+  }
+  return null;
+}
+
+function init(){
+  var runtimeValue;
+  !!$stats && onModuleStart('com.google.gwt.user.client.UserAgentAsserter');
+  runtimeValue = $getRuntimeValue();
+  $equals('ie6', runtimeValue) || ($wnd.alert('ERROR: Possible problem with your *.gwt.xml module file.\nThe compile time user.agent value (ie6) does not match the runtime user.agent value (' + runtimeValue + '). Expect more errors.\n') , undefined);
+  !!$stats && onModuleStart('com.loeppky.spadesscores.client.SpadesScores');
+  $onModuleLoad(new SpadesScores_0);
+}
+
+function caught_0(e){
+  if (e != null && e.castableTypeMap$ && !!e.castableTypeMap$[15]) {
+    return e;
+  }
+  return new JavaScriptException_0(e);
+}
+
+function onModuleStart(mainClassName){
+  return $stats({moduleName:$moduleName, sessionId:$sessionId, subSystem:'startup', evtGroup:'moduleStartup', millis:(new Date).getTime(), type:'onModuleLoadStart', className:mainClassName});
+}
+
+function AbstractRenderer(){
+}
+
+_ = AbstractRenderer.prototype = new Object_0;
+_.castableTypeMap$ = {};
+function PassthroughParser_0(){
+}
+
+function PassthroughParser(){
+}
+
+_ = PassthroughParser_0.prototype = PassthroughParser.prototype = new Object_0;
+_.castableTypeMap$ = {};
+var INSTANCE_0 = null;
+function PassthroughRenderer_0(){
+}
+
+function PassthroughRenderer(){
+}
+
+_ = PassthroughRenderer_0.prototype = PassthroughRenderer.prototype = new AbstractRenderer;
+_.castableTypeMap$ = {};
+var INSTANCE_1 = null;
+function dispatchEvent_1(evt, elem, listener){
+  var prevCurrentEvent;
+  prevCurrentEvent = currentEvent;
+  currentEvent = evt;
+  elem == sCaptureElem && $eventGetTypeInt(evt.type) == 8192 && (sCaptureElem = null);
+  listener.onBrowserEvent(evt);
+  currentEvent = prevCurrentEvent;
+}
+
+function previewEvent(evt){
+  var ret;
+  ret = fire_3(handlers_0, evt);
+  if (!ret && !!evt) {
+    evt.cancelBubble = true;
+    evt.returnValue = false;
+  }
+  return ret;
+}
+
+function releaseCapture(elem){
+  !!sCaptureElem && elem == sCaptureElem && (sCaptureElem = null);
+  $maybeInitializeEventSystem();
+  elem.releaseCapture();
+}
+
+function setCapture(elem){
+  sCaptureElem = elem;
+  $maybeInitializeEventSystem();
+  elem.setCapture();
+}
+
+function sinkEvents(elem, eventBits){
+  $maybeInitializeEventSystem();
+  $sinkEventsImpl(elem, eventBits);
+}
+
+var currentEvent = null, sCaptureElem = null;
+function addNativePreviewHandler(handler){
+  $maybeInitializeEventSystem();
+  !TYPE_8 && (TYPE_8 = new GwtEvent$Type_0);
+  if (!handlers_0) {
+    handlers_0 = new HandlerManager_1(null, true);
+    singleton = new Event$NativePreviewEvent_0;
+  }
+  return new LegacyHandlerWrapper_0($doAdd(handlers_0.eventBus, TYPE_8, handler));
+}
+
+var handlers_0 = null;
+function $revive(this$static){
+  this$static.dead = false;
+  this$static.source = null;
+  this$static.isCanceled = false;
+  this$static.isConsumed = false;
+  this$static.isFirstHandler = true;
+  this$static.nativeEvent = null;
+}
+
+function Event$NativePreviewEvent_0(){
+}
+
+function fire_3(handlers, nativeEvent){
+  var lastIsCanceled, lastIsConsumed, lastIsFirstHandler, lastNativeEvent, ret;
+  if (!!TYPE_8 && !!handlers && $containsKey(handlers.eventBus.map, TYPE_8)) {
+    lastIsCanceled = singleton.isCanceled;
+    lastIsConsumed = singleton.isConsumed;
+    lastIsFirstHandler = singleton.isFirstHandler;
+    lastNativeEvent = singleton.nativeEvent;
+    $revive(singleton);
+    singleton.nativeEvent = nativeEvent;
+    $fireEvent(handlers, singleton);
+    ret = !(singleton.isCanceled && !singleton.isConsumed);
+    singleton.isCanceled = lastIsCanceled;
+    singleton.isConsumed = lastIsConsumed;
+    singleton.isFirstHandler = lastIsFirstHandler;
+    singleton.nativeEvent = lastNativeEvent;
+    return ret;
+  }
+  return true;
+}
+
+function Event$NativePreviewEvent(){
+}
+
+_ = Event$NativePreviewEvent_0.prototype = Event$NativePreviewEvent.prototype = new GwtEvent;
+_.dispatch = function dispatch_8(handler){
+  $previewNativeEvent(dynamicCast(handler, 16).this$0, this);
+  singleton.isFirstHandler = false;
+}
+;
+_.getAssociatedType = function getAssociatedType_9(){
+  return TYPE_8;
+}
+;
+_.revive = function revive_0(){
+  $revive(this);
+}
+;
+_.castableTypeMap$ = {};
+_.isCanceled = false;
+_.isConsumed = false;
+_.isFirstHandler = false;
+_.nativeEvent = null;
+var TYPE_8 = null, singleton = null;
+function $clinit_12(){
+  $clinit_12 = nullMethod;
+  impl = new HistoryImplIE6_0;
+  $init(impl) || (impl = null);
+}
+
+function addValueChangeHandler(handler){
+  $clinit_12();
+  return impl?$addValueChangeHandler(impl, handler):null;
+}
+
+var impl = null;
+function Timer$1_0(){
+}
+
+function Timer$1(){
+}
+
+_ = Timer$1_0.prototype = Timer$1.prototype = new Object_0;
+_.onClose = function onClose(event_0){
+  while (($clinit() , timers).size > 0) {
+    $cancel_0(dynamicCast($get_1(timers, 0), 17));
+  }
+}
+;
+_.castableTypeMap$ = {11:1, 55:1};
+function $getRuntimeValue(){
+  var ua = navigator.userAgent.toLowerCase();
+  var makeVersion = function(result){
+    return parseInt(result[1]) * 1000 + parseInt(result[2]);
+  }
+  ;
+  if (function(){
+    return ua.indexOf('opera') != -1;
+  }
+  ())
+    return 'opera';
+  if (function(){
+    return ua.indexOf('webkit') != -1;
+  }
+  ())
+    return 'safari';
+  if (function(){
+    return ua.indexOf('msie') != -1 && $doc.documentMode >= 9;
+  }
+  ())
+    return 'ie9';
+  if (function(){
+    return ua.indexOf('msie') != -1 && $doc.documentMode >= 8;
+  }
+  ())
+    return 'ie8';
+  if (function(){
+    var result = /msie ([0-9]+)\.([0-9]+)/.exec(ua);
+    if (result && result.length == 3)
+      return makeVersion(result) >= 6000;
+  }
+  ())
+    return 'ie6';
+  if (function(){
+    return ua.indexOf('gecko') != -1;
+  }
+  ())
+    return 'gecko1_8';
+  return 'unknown';
+}
+
+function addCloseHandler(handler){
+  maybeInitializeCloseHandlers();
+  return addHandler(TYPE_5?TYPE_5:(TYPE_5 = new GwtEvent$Type_0), handler);
+}
+
+function addHandler(type, handler){
+  return new LegacyHandlerWrapper_0($doAdd((!handlers_1 && (handlers_1 = new Window$WindowHandlers_0) , handlers_1).eventBus, type, handler));
+}
+
+function addResizeHandler(handler){
+  maybeInitializeCloseHandlers();
+  maybeInitializeResizeHandlers();
+  return addHandler((!TYPE_6 && (TYPE_6 = new GwtEvent$Type_0) , TYPE_6), handler);
+}
+
+function maybeInitializeCloseHandlers(){
+  if (!closeHandlersInitialized) {
+    $initHandler('function __gwt_initWindowCloseHandler(beforeunload, unload) {\n  var wnd = window\n  , oldOnBeforeUnload = wnd.onbeforeunload\n  , oldOnUnload = wnd.onunload;\n  \n  wnd.onbeforeunload = function(evt) {\n    var ret, oldRet;\n    try {\n      ret = beforeunload();\n    } finally {\n      oldRet = oldOnBeforeUnload && oldOnBeforeUnload(evt);\n    }\n    // Avoid returning null as IE6 will coerce it into a string.\n    // Ensure that "" gets returned properly.\n    if (ret != null) {\n      return ret;\n    }\n    if (oldRet != null) {\n      return oldRet;\n    }\n    // returns undefined.\n  };\n  \n  wnd.onunload = function(evt) {\n    try {\n      unload();\n    } finally {\n      oldOnUnload && oldOnUnload(evt);\n      wnd.onresize = null;\n      wnd.onscroll = null;\n      wnd.onbeforeunload = null;\n      wnd.onunload = null;\n    }\n  };\n  \n  // Remove the reference once we\'ve initialize the handler\n  wnd.__gwt_initWindowCloseHandler = undefined;\n}\n', new WindowImplIE$1_0);
+    closeHandlersInitialized = true;
+  }
+}
+
+function maybeInitializeResizeHandlers(){
+  if (!resizeHandlersInitialized) {
+    $initHandler("function __gwt_initWindowResizeHandler(resize) {\n  var wnd = window, oldOnResize = wnd.onresize;\n  \n  wnd.onresize = function(evt) {\n    try {\n      resize();\n    } finally {\n      oldOnResize && oldOnResize(evt);\n    }\n  };\n  \n  // Remove the reference once we've initialize the handler\n  wnd.__gwt_initWindowResizeHandler = undefined;\n}\n", new WindowImplIE$2_0);
+    resizeHandlersInitialized = true;
+  }
+}
+
+function onClosed(){
+  closeHandlersInitialized && fire_0((!handlers_1 && (handlers_1 = new Window$WindowHandlers_0) , handlers_1));
+}
+
+function onClosing(){
+  var event_0;
+  if (closeHandlersInitialized) {
+    event_0 = new Window$ClosingEvent_0;
+    !!handlers_1 && $fireEvent(handlers_1, event_0);
+    return null;
+  }
+  return null;
+}
+
+function onResize(){
+  var height, width;
+  if (resizeHandlersInitialized) {
+    width = $getClientWidth($doc);
+    height = $getClientHeight($doc);
+    if (lastResizeWidth != width || lastResizeHeight != height) {
+      lastResizeWidth = width;
+      lastResizeHeight = height;
+      fire_1((!handlers_1 && (handlers_1 = new Window$WindowHandlers_0) , handlers_1), width);
+    }
+  }
+}
+
+var closeHandlersInitialized = false, handlers_1 = null, lastResizeHeight = 0, lastResizeWidth = 0, resizeHandlersInitialized = false;
+function $clinit_13(){
+  $clinit_13 = nullMethod;
+  TYPE_9 = new GwtEvent$Type_0;
+}
+
+function Window$ClosingEvent_0(){
+  $clinit_13();
+}
+
+function Window$ClosingEvent(){
+}
+
+_ = Window$ClosingEvent_0.prototype = Window$ClosingEvent.prototype = new GwtEvent;
+_.dispatch = function dispatch_9(handler){
+  throwClassCastExceptionUnlessNull(handler);
+  null.nullMethod();
+}
+;
+_.getAssociatedType = function getAssociatedType_10(){
+  return TYPE_9;
+}
+;
+_.castableTypeMap$ = {};
+var TYPE_9;
+function Window$WindowHandlers_0(){
+  this.eventBus = new HandlerManager$Bus_0(false);
+  this.source = null;
+}
+
+function Window$WindowHandlers(){
+}
+
+_ = Window$WindowHandlers_0.prototype = Window$WindowHandlers.prototype = new HandlerManager;
+_.castableTypeMap$ = {68:1};
+function $eventGetTypeInt(eventType){
+  switch (eventType) {
+    case 'blur':
+      return 4096;
+    case 'change':
+      return 1024;
+    case 'click':
+      return 1;
+    case 'dblclick':
+      return 2;
+    case 'focus':
+      return 2048;
+    case 'keydown':
+      return 128;
+    case 'keypress':
+      return 256;
+    case 'keyup':
+      return 512;
+    case 'load':
+      return 32768;
+    case 'losecapture':
+      return 8192;
+    case 'mousedown':
+      return 4;
+    case 'mousemove':
+      return 64;
+    case 'mouseout':
+      return 32;
+    case 'mouseover':
+      return 16;
+    case 'mouseup':
+      return 8;
+    case 'scroll':
+      return 16384;
+    case 'error':
+      return 65536;
+    case 'DOMMouseScroll':
+    case 'mousewheel':
+      return 131072;
+    case 'contextmenu':
+      return 262144;
+    case 'paste':
+      return 524288;
+    case 'touchstart':
+      return 1048576;
+    case 'touchmove':
+      return 2097152;
+    case 'touchend':
+      return 4194304;
+    case 'touchcancel':
+      return 8388608;
+    case 'gesturestart':
+      return 16777216;
+    case 'gesturechange':
+      return 33554432;
+    case 'gestureend':
+      return 67108864;
+    case 'ended':
+      return 134217728;
+    case 'progress':
+      return 268435456;
+    case 'canplaythrough':
+      return 536870912;
+    default:return -1;
+  }
+}
+
+function $maybeInitializeEventSystem(){
+  if (!eventSystemIsInitialized) {
+    $initEventSystem();
+    eventSystemIsInitialized = true;
+  }
+}
+
+var eventSystemIsInitialized = false;
+function $initEventSystem(){
+  $wnd.__gwt_globalEventArray == null && ($wnd.__gwt_globalEventArray = new Array);
+  $wnd.__gwt_globalEventArray[$wnd.__gwt_globalEventArray.length] = $entry(function(){
+    return previewEvent($wnd.event);
+  }
+  );
+  var dispatchEvent_0 = $entry(function(){
+    var oldEventTarget = currentEventTarget;
+    currentEventTarget = this;
+    if ($wnd.event.returnValue == null) {
+      $wnd.event.returnValue = true;
+      if (!previewEventImpl()) {
+        currentEventTarget = oldEventTarget;
+        return;
+      }
+    }
+    var listener, curElem = this;
+    while (curElem && !(listener = curElem.__listener)) {
+      curElem = curElem.parentElement;
+    }
+    listener && !instanceOfJso(listener) && listener != null && listener.castableTypeMap$ && !!listener.castableTypeMap$[18] && dispatchEvent_1($wnd.event, curElem, listener);
+    currentEventTarget = oldEventTarget;
+  }
+  );
+  var dispatchDblClickEvent = $entry(function(){
+    var newEvent = $doc.createEventObject();
+    $wnd.event.returnValue == null && $wnd.event.srcElement.fireEvent && $wnd.event.srcElement.fireEvent('onclick', newEvent);
+    if (this.__eventBits & 2) {
+      dispatchEvent_0.call(this);
+    }
+     else if ($wnd.event.returnValue == null) {
+      $wnd.event.returnValue = true;
+      previewEventImpl();
+    }
+  }
+  );
+  var dispatchUnhandledEvent = $entry(function(){
+    this.__gwtLastUnhandledEvent = $wnd.event.type;
+    dispatchEvent_0.call(this);
+  }
+  );
+  var moduleName = $moduleName.replace(/\./g, '_');
+  $wnd['__gwt_dispatchEvent_' + moduleName] = dispatchEvent_0;
+  callDispatchEvent = (new Function('w', 'return function() { w.__gwt_dispatchEvent_' + moduleName + '.call(this) }'))($wnd);
+  $wnd['__gwt_dispatchDblClickEvent_' + moduleName] = dispatchDblClickEvent;
+  callDispatchDblClickEvent = (new Function('w', 'return function() { w.__gwt_dispatchDblClickEvent_' + moduleName + '.call(this)}'))($wnd);
+  $wnd['__gwt_dispatchUnhandledEvent_' + moduleName] = dispatchUnhandledEvent;
+  callDispatchUnhandledEvent = (new Function('w', 'return function() { w.__gwt_dispatchUnhandledEvent_' + moduleName + '.call(this)}'))($wnd);
+  callDispatchOnLoadEvent = (new Function('w', 'return function() { w.__gwt_dispatchUnhandledEvent_' + moduleName + '.call(w.event.srcElement)}'))($wnd);
+  var bodyDispatcher = $entry(function(){
+    dispatchEvent_0.call($doc.body);
+  }
+  );
+  var bodyDblClickDispatcher = $entry(function(){
+    dispatchDblClickEvent.call($doc.body);
+  }
+  );
+  $doc.body.attachEvent('onclick', bodyDispatcher);
+  $doc.body.attachEvent('onmousedown', bodyDispatcher);
+  $doc.body.attachEvent('onmouseup', bodyDispatcher);
+  $doc.body.attachEvent('onmousemove', bodyDispatcher);
+  $doc.body.attachEvent('onmousewheel', bodyDispatcher);
+  $doc.body.attachEvent('onkeydown', bodyDispatcher);
+  $doc.body.attachEvent('onkeypress', bodyDispatcher);
+  $doc.body.attachEvent('onkeyup', bodyDispatcher);
+  $doc.body.attachEvent('onfocus', bodyDispatcher);
+  $doc.body.attachEvent('onblur', bodyDispatcher);
+  $doc.body.attachEvent('ondblclick', bodyDblClickDispatcher);
+  $doc.body.attachEvent('oncontextmenu', bodyDispatcher);
+}
+
+function $insertChild(parent_0, child, index){
+  index >= parent_0.children.length?parent_0.appendChild(child):parent_0.insertBefore(child, parent_0.children[index]);
+}
+
+function $sinkEventsImpl(elem, bits){
+  var chMask = (elem.__eventBits || 0) ^ bits;
+  elem.__eventBits = bits;
+  if (!chMask)
+    return;
+  chMask & 1 && (elem.onclick = bits & 1?callDispatchEvent:null);
+  chMask & 3 && (elem.ondblclick = bits & 3?callDispatchDblClickEvent:null);
+  chMask & 4 && (elem.onmousedown = bits & 4?callDispatchEvent:null);
+  chMask & 8 && (elem.onmouseup = bits & 8?callDispatchEvent:null);
+  chMask & 16 && (elem.onmouseover = bits & 16?callDispatchEvent:null);
+  chMask & 32 && (elem.onmouseout = bits & 32?callDispatchEvent:null);
+  chMask & 64 && (elem.onmousemove = bits & 64?callDispatchEvent:null);
+  chMask & 128 && (elem.onkeydown = bits & 128?callDispatchEvent:null);
+  chMask & 256 && (elem.onkeypress = bits & 256?callDispatchEvent:null);
+  chMask & 512 && (elem.onkeyup = bits & 512?callDispatchEvent:null);
+  chMask & 1024 && (elem.onchange = bits & 1024?callDispatchEvent:null);
+  chMask & 2048 && (elem.onfocus = bits & 2048?callDispatchEvent:null);
+  chMask & 4096 && (elem.onblur = bits & 4096?callDispatchEvent:null);
+  chMask & 8192 && (elem.onlosecapture = bits & 8192?callDispatchEvent:null);
+  chMask & 16384 && (elem.onscroll = bits & 16384?callDispatchEvent:null);
+  chMask & 32768 && (elem.nodeName == 'IFRAME'?bits & 32768?elem.attachEvent('onload', callDispatchOnLoadEvent):elem.detachEvent('onload', callDispatchOnLoadEvent):(elem.onload = bits & 32768?callDispatchUnhandledEvent:null));
+  chMask & 65536 && (elem.onerror = bits & 65536?callDispatchEvent:null);
+  chMask & 131072 && (elem.onmousewheel = bits & 131072?callDispatchEvent:null);
+  chMask & 262144 && (elem.oncontextmenu = bits & 262144?callDispatchEvent:null);
+  chMask & 524288 && (elem.onpaste = bits & 524288?callDispatchEvent:null);
+}
+
+function previewEventImpl(){
+  var isCancelled = false;
+  for (var i = 0; i < $wnd.__gwt_globalEventArray.length; i++) {
+    !$wnd.__gwt_globalEventArray[i]() && (isCancelled = true);
+  }
+  return !isCancelled;
+}
+
+var callDispatchDblClickEvent = null, callDispatchEvent = null, callDispatchOnLoadEvent = null, callDispatchUnhandledEvent = null;
+function $get(this$static, elem){
+  var index, index_0;
+  index = (index_0 = elem['__uiObjectID'] , index_0 == null?-1:index_0);
+  if (index < 0) {
+    return null;
+  }
+  return dynamicCast($get_1(this$static.uiObjectList, index), 19);
+}
+
+function $put(this$static, uiObject){
+  var index;
+  if (!this$static.freeList) {
+    index = this$static.uiObjectList.size;
+    $add_5(this$static.uiObjectList, uiObject);
+  }
+   else {
+    index = this$static.freeList.index;
+    $set(this$static.uiObjectList, index, uiObject);
+    this$static.freeList = this$static.freeList.next;
+  }
+  uiObject.element['__uiObjectID'] = index;
+}
+
+function $removeByElement(this$static, elem){
+  var index, index_0;
+  index = (index_0 = elem['__uiObjectID'] , index_0 == null?-1:index_0);
+  elem['__uiObjectID'] = null;
+  $set(this$static.uiObjectList, index, null);
+  this$static.freeList = new ElementMapperImpl$FreeNode_0(index, this$static.freeList);
+}
+
+function ElementMapperImpl_0(){
+  this.uiObjectList = new ArrayList_0;
+}
+
+function ElementMapperImpl(){
+}
+
+_ = ElementMapperImpl_0.prototype = ElementMapperImpl.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.freeList = null;
+function ElementMapperImpl$FreeNode_0(index, next){
+  this.index = index;
+  this.next = next;
+}
+
+function ElementMapperImpl$FreeNode(){
+}
+
+_ = ElementMapperImpl$FreeNode_0.prototype = ElementMapperImpl$FreeNode.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.index = 0;
+_.next = null;
+function $addValueChangeHandler(this$static, handler){
+  return new LegacyHandlerWrapper_0($doAdd(this$static.handlers.eventBus, (!TYPE_7 && (TYPE_7 = new GwtEvent$Type_0) , TYPE_7), handler));
+}
+
+function HistoryImpl(){
+}
+
+_ = HistoryImpl.prototype = new Object_0;
+_.decodeFragment = function decodeFragment(encodedFragment){
+  return decodeURI(encodedFragment.replace('%23', '#'));
+}
+;
+_.encodeFragment = function encodeFragment(fragment){
+  return encodeURI(fragment).replace('#', '%23');
+}
+;
+_.fireEvent_0 = function fireEvent_0(event_0){
+  $fireEvent(this.handlers, event_0);
+}
+;
+_.nativeUpdateOnEvent = function nativeUpdateOnEvent(historyToken){
+}
+;
+_.newItemOnEvent = function newItemOnEvent(historyToken){
+  historyToken = historyToken == null?'':historyToken;
+  if (!$equals(historyToken, token_0 == null?'':token_0)) {
+    token_0 = historyToken;
+    this.nativeUpdateOnEvent(historyToken);
+    fire_2(this);
+  }
+}
+;
+_.castableTypeMap$ = {68:1};
+var token_0 = '';
+function $init(this$static){
+  var tokenElement;
+  this$static.historyFrame = $doc.getElementById('__gwt_historyFrame');
+  if (!this$static.historyFrame) {
+    return false;
+  }
+  $initHistoryToken(this$static);
+  tokenElement = getTokenElement(this$static.historyFrame);
+  tokenElement?(token_0 = tokenElement.innerText , undefined):$navigateFrame(this$static, token_0 == null?'':token_0);
+  $injectGlobalHandler(this$static);
+  $initUrlCheckTimer(this$static);
+  return true;
+}
+
+function $initHistoryToken(this$static){
+  var token = '';
+  var hash = getLocationHash();
+  if (hash.length > 0) {
+    try {
+      token = this$static.decodeFragment(hash.substring(1));
+    }
+     catch (e) {
+      $wnd.location.hash = '';
+    }
+  }
+  token_0 = token;
+}
+
+function $initUrlCheckTimer(this$static){
+  var historyImplRef = this$static;
+  var urlChecker = $entry(function(){
+    $wnd.setTimeout(urlChecker, 250);
+    if (historyImplRef.handleWindowReloadCanceled()) {
+      return;
+    }
+    var hash = getLocationHash();
+    if (hash.length > 0) {
+      var token = '';
+      try {
+        token = historyImplRef.decodeFragment(hash.substring(1));
+      }
+       catch (e) {
+        historyImplRef.reloadWindow();
+      }
+      var historyToken = token_0 == null?'':token_0;
+      historyToken && token != historyToken && historyImplRef.reloadWindow();
+    }
+  }
+  );
+  urlChecker();
+}
+
+--></script>
+<script><!--
+function $injectGlobalHandler(this$static){
+  var historyImplRef = this$static;
+  var oldOnLoad = $wnd.__gwt_onHistoryLoad;
+  $wnd.__gwt_onHistoryLoad = $entry(function(token){
+    historyImplRef.newItemOnEvent(token);
+    oldOnLoad && oldOnLoad(token);
+  }
+  );
+}
+
+function $navigateFrame(this$static, token){
+  var escaped = (div = $createElement($doc, 'div') , div.innerText = token || '' , div.innerHTML), div;
+  var doc = this$static.historyFrame.contentWindow.document;
+  doc.open();
+  doc.write('<html><body onload="if(parent.__gwt_onHistoryLoad)parent.__gwt_onHistoryLoad(__gwt_historyToken.innerText)"><div id="__gwt_historyToken">' + escaped + '<\/div><\/body><\/html>');
+  doc.close();
+}
+
+function HistoryImplIE6_0(){
+  this.handlers = new HandlerManager_0(null);
+}
+
+function getLocationHash(){
+  var href = $wnd.location.href;
+  var hashLoc = href.lastIndexOf('#');
+  return hashLoc > 0?href.substring(hashLoc):'';
+}
+
+function getTokenElement(historyFrame){
+  if (historyFrame.contentWindow) {
+    var doc = historyFrame.contentWindow.document;
+    return doc.getElementById('__gwt_historyToken');
+  }
+}
+
+function HistoryImplIE6(){
+}
+
+_ = HistoryImplIE6_0.prototype = HistoryImplIE6.prototype = new HistoryImpl;
+_.handleWindowReloadCanceled = function handleWindowReloadCanceled(){
+  if (this.reloadedWindow) {
+    this.reloadedWindow = false;
+    $wnd.location.hash = this.encodeFragment(token_0 == null?'':token_0);
+    return true;
+  }
+  return false;
+}
+;
+_.nativeUpdateOnEvent = function nativeUpdateOnEvent_0(historyToken){
+  $wnd.location.hash = this.encodeFragment(historyToken);
+}
+;
+_.reloadWindow = function reloadWindow(){
+  this.reloadedWindow = true;
+  $wnd.location.reload();
+}
+;
+_.castableTypeMap$ = {68:1};
+_.historyFrame = null;
+_.reloadedWindow = false;
+function $initHandler(initFunc, cmd){
+  var scriptElem;
+  scriptElem = $createScriptElement($doc, initFunc);
+  $doc.body.appendChild(scriptElem);
+  cmd.execute();
+  $doc.body.removeChild(scriptElem);
+}
+
+function WindowImplIE$1_0(){
+}
+
+function WindowImplIE$1(){
+}
+
+_ = WindowImplIE$1_0.prototype = WindowImplIE$1.prototype = new Object_0;
+_.execute = function execute(){
+  $wnd.__gwt_initWindowCloseHandler($entry(onClosing), $entry(onClosed));
+}
+;
+_.castableTypeMap$ = {};
+function WindowImplIE$2_0(){
+}
+
+function WindowImplIE$2(){
+}
+
+_ = WindowImplIE$2_0.prototype = WindowImplIE$2.prototype = new Object_0;
+_.execute = function execute_0(){
+  $wnd.__gwt_initWindowResizeHandler($entry(onResize));
+}
+;
+_.castableTypeMap$ = {};
+function $setStyleName(this$static, style){
+  setStyleName(this$static.element, style, true);
+}
+
+function getStylePrimaryName(elem){
+  var fullClassName, spaceIdx;
+  fullClassName = elem['className'] == null?null:String(elem['className']);
+  spaceIdx = fullClassName.indexOf(String.fromCharCode(32));
+  if (spaceIdx >= 0) {
+    return fullClassName.substr(0, spaceIdx - 0);
+  }
+  return fullClassName;
+}
+
+function setStyleName(elem, style, add){
+  if (!elem) {
+    throw new RuntimeException_0('Null widget handle. If you are creating a composite, ensure that initWidget() has been called.');
+  }
+  style = $trim(style);
+  if (style.length == 0) {
+    throw new IllegalArgumentException_0('Style names cannot be empty');
+  }
+  add?$addClassName(elem, style):$removeClassName(elem, style);
+}
+
+function setStylePrimaryName(elem, style){
+  if (!elem) {
+    throw new RuntimeException_0('Null widget handle. If you are creating a composite, ensure that initWidget() has been called.');
+  }
+  style = $trim(style);
+  if (style.length == 0) {
+    throw new IllegalArgumentException_0('Style names cannot be empty');
+  }
+  updatePrimaryAndDependentStyleNames(elem, style);
+}
+
+function updatePrimaryAndDependentStyleNames(elem, newPrimaryStyle){
+  var classes = elem.className.split(/\s+/);
+  if (!classes) {
+    return;
+  }
+  var oldPrimaryStyle = classes[0];
+  var oldPrimaryStyleLen = oldPrimaryStyle.length;
+  classes[0] = newPrimaryStyle;
+  for (var i = 1, n = classes.length; i < n; i++) {
+    var name_0 = classes[i];
+    name_0.length > oldPrimaryStyleLen && name_0.charAt(oldPrimaryStyleLen) == '-' && name_0.indexOf(oldPrimaryStyle) == 0 && (classes[i] = newPrimaryStyle + name_0.substring(oldPrimaryStyleLen));
+  }
+  elem.className = classes.join(' ');
+}
+
+function UIObject(){
+}
+
+_ = UIObject.prototype = new Object_0;
+_.getStyleElement = function getStyleElement(){
+  return this.element;
+}
+;
+_.setHeight = function setHeight(height){
+  this.element.style['height'] = height;
+}
+;
+_.setWidth = function setWidth(width){
+  this.element.style['width'] = width;
+}
+;
+_.castableTypeMap$ = {19:1};
+_.element = null;
+function $addDomHandler(this$static, handler, type){
+  $sinkEvents(this$static, $eventGetTypeInt(type.name_0));
+  return new LegacyHandlerWrapper_0($doAdd((!this$static.handlerManager?(this$static.handlerManager = new HandlerManager_0(this$static)):this$static.handlerManager).eventBus, type, handler));
+}
+
+function $fireEvent_0(this$static, event_0){
+  !!this$static.handlerManager && $fireEvent(this$static.handlerManager, event_0);
+}
+
+function $onAttach(this$static){
+  var bitsToAdd;
+  if (this$static.attached) {
+    throw new IllegalStateException_1("Should only call onAttach when the widget is detached from the browser's document");
+  }
+  this$static.attached = true;
+  this$static.element.__listener = this$static;
+  bitsToAdd = this$static.eventsToSink;
+  this$static.eventsToSink = -1;
+  bitsToAdd > 0 && (this$static.eventsToSink == -1?sinkEvents(this$static.element, bitsToAdd | (this$static.element.__eventBits || 0)):(this$static.eventsToSink |= bitsToAdd));
+  this$static.doAttachChildren();
+  this$static.onLoad();
+}
+
+function $onBrowserEvent(this$static, event_0){
+  var related;
+  switch ($eventGetTypeInt(event_0.type)) {
+    case 16:
+    case 32:
+      related = event_0.relatedTarget || (event_0.type == 'mouseout'?event_0.toElement:event_0.fromElement);
+      if (!!related && $isOrHasChild(this$static.element, related)) {
+        return;
+      }
+
+  }
+  fireNativeEvent(event_0, this$static, this$static.element);
+}
+
+function $onDetach(this$static){
+  if (!this$static.attached) {
+    throw new IllegalStateException_1("Should only call onDetach when the widget is attached to the browser's document");
+  }
+  try {
+    this$static.onUnload();
+  }
+   finally {
+    try {
+      this$static.doDetachChildren();
+    }
+     finally {
+      this$static.element.__listener = null;
+      this$static.attached = false;
+    }
+  }
+}
+
+function $removeFromParent(this$static){
+  if (!this$static.parent_0) {
+    ($clinit_17() , $containsKey(widgetsToDetach.map, this$static)) && detachNow(this$static);
+  }
+   else if (this$static.parent_0) {
+    this$static.parent_0.remove(this$static);
+  }
+   else if (this$static.parent_0) {
+    throw new IllegalStateException_1("This widget's parent does not implement HasWidgets");
+  }
+}
+
+function $setParent(this$static, parent_0){
+  var oldParent;
+  oldParent = this$static.parent_0;
+  if (!parent_0) {
+    try {
+      !!oldParent && oldParent.attached && $onDetach(this$static);
+    }
+     finally {
+      this$static.parent_0 = null;
+    }
+  }
+   else {
+    if (oldParent) {
+      throw new IllegalStateException_1('Cannot set a new parent without first clearing the old parent');
+    }
+    this$static.parent_0 = parent_0;
+    parent_0.attached && this$static.onAttach();
+  }
+}
+
+function $sinkEvents(this$static, eventBitsToAdd){
+  this$static.eventsToSink == -1?sinkEvents(this$static.element, eventBitsToAdd | (this$static.element.__eventBits || 0)):(this$static.eventsToSink |= eventBitsToAdd);
+}
+
+function Widget(){
+}
+
+_ = Widget.prototype = new UIObject;
+_.doAttachChildren = function doAttachChildren(){
+}
+;
+_.doDetachChildren = function doDetachChildren(){
+}
+;
+_.fireEvent_0 = function fireEvent_1(event_0){
+  !!this.handlerManager && $fireEvent(this.handlerManager, event_0);
+}
+;
+_.onAttach = function onAttach(){
+  $onAttach(this);
+}
+;
+_.onBrowserEvent = function onBrowserEvent(event_0){
+  $onBrowserEvent(this, event_0);
+}
+;
+_.onLoad = function onLoad(){
+}
+;
+_.onUnload = function onUnload(){
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+_.attached = false;
+_.eventsToSink = 0;
+_.handlerManager = null;
+_.parent_0 = null;
+function Panel(){
+}
+
+_ = Panel.prototype = new Widget;
+_.doAttachChildren = function doAttachChildren_0(){
+  tryCommand(this, ($clinit_14() , attachCommand));
+}
+;
+_.doDetachChildren = function doDetachChildren_0(){
+  tryCommand(this, ($clinit_14() , detachCommand));
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+function $add(this$static, child, container){
+  $removeFromParent(child);
+  $add_4(this$static.children_0, child);
+  container.appendChild(child.element);
+  $setParent(child, this$static);
+}
+
+function $remove(this$static, w){
+  var elem;
+  if (w.parent_0 != this$static) {
+    return false;
+  }
+  try {
+    $setParent(w, null);
+  }
+   finally {
+    elem = w.element;
+    $getParentElement(elem).removeChild(elem);
+    $remove_4(this$static.children_0, w);
+  }
+  return true;
+}
+
+function ComplexPanel(){
+}
+
+_ = ComplexPanel.prototype = new Panel;
+_.iterator = function iterator(){
+  return new WidgetCollection$WidgetIterator_0(this.children_0);
+}
+;
+_.remove = function remove(w){
+  return $remove(this, w);
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+function $add_0(this$static, w){
+  $add(this$static, w, this$static.element);
+}
+
+function $remove_0(this$static, w){
+  var removed;
+  removed = $remove(this$static, w);
+  removed && changeToStaticPositioning(w.element);
+  return removed;
+}
+
+function changeToStaticPositioning(elem){
+  elem.style['left'] = '';
+  elem.style['top'] = '';
+  elem.style['position'] = '';
+}
+
+function AbsolutePanel(){
+}
+
+_ = AbsolutePanel.prototype = new ComplexPanel;
+_.remove = function remove_0(w){
+  var removed;
+  return removed = $remove(this, w) , removed && changeToStaticPositioning(w.element) , removed;
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+function $clinit_14(){
+  $clinit_14 = nullMethod;
+  attachCommand = new AttachDetachException$1_0;
+  detachCommand = new AttachDetachException$2_0;
+}
+
+function AttachDetachException_0(causes){
+  UmbrellaException_1.call(this, causes);
+}
+
+function tryCommand(hasWidgets, c){
+  var old;
+  $clinit_14();
+  var $e0, caught, e, w, w$iterator;
+  caught = null;
+  for (w$iterator = hasWidgets.iterator(); w$iterator.hasNext();) {
+    w = dynamicCast(w$iterator.next_0(), 20);
+    try {
+      c.execute_0(w);
+    }
+     catch ($e0) {
+      $e0 = caught_0($e0);
+      if (instanceOf($e0, 15)) {
+        e = $e0;
+        !caught && (caught = new HashSet_0);
+        old = $put_0(caught.map, e, caught);
+      }
+       else 
+        throw $e0;
+    }
+  }
+  if (caught) {
+    throw new AttachDetachException_0(caught);
+  }
+}
+
+function AttachDetachException(){
+}
+
+_ = AttachDetachException_0.prototype = AttachDetachException.prototype = new UmbrellaException;
+_.castableTypeMap$ = {3:1, 14:1, 15:1, 74:1};
+var attachCommand, detachCommand;
+function AttachDetachException$1_0(){
+}
+
+function AttachDetachException$1(){
+}
+
+_ = AttachDetachException$1_0.prototype = AttachDetachException$1.prototype = new Object_0;
+_.execute_0 = function execute_1(w){
+  w.onAttach();
+}
+;
+_.castableTypeMap$ = {};
+function AttachDetachException$2_0(){
+}
+
+function AttachDetachException$2(){
+}
+
+_ = AttachDetachException$2_0.prototype = AttachDetachException$2.prototype = new Object_0;
+_.execute_0 = function execute_2(w){
+  $onDetach(w);
+}
+;
+_.castableTypeMap$ = {};
+function FocusWidget(){
+}
+
+_ = FocusWidget.prototype = new Widget;
+_.onAttach = function onAttach_0(){
+  var tabIndex;
+  $onAttach(this);
+  tabIndex = this.element.tabIndex;
+  -1 == tabIndex && (this.element.tabIndex = 0 , undefined);
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 22:1, 23:1, 24:1, 25:1, 26:1, 27:1, 28:1, 29:1, 30:1, 31:1, 32:1, 33:1, 34:1, 35:1, 36:1, 37:1, 38:1, 39:1, 40:1, 41:1, 42:1, 43:1, 44:1, 45:1, 46:1, 47:1, 48:1, 49:1, 50:1, 51:1, 52:1, 53:1, 54:1, 67:1, 68:1, 71:1};
+function ButtonBase(){
+}
+
+_ = ButtonBase.prototype = new FocusWidget;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 22:1, 23:1, 24:1, 25:1, 26:1, 27:1, 28:1, 29:1, 30:1, 31:1, 32:1, 33:1, 34:1, 35:1, 36:1, 37:1, 38:1, 39:1, 40:1, 41:1, 42:1, 43:1, 44:1, 45:1, 46:1, 47:1, 48:1, 49:1, 50:1, 51:1, 52:1, 53:1, 54:1, 67:1, 68:1, 71:1};
+function Button_0(html){
+  this.element = $doc.createElement("<BUTTON type='button'><\/BUTTON>");
+  this.element['className'] = 'gwt-Button';
+  this.element.innerHTML = html || '';
+}
+
+function Button(){
+}
+
+_ = Button_0.prototype = Button.prototype = new ButtonBase;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 22:1, 23:1, 24:1, 25:1, 26:1, 27:1, 28:1, 29:1, 30:1, 31:1, 32:1, 33:1, 34:1, 35:1, 36:1, 37:1, 38:1, 39:1, 40:1, 41:1, 42:1, 43:1, 44:1, 45:1, 46:1, 47:1, 48:1, 49:1, 50:1, 51:1, 52:1, 53:1, 54:1, 67:1, 68:1, 71:1};
+function CellPanel_0(){
+  this.children_0 = new WidgetCollection_0(this);
+  this.table = $createElement($doc, 'table');
+  this.body_0 = $createElement($doc, 'tbody');
+  this.table.appendChild(this.body_0);
+  this.element = this.table;
+}
+
+function CellPanel(){
+}
+
+_ = CellPanel.prototype = new ComplexPanel;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+_.body_0 = null;
+_.table = null;
+function $add_1(this$static, w){
+  if (this$static.decPanel.widget) {
+    throw new IllegalStateException_1('SimplePanel can only contain one child widget');
+  }
+  $setWidget(this$static.decPanel, w);
+  $maybeUpdateSize(this$static);
+}
+
+function $remove_1(this$static, w){
+  if (this$static.widget != w) {
+    return false;
+  }
+  try {
+    $setParent(w, null);
+  }
+   finally {
+    this$static.getContainerElement().removeChild(w.element);
+    this$static.widget = null;
+  }
+  return true;
+}
+
+function $setWidget(this$static, w){
+  if (w == this$static.widget) {
+    return;
+  }
+  !!w && $removeFromParent(w);
+  !!this$static.widget && this$static.remove(this$static.widget);
+  this$static.widget = w;
+  if (w) {
+    this$static.getContainerElement().appendChild(this$static.widget.element);
+    $setParent(w, this$static);
+  }
+}
+
+function SimplePanel(){
+}
+
+_ = SimplePanel.prototype = new Panel;
+_.getContainerElement = function getContainerElement(){
+  return this.element;
+}
+;
+_.iterator = function iterator_0(){
+  return new SimplePanel$1_0(this);
+}
+;
+_.remove = function remove_1(w){
+  return $remove_1(this, w);
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+_.widget = null;
+function $center(this$static){
+  var initiallyAnimated, initiallyShowing, left, top_0;
+  initiallyShowing = this$static.showing;
+  initiallyAnimated = this$static.isAnimationEnabled;
+  if (!initiallyShowing) {
+    $setVisible(this$static, false);
+    this$static.isAnimationEnabled = false;
+    !this$static.resizeHandlerRegistration && (this$static.resizeHandlerRegistration = addResizeHandler(new DialogBox$1_0(this$static)));
+    $show(this$static);
+  }
+  left = $getClientWidth($doc) - (parseInt(this$static.element['offsetWidth']) || 0) >> 1;
+  top_0 = $getClientHeight($doc) - (parseInt(this$static.element['offsetHeight']) || 0) >> 1;
+  $setPopupPosition(this$static, max($getScrollLeft_0($doc) + left), max($getScrollTop($doc) + top_0));
+  if (!initiallyShowing) {
+    this$static.isAnimationEnabled = initiallyAnimated;
+    if (initiallyAnimated) {
+      this$static.element.style['clip'] = 'rect(0px, 0px, 0px, 0px)';
+      $setVisible(this$static, true);
+      $run(this$static.resizeAnimation, (new Date).getTime());
+    }
+     else {
+      $setVisible(this$static, true);
+    }
+  }
+}
+
+function $eventTargetsPopup(this$static, event_0){
+  var target;
+  target = event_0.srcElement;
+  if (is_0(target)) {
+    return $isOrHasChild(this$static.element, target);
+  }
+  return false;
+}
+
+function $hide(this$static){
+  if (!this$static.showing) {
+    return;
+  }
+  $setState(this$static.resizeAnimation, false, false);
+  fire_0(this$static);
+}
+
+function $maybeUpdateSize(this$static){
+  var w;
+  w = this$static.widget;
+  if (w) {
+    this$static.desiredHeight != null && w.setHeight(this$static.desiredHeight);
+    this$static.desiredWidth != null && w.setWidth(this$static.desiredWidth);
+  }
+}
+
+function $previewNativeEvent(this$static, event_0){
+  var eventTargetsPopupOrPartner, nativeEvent, target, type;
+  if (event_0.isCanceled || !this$static.previewAllNativeEvents && event_0.isConsumed) {
+    this$static.modal && (event_0.isCanceled = true);
+    return;
+  }
+  this$static.onPreviewNativeEvent(event_0);
+  if (event_0.isCanceled) {
+    return;
+  }
+  nativeEvent = event_0.nativeEvent;
+  eventTargetsPopupOrPartner = $eventTargetsPopup(this$static, nativeEvent);
+  eventTargetsPopupOrPartner && (event_0.isConsumed = true);
+  this$static.modal && (event_0.isCanceled = true);
+  type = $eventGetTypeInt(nativeEvent.type);
+  switch (type) {
+    case 512:
+    case 256:
+    case 128:
+      {
+        return;
+      }
+
+    case 4:
+      if (sCaptureElem) {
+        event_0.isConsumed = true;
+        return;
+      }
+
+      if (!eventTargetsPopupOrPartner && this$static.autoHide) {
+        $hide(this$static);
+        return;
+      }
+
+      break;
+    case 8:
+    case 64:
+    case 1:
+    case 2:
+      {
+        if (sCaptureElem) {
+          event_0.isConsumed = true;
+          return;
+        }
+        break;
+      }
+
+    case 2048:
+      {
+        target = nativeEvent.srcElement;
+        if (this$static.modal && !eventTargetsPopupOrPartner && !!target) {
+          target.blur && target != $doc.body && target.blur();
+          event_0.isCanceled = true;
+          return;
+        }
+        break;
+      }
+
+  }
+}
+
+function $setGlassEnabled(this$static){
+  this$static.isGlassEnabled = true;
+  if (!this$static.glass) {
+    this$static.glass = $createElement($doc, 'div');
+    this$static.glass.className = 'gwt-PopupPanelGlass';
+    this$static.glass.style['position'] = ($clinit_2() , 'absolute');
+    this$static.glass.style['left'] = 0 + ($clinit_3() , 'px');
+    this$static.glass.style['top'] = '0px';
+  }
+}
+
+function $setPopupPosition(this$static, left, top_0){
+  var elem;
+  this$static.leftPosition = left;
+  this$static.topPosition = top_0;
+  left -= $getBodyOffsetLeft($doc);
+  top_0 -= $getBodyOffsetTop($doc);
+  elem = this$static.element;
+  elem.style['left'] = left + ($clinit_3() , 'px');
+  elem.style['top'] = top_0 + 'px';
+}
+
+function $setVisible(this$static, visible){
+  this$static.element.style['visibility'] = visible?'visible':'hidden';
+  $setVisible_0(this$static.element, visible);
+  if (this$static.glass) {
+    $setVisible_0(this$static.glass, visible);
+    this$static.glass.style['visibility'] = visible?'visible':'hidden';
+  }
+}
+
+function $show(this$static){
+  if (this$static.showing) {
+    return;
+  }
+   else 
+    this$static.attached && $removeFromParent(this$static);
+  $setState(this$static.resizeAnimation, true, false);
+}
+
+function $updateHandlers(this$static){
+  if (this$static.nativePreviewHandlerRegistration) {
+    $removeHandler(this$static.nativePreviewHandlerRegistration.real);
+    this$static.nativePreviewHandlerRegistration = null;
+  }
+  if (this$static.historyHandlerRegistration) {
+    $removeHandler(this$static.historyHandlerRegistration.real);
+    this$static.historyHandlerRegistration = null;
+  }
+  if (this$static.showing) {
+    this$static.nativePreviewHandlerRegistration = addNativePreviewHandler(new PopupPanel$3_0(this$static));
+    this$static.historyHandlerRegistration = addValueChangeHandler(new PopupPanel$4_0(this$static));
+  }
+}
+
+function PopupPanel(){
+}
+
+_ = PopupPanel.prototype = new SimplePanel;
+_.getContainerElement = function getContainerElement_0(){
+  return $getFirstChildElement(this.element);
+}
+;
+_.getStyleElement = function getStyleElement_0(){
+  var parent_0;
+  return parent_0 = $getFirstChildElement(this.element).parentNode , (!parent_0 || parent_0.nodeType != 1) && (parent_0 = null) , parent_0;
+}
+;
+_.hide = function hide(){
+  $hide(this);
+}
+;
+_.onPreviewNativeEvent = function onPreviewNativeEvent(event_0){
+  event_0.isFirstHandler && (event_0.nativeEvent , false) && (event_0.isCanceled = true);
+}
+;
+_.onUnload = function onUnload_0(){
+  this.showing && $setState(this.resizeAnimation, false, true);
+}
+;
+_.setHeight = function setHeight_0(height){
+  this.desiredHeight = height;
+  $maybeUpdateSize(this);
+  height.length == 0 && (this.desiredHeight = null);
+}
+;
+_.setWidth = function setWidth_0(width){
+  this.desiredWidth = width;
+  $maybeUpdateSize(this);
+  width.length == 0 && (this.desiredWidth = null);
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+_.autoHide = false;
+_.autoHideOnHistoryEvents = false;
+_.desiredHeight = null;
+_.desiredWidth = null;
+_.glass = null;
+_.historyHandlerRegistration = null;
+_.isAnimationEnabled = false;
+_.isGlassEnabled = false;
+_.leftPosition = -1;
+_.modal = false;
+_.nativePreviewHandlerRegistration = null;
+_.previewAllNativeEvents = false;
+_.showing = false;
+_.topPosition = -1;
+function DecoratedPopupPanel(){
+}
+
+_ = DecoratedPopupPanel.prototype = new PopupPanel;
+_.doAttachChildren = function doAttachChildren_1(){
+  $onAttach(this.decPanel);
+}
+;
+_.doDetachChildren = function doDetachChildren_1(){
+  $onDetach(this.decPanel);
+}
+;
+_.iterator = function iterator_1(){
+  return new SimplePanel$1_0(this.decPanel);
+}
+;
+_.remove = function remove_2(w){
+  return $remove_1(this.decPanel, w);
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+_.decPanel = null;
+function DecoratorPanel_0(rowStyles){
+  var i, row, table, trElem;
+  this.element = $createElement($doc, 'table');
+  table = this.element;
+  this.tbody = $createElement($doc, 'tbody');
+  table.appendChild(this.tbody);
+  table['cellSpacing'] = 0;
+  table['cellPadding'] = 0;
+  for (i = 0; i < rowStyles.length; ++i) {
+    row = (trElem = $createElement($doc, 'tr') , trElem['className'] = rowStyles[i] , trElem.appendChild(createTD(rowStyles[i] + 'Left')) , trElem.appendChild(createTD(rowStyles[i] + 'Center')) , trElem.appendChild(createTD(rowStyles[i] + 'Right')) , trElem);
+    this.tbody.appendChild(row);
+    i == 1 && (this.containerElem = $getFirstChildElement(row.children[1]));
+  }
+  this.element['className'] = 'gwt-DecoratorPanel';
+}
+
+function createTD(styleName){
+  var inner, tdElem;
+  tdElem = $createElement($doc, 'td');
+  inner = $createElement($doc, 'div');
+  tdElem.appendChild(inner);
+  tdElem['className'] = styleName;
+  inner['className'] = styleName + 'Inner';
+  return tdElem;
+}
+
+function DecoratorPanel(){
+}
+
+_ = DecoratorPanel_0.prototype = DecoratorPanel.prototype = new SimplePanel;
+_.getContainerElement = function getContainerElement_1(){
+  return this.containerElem;
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+_.containerElem = null;
+_.tbody = null;
+function $beginDragging(this$static, event_0){
+  $onMouseDown(this$static, (this$static.caption , $getX(event_0)), $getY(event_0));
+}
+
+function $continueDragging(this$static, event_0){
+  $onMouseMove(this$static, (this$static.caption , $getX(event_0)), $getY(event_0));
+}
+
+function $endDragging(this$static, event_0){
+  $onMouseUp(this$static, (this$static.caption , $getX(event_0) , $getY(event_0)));
+}
+
+function $hide_0(this$static){
+  if (this$static.resizeHandlerRegistration) {
+    $removeHandler(this$static.resizeHandlerRegistration.real);
+    this$static.resizeHandlerRegistration = null;
+  }
+  $hide(this$static);
+}
+
+function $isCaptionEvent(this$static, event_0){
+  var target, td, tr, parent_0;
+  target = event_0.srcElement;
+  if (is_0(target)) {
+    return $isOrHasChild((parent_0 = (tr = this$static.decPanel.tbody.children[0] , td = tr.children[1] , $getFirstChildElement(td)).parentNode , (!parent_0 || parent_0.nodeType != 1) && (parent_0 = null) , parent_0), target);
+  }
+  return false;
+}
+
+function $onMouseDown(this$static, x, y){
+  if (!sCaptureElem) {
+    this$static.dragging = true;
+    setCapture(this$static.element);
+    this$static.dragStartX = x;
+    this$static.dragStartY = y;
+  }
+}
+
+function $onMouseMove(this$static, x, y){
+  var absX, absY;
+  if (this$static.dragging) {
+    absX = x + $getAbsoluteLeft(this$static.element);
+    absY = y + $getAbsoluteTop(this$static.element);
+    if (absX < this$static.clientLeft_0 || absX >= this$static.windowWidth || absY < this$static.clientTop_0) {
+      return;
+    }
+    $setPopupPosition(this$static, absX - this$static.dragStartX, absY - this$static.dragStartY);
+  }
+}
+
+function $onMouseUp(this$static){
+  this$static.dragging = false;
+  releaseCapture(this$static.element);
+}
+
+function $show_0(this$static){
+  !this$static.resizeHandlerRegistration && (this$static.resizeHandlerRegistration = addResizeHandler(new DialogBox$1_0(this$static)));
+  $show(this$static);
+}
+
+function DialogBox_0(){
+  DialogBox_1.call(this, new DialogBox$CaptionImpl_0);
+}
+
+function DialogBox_1(captionWidget){
+  var mouseHandler, td, rowStyles, parent_0, parent_1, td_0, tr, parent_2;
+  this.element = $createElement($doc, 'div');
+  this.glassResizer = new PopupPanel$1_0(this);
+  this.resizeAnimation = new PopupPanel$ResizeAnimation_0(this);
+  this.element.appendChild($createElement($doc, 'div'));
+  $setPopupPosition(this, 0, 0);
+  (parent_0 = $getFirstChildElement(this.element).parentNode , (!parent_0 || parent_0.nodeType != 1) && (parent_0 = null) , parent_0)['className'] = 'gwt-PopupPanel';
+  $getFirstChildElement(this.element)['className'] = 'popupContent';
+  this.autoHide = false;
+  this.autoHideOnHistoryEvents = false;
+  this.modal = true;
+  rowStyles = initValues(_3Ljava_lang_String_2_classLit, {74:1}, 1, ['dialogTop', 'dialogMiddle', 'dialogBottom']);
+  this.decPanel = new DecoratorPanel_0(rowStyles);
+  this.decPanel.getStyleElement()['className'] = '';
+  setStylePrimaryName((parent_1 = $getFirstChildElement(this.element).parentNode , (!parent_1 || parent_1.nodeType != 1) && (parent_1 = null) , parent_1), 'gwt-DecoratedPopupPanel');
+  $setWidget(this, this.decPanel);
+  $maybeUpdateSize(this);
+  setStyleName($getFirstChildElement(this.element), 'popupContent', false);
+  setStyleName(this.decPanel.containerElem, 'dialogContent', true);
+  $removeFromParent(captionWidget);
+  this.caption = captionWidget;
+  td = (tr = this.decPanel.tbody.children[0] , td_0 = tr.children[1] , $getFirstChildElement(td_0));
+  td.appendChild(this.caption.element);
+  $setParent(this.caption, this);
+  (parent_2 = $getFirstChildElement(this.element).parentNode , (!parent_2 || parent_2.nodeType != 1) && (parent_2 = null) , parent_2)['className'] = 'gwt-DialogBox';
+  this.windowWidth = $getClientWidth($doc);
+  this.clientLeft_0 = $getBodyOffsetLeft($doc);
+  this.clientTop_0 = $getBodyOffsetTop($doc);
+  mouseHandler = new DialogBox$MouseHandler_0(this);
+  $addDomHandler(this, mouseHandler, ($clinit_5() , $clinit_5() , TYPE_0));
+  $addDomHandler(this, mouseHandler, ($clinit_9() , $clinit_9() , TYPE_4));
+  $addDomHandler(this, mouseHandler, ($clinit_6() , $clinit_6() , TYPE_1));
+  $addDomHandler(this, mouseHandler, ($clinit_8() , $clinit_8() , TYPE_3));
+  $addDomHandler(this, mouseHandler, ($clinit_7() , $clinit_7() , TYPE_2));
+}
+
+function DialogBox(){
+}
+
+_ = DialogBox_0.prototype = DialogBox.prototype = new DecoratedPopupPanel;
+_.doAttachChildren = function doAttachChildren_2(){
+  try {
+    $onAttach(this.decPanel);
+  }
+   finally {
+    this.caption.onAttach();
+  }
+}
+;
+_.doDetachChildren = function doDetachChildren_2(){
+  try {
+    $onDetach(this.decPanel);
+  }
+   finally {
+    $onDetach(this.caption);
+  }
+}
+;
+_.hide = function hide_0(){
+  $hide_0(this);
+}
+;
+_.onBrowserEvent = function onBrowserEvent_0(event_0){
+  switch ($eventGetTypeInt(event_0.type)) {
+    case 4:
+    case 8:
+    case 64:
+    case 16:
+    case 32:
+      if (!this.dragging && !$isCaptionEvent(this, event_0)) {
+        return;
+      }
+
+  }
+  $onBrowserEvent(this, event_0);
+}
+;
+_.onPreviewNativeEvent = function onPreviewNativeEvent_0(event_0){
+  var nativeEvent;
+  nativeEvent = event_0.nativeEvent;
+  !event_0.isCanceled && $eventGetTypeInt(event_0.nativeEvent.type) == 4 && $isCaptionEvent(this, nativeEvent) && (nativeEvent.returnValue = false , undefined);
+  event_0.isFirstHandler && (event_0.nativeEvent , false) && (event_0.isCanceled = true);
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+_.caption = null;
+_.clientLeft_0 = 0;
+_.clientTop_0 = 0;
+_.dragStartX = 0;
+_.dragStartY = 0;
+_.dragging = false;
+_.resizeHandlerRegistration = null;
+_.windowWidth = 0;
+function DialogBox$1_0(this$0){
+  this.this$0 = this$0;
+}
+
+function DialogBox$1(){
+}
+
+_ = DialogBox$1_0.prototype = DialogBox$1.prototype = new Object_0;
+_.onResize = function onResize_0(event_0){
+  this.this$0.windowWidth = event_0.width_0;
+}
+;
+_.castableTypeMap$ = {12:1, 55:1};
+_.this$0 = null;
+function LabelBase_0(element){
+  this.element = element;
+  this.directionalTextHelper = new DirectionalTextHelper_0(this.element);
+}
+
+function LabelBase(){
+}
+
+_ = LabelBase.prototype = new Widget;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+_.directionalTextHelper = null;
+function Label_0(){
+  this.element = $createElement($doc, 'div');
+  this.directionalTextHelper = new DirectionalTextHelper_0(this.element);
+  this.element['className'] = 'gwt-Label';
+}
+
+function Label_1(text){
+  Label_0.call(this);
+  $setTextOrHtml(this.directionalTextHelper, text);
+}
+
+function Label_2(element){
+  LabelBase_0.call(this, element, $equalsIgnoreCase('span', $getTagName(element)));
+}
+
+function Label(){
+}
+
+_ = Label_1.prototype = Label_0.prototype = Label.prototype = new LabelBase;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 23:1, 25:1, 26:1, 28:1, 29:1, 31:1, 32:1, 33:1, 37:1, 38:1, 39:1, 40:1, 41:1, 42:1, 43:1, 44:1, 45:1, 46:1, 51:1, 54:1, 67:1, 68:1, 71:1};
+function HTML(){
+}
+
+_ = HTML.prototype = new Label;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 23:1, 25:1, 26:1, 28:1, 29:1, 31:1, 32:1, 33:1, 37:1, 38:1, 39:1, 40:1, 41:1, 42:1, 43:1, 44:1, 45:1, 46:1, 51:1, 54:1, 67:1, 68:1, 71:1};
+--></script>
+<script><!--
+function DialogBox$CaptionImpl_0(){
+  Label_2.call(this, $createElement($doc, 'div'));
+  this.element['className'] = 'gwt-HTML';
+  this.element['className'] = 'Caption';
+}
+
+function DialogBox$CaptionImpl(){
+}
+
+_ = DialogBox$CaptionImpl_0.prototype = DialogBox$CaptionImpl.prototype = new HTML;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 23:1, 25:1, 26:1, 28:1, 29:1, 31:1, 32:1, 33:1, 37:1, 38:1, 39:1, 40:1, 41:1, 42:1, 43:1, 44:1, 45:1, 46:1, 51:1, 54:1, 67:1, 68:1, 71:1};
+function DialogBox$MouseHandler_0(this$0){
+  this.this$0 = this$0;
+}
+
+function DialogBox$MouseHandler(){
+}
+
+_ = DialogBox$MouseHandler_0.prototype = DialogBox$MouseHandler.prototype = new Object_0;
+_.onMouseOut = function onMouseOut(event_0){
+}
+;
+_.onMouseOver = function onMouseOver(event_0){
+}
+;
+_.castableTypeMap$ = {6:1, 7:1, 8:1, 9:1, 10:1, 55:1};
+_.this$0 = null;
+function $getTextOrHtml(this$static){
+  var elem;
+  elem = this$static.isSpanWrapped?$getFirstChildElement(this$static.element):this$static.element;
+  return elem.innerText;
+}
+
+function $setTextOrHtml(this$static, content_0){
+  this$static.isSpanWrapped = false;
+  this$static.element.innerText = content_0 || '';
+  if (this$static.textDir != this$static.initialElementDir) {
+    this$static.textDir = this$static.initialElementDir;
+    setDirectionOnElement(this$static.element, this$static.initialElementDir);
+  }
+}
+
+function DirectionalTextHelper_0(element){
+  this.element = element;
+  this.isSpanWrapped = false;
+  this.initialElementDir = getDirectionOnElement(element);
+  this.textDir = this.initialElementDir;
+}
+
+function DirectionalTextHelper(){
+}
+
+_ = DirectionalTextHelper_0.prototype = DirectionalTextHelper.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.element = null;
+_.initialElementDir = null;
+_.isSpanWrapped = false;
+_.textDir = null;
+function $checkRowBounds(this$static, row){
+  var rowSize;
+  rowSize = this$static.bodyElem.rows.length;
+  if (row >= rowSize || row < 0) {
+    throw new IndexOutOfBoundsException_1('Row index: ' + row + ', Row size: ' + rowSize);
+  }
+}
+
+function $clear(this$static){
+  var col, row, td;
+  for (row = 0; row < this$static.bodyElem.rows.length; ++row) {
+    for (col = 0; col < ($checkRowBounds(this$static, row) , this$static.bodyElem.rows[row].cells.length); ++col) {
+      td = this$static.cellFormatter.this$0.bodyElem.rows[row].cells[col];
+      $internalClearCell(this$static, td, false);
+    }
+  }
+}
+
+function $internalClearCell(this$static, td, clearInnerHTML){
+  var maybeChild, widget;
+  maybeChild = $getFirstChildElement(td);
+  widget = null;
+  !!maybeChild && (widget = dynamicCast($get(this$static.widgetMap, maybeChild), 20));
+  if (widget) {
+    $remove_2(this$static, widget);
+    return true;
+  }
+   else {
+    clearInnerHTML && (td.innerHTML = '' , undefined);
+    return false;
+  }
+}
+
+function $remove_2(this$static, widget){
+  var elem;
+  if (widget.parent_0 != this$static) {
+    return false;
+  }
+  try {
+    $setParent(widget, null);
+  }
+   finally {
+    elem = widget.element;
+    $getParentElement(elem).removeChild(elem);
+    $removeByElement(this$static.widgetMap, elem);
+  }
+  return true;
+}
+
+function $removeRow(this$static){
+  var column, columnCount, td;
+  columnCount = ($checkRowBounds(this$static, 0) , this$static.bodyElem.rows[0].cells.length);
+  for (column = 0; column < columnCount; ++column) {
+    td = this$static.cellFormatter.this$0.bodyElem.rows[0].cells[column];
+    $internalClearCell(this$static, td, false);
+  }
+  this$static.bodyElem.removeChild(this$static.bodyElem.rows[0]);
+}
+
+function $setColumnFormatter(this$static, formatter){
+  !!this$static.columnFormatter && (formatter.columnGroup = this$static.columnFormatter.columnGroup);
+  this$static.columnFormatter = formatter;
+  $prepareColumnGroup(this$static.columnFormatter);
+}
+
+function $setText(this$static, row, column, text){
+  var td, td_0;
+  $prepareCell(this$static, row, column);
+  td = (td_0 = this$static.cellFormatter.this$0.bodyElem.rows[row].cells[column] , $internalClearCell(this$static, td_0, text == null) , td_0);
+  text != null && (td.innerText = text || '' , undefined);
+}
+
+function $setWidget_0(this$static, row, column, widget){
+  var td, td_0;
+  $prepareCell(this$static, row, column);
+  td = (td_0 = this$static.cellFormatter.this$0.bodyElem.rows[row].cells[column] , $internalClearCell(this$static, td_0, true) , td_0);
+  if (widget) {
+    $removeFromParent(widget);
+    $put(this$static.widgetMap, widget);
+    td.appendChild(widget.element);
+    $setParent(widget, this$static);
+  }
+}
+
+function HTMLTable(){
+}
+
+_ = HTMLTable.prototype = new Panel;
+_.iterator = function iterator_2(){
+  return new HTMLTable$1_0(this);
+}
+;
+_.remove = function remove_3(widget){
+  return $remove_2(this, widget);
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 28:1, 29:1, 67:1, 68:1, 71:1};
+_.bodyElem = null;
+_.cellFormatter = null;
+_.columnFormatter = null;
+_.rowFormatter = null;
+_.tableElem = null;
+function $prepareCell(this$static, row, column){
+  var cellCount, required;
+  $prepareRow(this$static, row);
+  if (column < 0) {
+    throw new IndexOutOfBoundsException_1('Cannot create a column with a negative index: ' + column);
+  }
+  cellCount = ($checkRowBounds(this$static, row) , this$static.bodyElem.rows[row].cells.length);
+  required = column + 1 - cellCount;
+  required > 0 && addCells(this$static.bodyElem, row, required);
+}
+
+function $prepareRow(this$static, row){
+  var i, rowCount, tr;
+  if (row < 0) {
+    throw new IndexOutOfBoundsException_1('Cannot create a row with a negative index: ' + row);
+  }
+  rowCount = this$static.bodyElem.rows.length;
+  for (i = rowCount; i <= row; ++i) {
+    i != this$static.bodyElem.rows.length && $checkRowBounds(this$static, i);
+    tr = $createElement($doc, 'tr');
+    $insertChild(this$static.bodyElem, tr, i);
+  }
+}
+
+function $removeAllRows(this$static){
+  var i, numRows;
+  numRows = this$static.bodyElem.rows.length;
+  for (i = 0; i < numRows; ++i) {
+    $removeRow(this$static);
+  }
+}
+
+function FlexTable_0(){
+  this.widgetMap = new ElementMapperImpl_0;
+  this.tableElem = $createElement($doc, 'table');
+  this.bodyElem = $createElement($doc, 'tbody');
+  this.tableElem.appendChild(this.bodyElem);
+  this.element = this.tableElem;
+  this.cellFormatter = new FlexTable$FlexCellFormatter_0(this);
+  this.rowFormatter = new HTMLTable$RowFormatter_0(this);
+  $setColumnFormatter(this, new HTMLTable$ColumnFormatter_0(this));
+}
+
+function addCells(table, row, num){
+  var rowElem = table.rows[row];
+  for (var i = 0; i < num; i++) {
+    var cell = $doc.createElement('td');
+    rowElem.appendChild(cell);
+  }
+}
+
+function FlexTable(){
+}
+
+_ = FlexTable_0.prototype = FlexTable.prototype = new HTMLTable;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 28:1, 29:1, 67:1, 68:1, 71:1};
+function $addStyleName(this$static, row, styleName){
+  var td;
+  $prepareCell(this$static.this$0, row, 4);
+  td = this$static.this$0.bodyElem.rows[row].cells[4];
+  setStyleName(td, styleName, true);
+}
+
+function HTMLTable$CellFormatter(){
+}
+
+_ = HTMLTable$CellFormatter.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.this$0 = null;
+function FlexTable$FlexCellFormatter_0(this$0){
+  this.this$0 = this$0;
+}
+
+function FlexTable$FlexCellFormatter(){
+}
+
+_ = FlexTable$FlexCellFormatter_0.prototype = FlexTable$FlexCellFormatter.prototype = new HTMLTable$CellFormatter;
+_.castableTypeMap$ = {};
+function $findNext(this$static){
+  while (++this$static.nextIndex < this$static.widgetList.size) {
+    if ($get_1(this$static.widgetList, this$static.nextIndex) != null) {
+      return;
+    }
+  }
+}
+
+function $next(this$static){
+  var result;
+  if (this$static.nextIndex >= this$static.widgetList.size) {
+    throw new NoSuchElementException_0;
+  }
+  result = dynamicCast($get_1(this$static.widgetList, this$static.nextIndex), 20);
+  this$static.lastIndex = this$static.nextIndex;
+  $findNext(this$static);
+  return result;
+}
+
+function HTMLTable$1_0(this$0){
+  this.this$0 = this$0;
+  this.widgetList = this.this$0.widgetMap.uiObjectList;
+  $findNext(this);
+}
+
+function HTMLTable$1(){
+}
+
+_ = HTMLTable$1_0.prototype = HTMLTable$1.prototype = new Object_0;
+_.hasNext = function hasNext(){
+  return this.nextIndex < this.widgetList.size;
+}
+;
+_.next_0 = function next_0(){
+  return $next(this);
+}
+;
+_.remove_0 = function remove_4(){
+  var w;
+  if (this.lastIndex < 0) {
+    throw new IllegalStateException_0;
+  }
+  w = dynamicCast($get_1(this.widgetList, this.lastIndex), 20);
+  $removeFromParent(w);
+  this.lastIndex = -1;
+}
+;
+_.castableTypeMap$ = {};
+_.lastIndex = -1;
+_.nextIndex = -1;
+_.this$0 = null;
+function $prepareColumnGroup(this$static){
+  if (!this$static.columnGroup) {
+    this$static.columnGroup = $createElement($doc, 'colgroup');
+    $insertChild(this$static.this$0.tableElem, this$static.columnGroup, 0);
+    this$static.columnGroup.appendChild($createElement($doc, 'col'));
+  }
+}
+
+function HTMLTable$ColumnFormatter_0(this$0){
+  this.this$0 = this$0;
+}
+
+function HTMLTable$ColumnFormatter(){
+}
+
+_ = HTMLTable$ColumnFormatter_0.prototype = HTMLTable$ColumnFormatter.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.columnGroup = null;
+_.this$0 = null;
+function $addStyleName_0(this$static, styleName){
+  setStyleName(($prepareRow(this$static.this$0, 0) , this$static.this$0.bodyElem.rows[0]), styleName, true);
+}
+
+function $setStyleName_0(this$static){
+  ($prepareRow(this$static.this$0, 0) , this$static.this$0.bodyElem.rows[0])['className'] = 'analysisFlexTableHeader';
+}
+
+function HTMLTable$RowFormatter_0(this$0){
+  this.this$0 = this$0;
+}
+
+function HTMLTable$RowFormatter(){
+}
+
+_ = HTMLTable$RowFormatter_0.prototype = HTMLTable$RowFormatter.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.this$0 = null;
+function $clinit_15(){
+  $clinit_15 = nullMethod;
+  new HasHorizontalAlignment$HorizontalAlignmentConstant_0('center');
+  new HasHorizontalAlignment$HorizontalAlignmentConstant_0('justify');
+  ALIGN_LEFT = new HasHorizontalAlignment$HorizontalAlignmentConstant_0('left');
+  new HasHorizontalAlignment$HorizontalAlignmentConstant_0('right');
+  ALIGN_LOCALE_START = ALIGN_LEFT;
+  ALIGN_DEFAULT = ALIGN_LOCALE_START;
+}
+
+var ALIGN_DEFAULT, ALIGN_LEFT, ALIGN_LOCALE_START;
+function HasHorizontalAlignment$AutoHorizontalAlignmentConstant(){
+}
+
+_ = HasHorizontalAlignment$AutoHorizontalAlignmentConstant.prototype = new Object_0;
+_.castableTypeMap$ = {};
+function HasHorizontalAlignment$HorizontalAlignmentConstant_0(textAlignString){
+  this.textAlignString = textAlignString;
+}
+
+function HasHorizontalAlignment$HorizontalAlignmentConstant(){
+}
+
+_ = HasHorizontalAlignment$HorizontalAlignmentConstant_0.prototype = HasHorizontalAlignment$HorizontalAlignmentConstant.prototype = new HasHorizontalAlignment$AutoHorizontalAlignmentConstant;
+_.castableTypeMap$ = {};
+_.textAlignString = null;
+function $clinit_16(){
+  $clinit_16 = nullMethod;
+  new HasVerticalAlignment$VerticalAlignmentConstant_0('bottom');
+  new HasVerticalAlignment$VerticalAlignmentConstant_0('middle');
+  ALIGN_TOP = new HasVerticalAlignment$VerticalAlignmentConstant_0('top');
+}
+
+var ALIGN_TOP;
+function HasVerticalAlignment$VerticalAlignmentConstant_0(verticalAlignString){
+  this.verticalAlignString = verticalAlignString;
+}
+
+function HasVerticalAlignment$VerticalAlignmentConstant(){
+}
+
+_ = HasVerticalAlignment$VerticalAlignmentConstant_0.prototype = HasVerticalAlignment$VerticalAlignmentConstant.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.verticalAlignString = null;
+function $add_2(this$static, w){
+  var td, td_0;
+  td = (td_0 = $createElement($doc, 'td') , td_0['align'] = this$static.horzAlign.textAlignString , td_0.style['verticalAlign'] = this$static.vertAlign.verticalAlignString , td_0);
+  this$static.tableRow.appendChild(td);
+  $removeFromParent(w);
+  $add_4(this$static.children_0, w);
+  td.appendChild(w.element);
+  $setParent(w, this$static);
+}
+
+function HorizontalPanel_0(){
+  CellPanel_0.call(this);
+  this.horzAlign = ($clinit_15() , ALIGN_DEFAULT);
+  this.vertAlign = ($clinit_16() , ALIGN_TOP);
+  this.tableRow = $createElement($doc, 'tr');
+  this.body_0.appendChild(this.tableRow);
+  this.table['cellSpacing'] = '0';
+  this.table['cellPadding'] = '0';
+}
+
+function HorizontalPanel(){
+}
+
+_ = HorizontalPanel_0.prototype = HorizontalPanel.prototype = new CellPanel;
+_.remove = function remove_5(w){
+  var removed, td, parent_0;
+  td = (parent_0 = w.element.parentNode , (!parent_0 || parent_0.nodeType != 1) && (parent_0 = null) , parent_0);
+  removed = $remove(this, w);
+  removed && this.tableRow.removeChild(td);
+  return removed;
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+_.tableRow = null;
+function $onResize(this$static){
+  var height, style, width, winHeight, winWidth;
+  style = this$static.this$0.glass.style;
+  winWidth = $getClientWidth($doc);
+  winHeight = $getClientHeight($doc);
+  style['display'] = ($clinit_1() , 'none');
+  style['width'] = 0 + ($clinit_3() , 'px');
+  style['height'] = '0px';
+  width = $getScrollWidth($doc);
+  height = $getScrollHeight($doc);
+  style['width'] = (width > winWidth?width:winWidth) + 'px';
+  style['height'] = (height > winHeight?height:winHeight) + 'px';
+  style['display'] = 'block';
+}
+
+function PopupPanel$1_0(this$0){
+  this.this$0 = this$0;
+}
+
+function PopupPanel$1(){
+}
+
+_ = PopupPanel$1_0.prototype = PopupPanel$1.prototype = new Object_0;
+_.onResize = function onResize_1(event_0){
+  $onResize(this);
+}
+;
+_.castableTypeMap$ = {12:1, 55:1};
+_.this$0 = null;
+function PopupPanel$3_0(this$0){
+  this.this$0 = this$0;
+}
+
+function PopupPanel$3(){
+}
+
+_ = PopupPanel$3_0.prototype = PopupPanel$3.prototype = new Object_0;
+_.castableTypeMap$ = {16:1, 55:1};
+_.this$0 = null;
+function PopupPanel$4_0(this$0){
+  this.this$0 = this$0;
+}
+
+function PopupPanel$4(){
+}
+
+_ = PopupPanel$4_0.prototype = PopupPanel$4.prototype = new Object_0;
+_.castableTypeMap$ = {13:1, 55:1};
+_.this$0 = null;
+function $maybeShowGlass(this$static){
+  if (this$static.showing) {
+    if (this$static.curPanel.isGlassEnabled) {
+      $doc.body.appendChild(this$static.curPanel.glass);
+      $onShow(this$static.curPanel.glass);
+      this$static.resizeRegistration = addResizeHandler(this$static.curPanel.glassResizer);
+      $onResize(this$static.curPanel.glassResizer);
+      this$static.glassShowing = true;
+    }
+  }
+   else if (this$static.glassShowing) {
+    $doc.body.removeChild(this$static.curPanel.glass);
+    $onHide(this$static.curPanel.glass);
+    $removeHandler(this$static.resizeRegistration.real);
+    this$static.resizeRegistration = null;
+    this$static.glassShowing = false;
+  }
+}
+
+function $onComplete(this$static){
+  if (!this$static.showing) {
+    $maybeShowGlass(this$static);
+    this$static.isUnloading || $remove_0(($clinit_17() , get()), this$static.curPanel);
+    $onHide(this$static.curPanel.element);
+  }
+  this$static.curPanel.element.style['clip'] = 'rect(auto, auto, auto, auto)';
+  this$static.curPanel.element.style['overflow'] = 'visible';
+}
+
+function $onInstantaneousRun(this$static){
+  $maybeShowGlass(this$static);
+  if (this$static.showing) {
+    this$static.curPanel.element.style['position'] = 'absolute';
+    this$static.curPanel.topPosition != -1 && $setPopupPosition(this$static.curPanel, this$static.curPanel.leftPosition, this$static.curPanel.topPosition);
+    $add_0(($clinit_17() , get()), this$static.curPanel);
+    $onShow(this$static.curPanel.element);
+  }
+   else {
+    this$static.isUnloading || $remove_0(($clinit_17() , get()), this$static.curPanel);
+    $onHide(this$static.curPanel.element);
+  }
+  this$static.curPanel.element.style['overflow'] = 'visible';
+}
+
+function $onUpdate(this$static, progress){
+  var bottom, height, left, right, top_0, width;
+  this$static.showing || (progress = 1 - progress);
+  top_0 = 0;
+  left = 0;
+  right = 0;
+  bottom = 0;
+  height = ~~Math.max(Math.min(progress * this$static.offsetHeight_0, 2147483647), -2147483648);
+  width = ~~Math.max(Math.min(progress * this$static.offsetWidth_0, 2147483647), -2147483648);
+  switch (0) {
+    case 2:
+    case 0:
+      top_0 = this$static.offsetHeight_0 - height >> 1;
+      left = this$static.offsetWidth_0 - width >> 1;
+      right = left + width;
+      bottom = top_0 + height;
+  }
+  this$static.curPanel.element.style['clip'] = 'rect(' + top_0 + 'px, ' + right + 'px, ' + bottom + 'px, ' + left + 'px)';
+}
+
+function $setState(this$static, showing, isUnloading){
+  var animate;
+  this$static.isUnloading = isUnloading;
+  $cancel(this$static);
+  if (this$static.showTimer) {
+    $cancel_0(this$static.showTimer);
+    this$static.showTimer = null;
+    $onComplete(this$static);
+  }
+  this$static.curPanel.showing = showing;
+  $updateHandlers(this$static.curPanel);
+  animate = !isUnloading && this$static.curPanel.isAnimationEnabled;
+  this$static.showing = showing;
+  if (animate) {
+    if (showing) {
+      $maybeShowGlass(this$static);
+      this$static.curPanel.element.style['position'] = 'absolute';
+      this$static.curPanel.topPosition != -1 && $setPopupPosition(this$static.curPanel, this$static.curPanel.leftPosition, this$static.curPanel.topPosition);
+      this$static.curPanel.element.style['clip'] = 'rect(0px, 0px, 0px, 0px)';
+      $add_0(($clinit_17() , get()), this$static.curPanel);
+      $onShow(this$static.curPanel.element);
+      this$static.showTimer = new PopupPanel$ResizeAnimation$1_0(this$static);
+      $schedule(this$static.showTimer, 1);
+    }
+     else {
+      $run(this$static, (new Date).getTime());
+    }
+  }
+   else {
+    $onInstantaneousRun(this$static);
+  }
+}
+
+function PopupPanel$ResizeAnimation_0(panel){
+  this.curPanel = panel;
+}
+
+function PopupPanel$ResizeAnimation(){
+}
+
+_ = PopupPanel$ResizeAnimation_0.prototype = PopupPanel$ResizeAnimation.prototype = new Animation;
+_.castableTypeMap$ = {62:1};
+_.curPanel = null;
+_.glassShowing = false;
+_.isUnloading = false;
+_.offsetHeight_0 = 0;
+_.offsetWidth_0 = -1;
+_.resizeRegistration = null;
+_.showTimer = null;
+_.showing = false;
+function PopupPanel$ResizeAnimation$1_0(this$1){
+  $clinit();
+  this.this$1 = this$1;
+}
+
+function PopupPanel$ResizeAnimation$1(){
+}
+
+_ = PopupPanel$ResizeAnimation$1_0.prototype = PopupPanel$ResizeAnimation$1.prototype = new Timer;
+_.run = function run_0(){
+  this.this$1.showTimer = null;
+  $run(this.this$1, (new Date).getTime());
+}
+;
+_.castableTypeMap$ = {17:1};
+_.this$1 = null;
+function $clinit_17(){
+  $clinit_17 = nullMethod;
+  maybeDetachCommand = new RootPanel$1_0;
+  rootPanels = new HashMap_0;
+  widgetsToDetach = new HashSet_0;
+}
+
+function RootPanel_0(elem){
+  this.children_0 = new WidgetCollection_0(this);
+  this.element = elem;
+  $onAttach(this);
+}
+
+function detachNow(widget){
+  $clinit_17();
+  try {
+    $onDetach(widget);
+  }
+   finally {
+    $remove_5(widgetsToDetach.map, widget) != null;
+  }
+}
+
+function detachWidgets(){
+  $clinit_17();
+  try {
+    tryCommand(widgetsToDetach, maybeDetachCommand);
+  }
+   finally {
+    $clearImpl(widgetsToDetach.map);
+    $clearImpl(rootPanels);
+  }
+}
+
+function get(){
+  $clinit_17();
+  var rp;
+  rp = dynamicCast($get_0(rootPanels, null), 21);
+  if (rp) {
+    return rp;
+  }
+  rootPanels.size == 0 && addCloseHandler(new RootPanel$2_0);
+  rp = new RootPanel$DefaultRootPanel_0;
+  $put_0(rootPanels, null, rp);
+  $add_6(widgetsToDetach, rp);
+  return rp;
+}
+
+function RootPanel(){
+}
+
+_ = RootPanel.prototype = new AbsolutePanel;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 21:1, 67:1, 68:1, 71:1};
+var maybeDetachCommand, rootPanels, widgetsToDetach;
+function RootPanel$1_0(){
+}
+
+function RootPanel$1(){
+}
+
+_ = RootPanel$1_0.prototype = RootPanel$1.prototype = new Object_0;
+_.execute_0 = function execute_3(w){
+  w.attached && $onDetach(w);
+}
+;
+_.castableTypeMap$ = {};
+function RootPanel$2_0(){
+}
+
+function RootPanel$2(){
+}
+
+_ = RootPanel$2_0.prototype = RootPanel$2.prototype = new Object_0;
+_.onClose = function onClose_0(closeEvent){
+  detachWidgets();
+}
+;
+_.castableTypeMap$ = {11:1, 55:1};
+function RootPanel$DefaultRootPanel_0(){
+  RootPanel_0.call(this, $doc.body);
+}
+
+function RootPanel$DefaultRootPanel(){
+}
+
+_ = RootPanel$DefaultRootPanel_0.prototype = RootPanel$DefaultRootPanel.prototype = new RootPanel;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 21:1, 67:1, 68:1, 71:1};
+function $next_0(this$static){
+  if (!this$static.hasElement || !this$static.this$0.widget) {
+    throw new NoSuchElementException_0;
+  }
+  this$static.hasElement = false;
+  return this$static.returned = this$static.this$0.widget;
+}
+
+function SimplePanel$1_0(this$0){
+  this.this$0 = this$0;
+  this.hasElement = !!this.this$0.widget;
+}
+
+function SimplePanel$1(){
+}
+
+_ = SimplePanel$1_0.prototype = SimplePanel$1.prototype = new Object_0;
+_.hasNext = function hasNext_0(){
+  return this.hasElement;
+}
+;
+_.next_0 = function next_1(){
+  return $next_0(this);
+}
+;
+_.remove_0 = function remove_6(){
+  !!this.returned && this.this$0.remove(this.returned);
+}
+;
+_.castableTypeMap$ = {};
+_.returned = null;
+_.this$0 = null;
+function $selectAll(this$static){
+  var length_0;
+  length_0 = $getPropertyString(this$static.element, 'value').length;
+  length_0 > 0 && $setSelectionRange(this$static, length_0);
+}
+
+function $setReadOnly(this$static){
+  this$static.element['readOnly'] = true;
+  $setStyleName(this$static, getStylePrimaryName(this$static.element) + '-readonly');
+}
+
+function $setSelectionRange(this$static, length_0){
+  if (!this$static.attached) {
+    return;
+  }
+  if (length_0 < 0) {
+    throw new IndexOutOfBoundsException_1('Length must be a positive integer. Length: ' + length_0);
+  }
+  if (length_0 > $getPropertyString(this$static.element, 'value').length) {
+    throw new IndexOutOfBoundsException_1('From Index: 0  To Index: ' + length_0 + '  Text Length: ' + $getPropertyString(this$static.element, 'value').length);
+  }
+  $setSelectionRange_0(this$static.element, 0, length_0);
+}
+
+function $setText_0(this$static, text){
+  this$static.element['value'] = text != null?text:'';
+}
+
+function ValueBoxBase_0(elem){
+  this.element = elem;
+  new AutoDirectionHandler_0;
+}
+
+function ValueBoxBase(){
+}
+
+_ = ValueBoxBase.prototype = new FocusWidget;
+_.onBrowserEvent = function onBrowserEvent_1(event_0){
+  var type;
+  type = $eventGetTypeInt(event_0.type);
+  (type & 896) != 0?$onBrowserEvent(this, event_0):$onBrowserEvent(this, event_0);
+}
+;
+_.onLoad = function onLoad_0(){
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 22:1, 23:1, 24:1, 25:1, 26:1, 27:1, 28:1, 29:1, 30:1, 31:1, 32:1, 33:1, 34:1, 35:1, 36:1, 37:1, 38:1, 39:1, 40:1, 41:1, 42:1, 43:1, 44:1, 45:1, 46:1, 47:1, 48:1, 49:1, 50:1, 51:1, 52:1, 53:1, 54:1, 67:1, 68:1, 71:1};
+function $clinit_18(){
+  $clinit_18 = nullMethod;
+  $clinit_19();
+}
+
+function TextBoxBase(){
+}
+
+_ = TextBoxBase.prototype = new ValueBoxBase;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 22:1, 23:1, 24:1, 25:1, 26:1, 27:1, 28:1, 29:1, 30:1, 31:1, 32:1, 33:1, 34:1, 35:1, 36:1, 37:1, 38:1, 39:1, 40:1, 41:1, 42:1, 43:1, 44:1, 45:1, 46:1, 47:1, 48:1, 49:1, 50:1, 51:1, 52:1, 53:1, 54:1, 67:1, 68:1, 71:1};
+function TextBox_0(){
+  var e;
+  $clinit_18();
+  ValueBoxBase_0.call(this, (e = $doc.createElement('INPUT') , e.type = 'text' , e), (!INSTANCE_1 && (INSTANCE_1 = new PassthroughRenderer_0) , !INSTANCE_0 && (INSTANCE_0 = new PassthroughParser_0)));
+  this.element['className'] = 'gwt-TextBox';
+}
+
+function TextBox(){
+}
+
+_ = TextBox_0.prototype = TextBox.prototype = new TextBoxBase;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 22:1, 23:1, 24:1, 25:1, 26:1, 27:1, 28:1, 29:1, 30:1, 31:1, 32:1, 33:1, 34:1, 35:1, 36:1, 37:1, 38:1, 39:1, 40:1, 41:1, 42:1, 43:1, 44:1, 45:1, 46:1, 47:1, 48:1, 49:1, 50:1, 51:1, 52:1, 53:1, 54:1, 60:1, 67:1, 68:1, 71:1};
+function $clinit_19(){
+  $clinit_19 = nullMethod;
+  CENTER = new ValueBoxBase$TextAlignment$1_0;
+  JUSTIFY = new ValueBoxBase$TextAlignment$2_0;
+  LEFT = new ValueBoxBase$TextAlignment$3_0;
+  RIGHT = new ValueBoxBase$TextAlignment$4_0;
+  initValues(_3Lcom_google_gwt_user_client_ui_ValueBoxBase$TextAlignment_2_classLit, {74:1}, 72, [CENTER, JUSTIFY, LEFT, RIGHT]);
+}
+
+function ValueBoxBase$TextAlignment(){
+}
+
+_ = ValueBoxBase$TextAlignment.prototype = new Enum;
+_.castableTypeMap$ = {72:1, 74:1, 76:1, 77:1};
+var CENTER, JUSTIFY, LEFT, RIGHT;
+function ValueBoxBase$TextAlignment$1_0(){
+  this.ordinal = 0;
+}
+
+function ValueBoxBase$TextAlignment$1(){
+}
+
+_ = ValueBoxBase$TextAlignment$1_0.prototype = ValueBoxBase$TextAlignment$1.prototype = new ValueBoxBase$TextAlignment;
+_.castableTypeMap$ = {72:1, 74:1, 76:1, 77:1};
+function ValueBoxBase$TextAlignment$2_0(){
+  this.ordinal = 1;
+}
+
+function ValueBoxBase$TextAlignment$2(){
+}
+
+_ = ValueBoxBase$TextAlignment$2_0.prototype = ValueBoxBase$TextAlignment$2.prototype = new ValueBoxBase$TextAlignment;
+_.castableTypeMap$ = {72:1, 74:1, 76:1, 77:1};
+function ValueBoxBase$TextAlignment$3_0(){
+  this.ordinal = 2;
+}
+
+function ValueBoxBase$TextAlignment$3(){
+}
+
+_ = ValueBoxBase$TextAlignment$3_0.prototype = ValueBoxBase$TextAlignment$3.prototype = new ValueBoxBase$TextAlignment;
+_.castableTypeMap$ = {72:1, 74:1, 76:1, 77:1};
+function ValueBoxBase$TextAlignment$4_0(){
+  this.ordinal = 3;
+}
+
+function ValueBoxBase$TextAlignment$4(){
+}
+
+_ = ValueBoxBase$TextAlignment$4_0.prototype = ValueBoxBase$TextAlignment$4.prototype = new ValueBoxBase$TextAlignment;
+_.castableTypeMap$ = {72:1, 74:1, 76:1, 77:1};
+function $add_3(this$static, w){
+  var td, tr, td_0;
+  tr = $createElement($doc, 'tr');
+  td = (td_0 = $createElement($doc, 'td') , td_0['align'] = this$static.horzAlign.textAlignString , td_0.style['verticalAlign'] = this$static.vertAlign.verticalAlignString , td_0);
+  tr.appendChild(td);
+  this$static.body_0.appendChild(tr);
+  $removeFromParent(w);
+  $add_4(this$static.children_0, w);
+  td.appendChild(w.element);
+  $setParent(w, this$static);
+}
+
+function VerticalPanel_0(){
+  CellPanel_0.call(this);
+  this.horzAlign = ($clinit_15() , ALIGN_DEFAULT);
+  this.vertAlign = ($clinit_16() , ALIGN_TOP);
+  this.table['cellSpacing'] = '0';
+  this.table['cellPadding'] = '0';
+}
+
+function VerticalPanel(){
+}
+
+_ = VerticalPanel_0.prototype = VerticalPanel.prototype = new CellPanel;
+_.remove = function remove_7(w){
+  var removed, td, parent_0;
+  td = (parent_0 = w.element.parentNode , (!parent_0 || parent_0.nodeType != 1) && (parent_0 = null) , parent_0);
+  removed = $remove(this, w);
+  removed && this.body_0.removeChild($getParentElement(td));
+  return removed;
+}
+;
+_.castableTypeMap$ = {18:1, 19:1, 20:1, 67:1, 68:1, 71:1};
+function $add_4(this$static, w){
+  $insert(this$static, w, this$static.size);
+}
+
+function $indexOf(this$static, w){
+  var i;
+  for (i = 0; i < this$static.size; ++i) {
+    if (this$static.array[i] == w) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+function $insert(this$static, w, beforeIndex){
+  var i, newArray;
+  if (beforeIndex < 0 || beforeIndex > this$static.size) {
+    throw new IndexOutOfBoundsException_0;
+  }
+  if (this$static.size == this$static.array.length) {
+    newArray = initDim(_3Lcom_google_gwt_user_client_ui_Widget_2_classLit, {74:1}, 20, this$static.array.length * 2, 0);
+    for (i = 0; i < this$static.array.length; ++i) {
+      setCheck(newArray, i, this$static.array[i]);
+    }
+    this$static.array = newArray;
+  }
+  ++this$static.size;
+  for (i = this$static.size - 1; i > beforeIndex; --i) {
+    setCheck(this$static.array, i, this$static.array[i - 1]);
+  }
+  setCheck(this$static.array, beforeIndex, w);
+}
+
+function $remove_3(this$static, index){
+  var i;
+  if (index < 0 || index >= this$static.size) {
+    throw new IndexOutOfBoundsException_0;
+  }
+  --this$static.size;
+  for (i = index; i < this$static.size; ++i) {
+    setCheck(this$static.array, i, this$static.array[i + 1]);
+  }
+  setCheck(this$static.array, this$static.size, null);
+}
+
+function $remove_4(this$static, w){
+  var index;
+  index = $indexOf(this$static, w);
+  if (index == -1) {
+    throw new NoSuchElementException_0;
+  }
+  $remove_3(this$static, index);
+}
+
+function WidgetCollection_0(parent_0){
+  this.parent_0 = parent_0;
+  this.array = initDim(_3Lcom_google_gwt_user_client_ui_Widget_2_classLit, {74:1}, 20, 4, 0);
+}
+
+function WidgetCollection(){
+}
+
+_ = WidgetCollection_0.prototype = WidgetCollection.prototype = new Object_0;
+_.iterator = function iterator_3(){
+  return new WidgetCollection$WidgetIterator_0(this);
+}
+;
+_.castableTypeMap$ = {};
+_.array = null;
+_.parent_0 = null;
+_.size = 0;
+function $next_1(this$static){
+  if (this$static.index >= this$static.this$0.size) {
+    throw new NoSuchElementException_0;
+  }
+  return this$static.this$0.array[++this$static.index];
+}
+
+function WidgetCollection$WidgetIterator_0(this$0){
+  this.this$0 = this$0;
+}
+
+function WidgetCollection$WidgetIterator(){
+}
+
+_ = WidgetCollection$WidgetIterator_0.prototype = WidgetCollection$WidgetIterator.prototype = new Object_0;
+_.hasNext = function hasNext_1(){
+  return this.index < this.this$0.size - 1;
+}
+;
+_.next_0 = function next_2(){
+  return $next_1(this);
+}
+;
+_.remove_0 = function remove_8(){
+  if (this.index < 0 || this.index >= this.this$0.size) {
+    throw new IllegalStateException_0;
+  }
+  this.this$0.parent_0.remove(this.this$0.array[this.index--]);
+}
+;
+_.castableTypeMap$ = {};
+_.index = -1;
+_.this$0 = null;
+function $onHide(popup){
+  var frame = popup.__frame;
+  if (frame) {
+    frame.parentElement.removeChild(frame);
+    frame.__popup = null;
+    popup.__frame = null;
+    popup.onresize = null;
+    popup.onmove = null;
+  }
+}
+
+--></script>
+<script><!--
+function $onShow(popup){
+  var frame = $doc.createElement('iframe');
+  frame.src = "javascript:''";
+  frame.scrolling = 'no';
+  frame.frameBorder = 0;
+  popup.__frame = frame;
+  frame.__popup = popup;
+  var style = frame.style;
+  style.position = 'absolute';
+  style.filter = 'alpha(opacity=0)';
+  style.visibility = popup.currentStyle.visibility;
+  style.border = 0;
+  style.padding = 0;
+  style.margin = 0;
+  style.left = popup.offsetLeft;
+  style.top = popup.offsetTop;
+  style.width = popup.offsetWidth;
+  style.height = popup.offsetHeight;
+  style.zIndex = popup.currentStyle.zIndex;
+  popup.onmove = function(){
+    frame.style.left = popup.offsetLeft;
+    frame.style.top = popup.offsetTop;
+  }
+  ;
+  popup.onresize = function(){
+    frame.style.width = popup.offsetWidth;
+    frame.style.height = popup.offsetHeight;
+  }
+  ;
+  style.setExpression('zIndex', 'this.__popup.currentStyle.zIndex');
+  popup.parentElement.insertBefore(frame, popup);
+}
+
+function $setVisible_0(popup, visible){
+  popup.__frame && (popup.__frame.style.visibility = visible?'visible':'hidden');
+}
+
+function $setSelectionRange_0(elem, pos, length_0){
+  try {
+    var tr = elem.createTextRange();
+    var newlinesWithin = elem.value.substr(pos, length_0).match(/(\r\n)/gi);
+    newlinesWithin != null && (length_0 -= newlinesWithin.length);
+    var newlinesBefore = elem.value.substring(0, pos).match(/(\r\n)/gi);
+    newlinesBefore != null && (pos -= newlinesBefore.length);
+    tr.collapse(true);
+    tr.moveStart('character', pos);
+    tr.moveEnd('character', length_0);
+    tr.select();
+  }
+   catch (e) {
+  }
+}
+
+function $removeHandler(this$static){
+  this$static.this$0.doRemove(this$static.val$type, this$static.val$source, this$static.val$handler);
+}
+
+function SimpleEventBus$1_0(this$0, val$type, val$handler){
+  this.this$0 = this$0;
+  this.val$type = val$type;
+  this.val$source = null;
+  this.val$handler = val$handler;
+}
+
+function SimpleEventBus$1(){
+}
+
+_ = SimpleEventBus$1_0.prototype = SimpleEventBus$1.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.this$0 = null;
+_.val$handler = null;
+_.val$source = null;
+_.val$type = null;
+function SimpleEventBus$2_0(this$0, val$type, val$handler){
+  this.this$0 = this$0;
+  this.val$type = val$type;
+  this.val$handler = val$handler;
+}
+
+function SimpleEventBus$2(){
+}
+
+_ = SimpleEventBus$2_0.prototype = SimpleEventBus$2.prototype = new Object_0;
+_.execute = function execute_4(){
+  $doAddNow(this.this$0, this.val$type, this.val$handler);
+}
+;
+_.castableTypeMap$ = {58:1};
+_.this$0 = null;
+_.val$handler = null;
+_.val$type = null;
+function SimpleEventBus$3_0(this$0, val$type, val$handler){
+  this.this$0 = this$0;
+  this.val$type = val$type;
+  this.val$handler = val$handler;
+}
+
+function SimpleEventBus$3(){
+}
+
+_ = SimpleEventBus$3_0.prototype = SimpleEventBus$3.prototype = new Object_0;
+_.execute = function execute_5(){
+  $doRemoveNow(this.this$0, this.val$type, this.val$handler);
+}
+;
+_.castableTypeMap$ = {58:1};
+_.this$0 = null;
+_.val$handler = null;
+_.val$type = null;
+function $updateDifferenceLabel(this$static){
+  var difference;
+  difference = new Integer_0(__parseAndValidateInt($getPropertyString(this$static.player1TB.element, 'value')) + __parseAndValidateInt($getPropertyString(this$static.player2TB.element, 'value')) + __parseAndValidateInt($getPropertyString(this$static.player3TB.element, 'value')) + __parseAndValidateInt($getPropertyString(this$static.player4TB.element, 'value')) - 13);
+  $setTextOrHtml(this$static.differenceLabel.directionalTextHelper, 'Difference from 13: ' + difference.value_0);
+  difference.value_0 >= 0 && (this$static.differenceLabel.getStyleElement()['className'] = 'red' , undefined);
+}
+
+function NewBetsDialogBox_0(spadesScores, team1, team2){
+  DialogBox_1.call(this, new DialogBox$CaptionImpl_0);
+  this.mainPanel = new VerticalPanel_0;
+  this.betsFlexTable = new FlexTable_0;
+  this.player1Label = new Label_0;
+  this.player1TB = new TextBox_0;
+  this.player2Label = new Label_0;
+  this.player2TB = new TextBox_0;
+  this.player3Label = new Label_0;
+  this.player3TB = new TextBox_0;
+  this.player4Label = new Label_0;
+  this.player4TB = new TextBox_0;
+  this.differenceLabel = new Label_0;
+  this.buttonsPanel = new HorizontalPanel_0;
+  this.okButton = new Button_0('OK');
+  this.cancelButton = new Button_0('Cancel');
+  if (team1.roundScores.size < team1.player1.betList.size) {
+    $wnd.alert('Please Enter Round Scores First');
+  }
+   else {
+    this.spadesScores = spadesScores;
+    $addDomHandler(this.player1TB, this, ($clinit_8() , $clinit_8() , TYPE_3));
+    $addDomHandler(this.player2TB, this, TYPE_3);
+    $addDomHandler(this.player3TB, this, TYPE_3);
+    $addDomHandler(this.player4TB, this, TYPE_3);
+    $addDomHandler(this.player1TB, this, ($clinit_7() , $clinit_7() , TYPE_2));
+    $addDomHandler(this.player2TB, this, TYPE_2);
+    $addDomHandler(this.player3TB, this, TYPE_2);
+    $addDomHandler(this.player4TB, this, TYPE_2);
+    $add_1(this, this.mainPanel);
+    this.team1 = team1;
+    this.team2 = team2;
+    $addDomHandler(this.okButton, this, ($clinit_4() , $clinit_4() , TYPE));
+    $addDomHandler(this.cancelButton, this, TYPE);
+    this.isAnimationEnabled = true;
+    $setGlassEnabled(this);
+    $setTextOrHtml(this.caption.directionalTextHelper, 'New Bets');
+    $setTextOrHtml(this.player1Label.directionalTextHelper, team1.player1.name_0 + ':');
+    this.player1TB.element['value'] = '0';
+    this.player1TB.element.style['width'] = '50px';
+    $setWidget_0(this.betsFlexTable, 2, 0, this.player1Label);
+    $setWidget_0(this.betsFlexTable, 3, 0, this.player1TB);
+    $setTextOrHtml(this.player2Label.directionalTextHelper, team1.player2.name_0 + ':');
+    this.player2TB.element['value'] = '0';
+    this.player2TB.element.style['width'] = '50px';
+    $setWidget_0(this.betsFlexTable, 2, 3, this.player2Label);
+    $setWidget_0(this.betsFlexTable, 3, 3, this.player2TB);
+    $setTextOrHtml(this.player3Label.directionalTextHelper, team2.player1.name_0 + ':');
+    this.player3TB.element['value'] = '0';
+    this.player3TB.element.style['width'] = '50px';
+    $setWidget_0(this.betsFlexTable, 0, 2, this.player3Label);
+    $setWidget_0(this.betsFlexTable, 1, 2, this.player3TB);
+    $setTextOrHtml(this.player4Label.directionalTextHelper, team2.player2.name_0 + ':');
+    this.player4TB.element['value'] = '0';
+    this.player4TB.element.style['width'] = '50px';
+    $setWidget_0(this.betsFlexTable, 4, 2, this.player4Label);
+    $setWidget_0(this.betsFlexTable, 5, 2, this.player4TB);
+    this.betsFlexTable.tableElem['cellSpacing'] = 5;
+    this.betsFlexTable.getStyleElement()['className'] = 'roundedCornersFlexTable';
+    $updateDifferenceLabel(this);
+    $add_2(this.buttonsPanel, this.okButton);
+    $add_2(this.buttonsPanel, this.cancelButton);
+    this.buttonsPanel.table['cellSpacing'] = 5;
+    $add_3(this.mainPanel, this.betsFlexTable);
+    $add_3(this.mainPanel, this.differenceLabel);
+    $add_3(this.mainPanel, this.buttonsPanel);
+    !this.resizeHandlerRegistration && (this.resizeHandlerRegistration = addResizeHandler(new DialogBox$1_0(this)));
+    $show(this);
+  }
+}
+
+function NewBetsDialogBox(){
+}
+
+_ = NewBetsDialogBox_0.prototype = NewBetsDialogBox.prototype = new DialogBox;
+_.onClick = function onClick(event_0){
+  var player1Bet, player2Bet, player3Bet, player4Bet, sender;
+  sender = event_0.source;
+  if (sender === this.okButton) {
+    (!$matches($getPropertyString(this.player1TB.element, 'value'), '[0-9\\s]{1,2}') || !$matches($getPropertyString(this.player2TB.element, 'value'), '[0-9\\s]{1,2}') || !$matches($getPropertyString(this.player3TB.element, 'value'), '[0-9\\s]{1,2}') || !$matches($getPropertyString(this.player4TB.element, 'value'), '[0-9\\s]{1,2}')) && ($wnd.alert('Bets must be numbers 0-13') , undefined);
+    player1Bet = __parseAndValidateInt($getPropertyString(this.player1TB.element, 'value'));
+    player2Bet = __parseAndValidateInt($getPropertyString(this.player2TB.element, 'value'));
+    player3Bet = __parseAndValidateInt($getPropertyString(this.player3TB.element, 'value'));
+    player4Bet = __parseAndValidateInt($getPropertyString(this.player4TB.element, 'value'));
+    if (player1Bet + player2Bet + player3Bet + player4Bet == 13) {
+      $wnd.alert("Bets can't total 13");
+    }
+     else if (player1Bet + player2Bet < 4) {
+      $wnd.alert('Team 1 must bet at least 4');
+    }
+     else if (player3Bet + player4Bet < 4) {
+      $wnd.alert('Team 2 must bet at least 4');
+    }
+     else {
+      $add_5(this.team1.player1.betList, valueOf(player1Bet));
+      $add_5(this.team1.player2.betList, valueOf(player2Bet));
+      $add_5(this.team2.player1.betList, valueOf(player3Bet));
+      $add_5(this.team2.player2.betList, valueOf(player4Bet));
+      $hide_0(this);
+      $resetFlexTables(this.spadesScores);
+    }
+  }
+  sender === this.cancelButton && $hide_0(this);
+}
+;
+_.onMouseOut = function onMouseOut_0(event_0){
+  $updateDifferenceLabel(this);
+}
+;
+_.onMouseOver = function onMouseOver_0(event_0){
+  var sender;
+  sender = event_0.source;
+  sender != null && sender.castableTypeMap$ && !!sender.castableTypeMap$[60] && $selectAll(dynamicCast(sender, 60));
+}
+;
+_.castableTypeMap$ = {4:1, 8:1, 9:1, 18:1, 19:1, 20:1, 55:1, 67:1, 68:1, 71:1};
+_.spadesScores = null;
+_.team1 = null;
+_.team2 = null;
+function $getTeamRoundScore(player1Bet, player2Bet, player1Tricks, player2Tricks){
+  var combinedBet, combinedTricks;
+  combinedBet = player1Bet.value_0 + player2Bet.value_0;
+  combinedTricks = player1Tricks.value_0 + player2Tricks.value_0;
+  return player1Bet.value_0 == 0?player1Tricks.value_0 == 0 && player2Bet.value_0 <= player2Tricks.value_0?new Integer_0(60 + 10 * player2Bet.value_0 + (player2Tricks.value_0 - player2Bet.value_0)):new Integer_0(-60 - 10 * player2Bet.value_0):player2Bet.value_0 == 0?player2Tricks.value_0 == 0 && player1Bet.value_0 <= player1Tricks.value_0?new Integer_0(60 + 10 * player1Bet.value_0 + (player1Tricks.value_0 - player1Bet.value_0)):new Integer_0(-60 - 10 * player1Bet.value_0):2 * combinedBet <= combinedTricks?new Integer_0(-(10 * combinedBet)):combinedBet <= combinedTricks?new Integer_0(10 * combinedBet + (combinedTricks - combinedBet)):new Integer_0(-10 * combinedBet);
+}
+
+function $updateTricksTaken(this$static){
+  this$static.player1TricksTaken = __parseAndValidateInt($getPropertyString(this$static.player1TB.element, 'value'));
+  this$static.player2TricksTaken = __parseAndValidateInt($getPropertyString(this$static.player2TB.element, 'value'));
+  $setTextOrHtml(this$static.team1ScoreLabel.directionalTextHelper, '' + $getTeamRoundScore(valueOf(this$static.player1LastBet), valueOf(this$static.player2LastBet), valueOf(this$static.player1TricksTaken), valueOf(this$static.player2TricksTaken)).value_0);
+  __parseAndValidateInt($getTextOrHtml(this$static.team1ScoreLabel.directionalTextHelper)) < 0?(this$static.team1ScoreLabel.getStyleElement()['className'] = 'red' , undefined):(this$static.team1ScoreLabel.getStyleElement()['className'] = 'green' , undefined);
+  this$static.player3TricksTaken = __parseAndValidateInt($getPropertyString(this$static.player3TB.element, 'value'));
+  this$static.player4TricksTaken = __parseAndValidateInt($getPropertyString(this$static.player4TB.element, 'value'));
+  $setTextOrHtml(this$static.team2ScoreLabel.directionalTextHelper, '' + $getTeamRoundScore(valueOf(this$static.player3LastBet), valueOf(this$static.player4LastBet), valueOf(this$static.player3TricksTaken), valueOf(this$static.player4TricksTaken)).value_0);
+  __parseAndValidateInt($getTextOrHtml(this$static.team2ScoreLabel.directionalTextHelper)) < 0?(this$static.team2ScoreLabel.getStyleElement()['className'] = 'red' , undefined):(this$static.team2ScoreLabel.getStyleElement()['className'] = 'green' , undefined);
+  $setTextOrHtml(this$static.totalTricks.directionalTextHelper, 'Total Tricks: ' + (new Integer_0(this$static.player1TricksTaken + this$static.player2TricksTaken + this$static.player3TricksTaken + this$static.player4TricksTaken)).value_0);
+  this$static.player1TricksTaken + this$static.player2TricksTaken + this$static.player3TricksTaken + this$static.player4TricksTaken != 13?(this$static.totalTricks.getStyleElement()['className'] = 'red' , undefined):(this$static.totalTricks.getStyleElement()['className'] = 'green' , undefined);
+}
+
+function NewRoundScoresDialogBox_0(spadesScores, team1, team2){
+  DialogBox_1.call(this, new DialogBox$CaptionImpl_0);
+  this.mainPanel = new VerticalPanel_0;
+  this.hPanel = new HorizontalPanel_0;
+  this.scoreReportFlexTable = new FlexTable_0;
+  this.team1Label = new Label_1('Team 1 Score:');
+  this.team1ScoreLabel = new Label_0;
+  this.team2Label = new Label_1('Team 2 Score:');
+  this.team2ScoreLabel = new Label_0;
+  this.totalTricks = new Label_0;
+  this.tricksFlexTable = new FlexTable_0;
+  this.player1Label = new Label_0;
+  this.player1TB = new TextBox_0;
+  this.player2Label = new Label_0;
+  this.player2TB = new TextBox_0;
+  this.player3Label = new Label_0;
+  this.player3TB = new TextBox_0;
+  this.player4Label = new Label_0;
+  this.player4TB = new TextBox_0;
+  this.buttonsPanel = new HorizontalPanel_0;
+  this.okButton = new Button_0('OK');
+  this.cancelButton = new Button_0('Cancel');
+  if (team1.player1.betList.size <= team1.roundTrickesTaken.size) {
+    $wnd.alert('Please bet first!');
+  }
+   else {
+    addMouseOverHandler(this, initValues(_3Lcom_google_gwt_user_client_ui_FocusWidget_2_classLit, {74:1}, 47, [this.player1TB, this.player2TB, this.player3TB, this.player4TB]));
+    addMouseOutHandler(this, initValues(_3Lcom_google_gwt_user_client_ui_FocusWidget_2_classLit, {74:1}, 47, [this.player1TB, this.player2TB, this.player3TB, this.player4TB]));
+    this.spadesScores = spadesScores;
+    this.player1LastBet = dynamicCast($get_1(team1.player1.betList, team1.player1.betList.size - 1), 61).value_0;
+    this.player2LastBet = dynamicCast($get_1(team1.player2.betList, team1.player2.betList.size - 1), 61).value_0;
+    this.player3LastBet = dynamicCast($get_1(team2.player1.betList, team1.player1.betList.size - 1), 61).value_0;
+    this.player4LastBet = dynamicCast($get_1(team2.player2.betList, team1.player2.betList.size - 1), 61).value_0;
+    $add_1(this, this.mainPanel);
+    this.team1 = team1;
+    this.team2 = team2;
+    $addDomHandler(this.okButton, this, ($clinit_4() , $clinit_4() , TYPE));
+    $addDomHandler(this.cancelButton, this, TYPE);
+    this.isAnimationEnabled = true;
+    $setGlassEnabled(this);
+    $setTextOrHtml(this.caption.directionalTextHelper, 'New Bets');
+    $setTextOrHtml(this.player1Label.directionalTextHelper, team1.player1.name_0 + ':');
+    this.player1TB.element.style['width'] = '50px';
+    $setWidget_0(this.tricksFlexTable, 2, 0, this.player1Label);
+    $setWidget_0(this.tricksFlexTable, 3, 0, this.player1TB);
+    $setText_0(this.player1TB, '' + dynamicCast($get_1(team1.player1.betList, team1.player1.betList.size - 1), 61).value_0);
+    $setTextOrHtml(this.player2Label.directionalTextHelper, team1.player2.name_0 + ':');
+    this.player2TB.element.style['width'] = '50px';
+    $setWidget_0(this.tricksFlexTable, 2, 2, this.player2Label);
+    $setWidget_0(this.tricksFlexTable, 3, 2, this.player2TB);
+    $setText_0(this.player2TB, '' + dynamicCast($get_1(team1.player2.betList, team1.player2.betList.size - 1), 61).value_0);
+    $setTextOrHtml(this.player3Label.directionalTextHelper, team2.player1.name_0 + ':');
+    this.player3TB.element.style['width'] = '50px';
+    $setWidget_0(this.tricksFlexTable, 0, 1, this.player3Label);
+    $setWidget_0(this.tricksFlexTable, 1, 1, this.player3TB);
+    $setText_0(this.player3TB, '' + dynamicCast($get_1(team2.player1.betList, team2.player1.betList.size - 1), 61).value_0);
+    $setTextOrHtml(this.player4Label.directionalTextHelper, team2.player2.name_0 + ':');
+    this.player4TB.element.style['width'] = '50px';
+    $setWidget_0(this.tricksFlexTable, 4, 1, this.player4Label);
+    $setWidget_0(this.tricksFlexTable, 5, 1, this.player4TB);
+    $setText_0(this.player4TB, '' + dynamicCast($get_1(team2.player2.betList, team2.player2.betList.size - 1), 61).value_0);
+    this.tricksFlexTable.tableElem['cellSpacing'] = 5;
+    this.tricksFlexTable.getStyleElement()['className'] = 'roundedCornersBorder';
+    $add_2(this.buttonsPanel, this.okButton);
+    $add_2(this.buttonsPanel, this.cancelButton);
+    this.buttonsPanel.table['cellSpacing'] = 5;
+    $setWidget_0(this.scoreReportFlexTable, 0, 0, this.team1Label);
+    $setWidget_0(this.scoreReportFlexTable, 0, 1, this.team1ScoreLabel);
+    this.team1ScoreLabel.getStyleElement()['className'] = 'green';
+    $setWidget_0(this.scoreReportFlexTable, 1, 0, this.team2Label);
+    $setWidget_0(this.scoreReportFlexTable, 1, 1, this.team2ScoreLabel);
+    this.team2ScoreLabel.getStyleElement()['className'] = 'green';
+    $setWidget_0(this.scoreReportFlexTable, 2, 0, this.totalTricks);
+    this.scoreReportFlexTable.getStyleElement()['className'] = 'roundedCornersBorder';
+    this.totalTricks.getStyleElement()['className'] = 'green';
+    $add_2(this.hPanel, this.tricksFlexTable);
+    $add_2(this.hPanel, this.scoreReportFlexTable);
+    this.hPanel.table['cellSpacing'] = 5;
+    $add_3(this.mainPanel, this.hPanel);
+    $add_3(this.mainPanel, this.buttonsPanel);
+    $updateTricksTaken(this);
+    !this.resizeHandlerRegistration && (this.resizeHandlerRegistration = addResizeHandler(new DialogBox$1_0(this)));
+    $show(this);
+  }
+}
+
+function NewRoundScoresDialogBox(){
+}
+
+_ = NewRoundScoresDialogBox_0.prototype = NewRoundScoresDialogBox.prototype = new DialogBox;
+_.onClick = function onClick_0(event_0){
+  var sender, team1Score, team2Score;
+  sender = event_0.source;
+  if (equals__devirtual$(sender, this.okButton)) {
+    if (!$matches($getPropertyString(this.player1TB.element, 'value'), '[0-9\\s]{1,2}') || !$matches($getPropertyString(this.player2TB.element, 'value'), '[0-9\\s]{1,2}') || !$matches($getPropertyString(this.player3TB.element, 'value'), '[0-9\\s]{1,2}') || !$matches($getPropertyString(this.player4TB.element, 'value'), '[0-9\\s]{1,2}')) {
+      $wnd.alert('Tricks must be numbers 1-13');
+    }
+     else if (this.player1TricksTaken + this.player2TricksTaken + this.player3TricksTaken + this.player4TricksTaken != 13) {
+      $wnd.alert('There must be 13 Total Tricks');
+    }
+     else {
+      $hide_0(this);
+      $add_5(this.team1.player1.tricksTakenList, valueOf(this.player1TricksTaken));
+      $add_5(this.team1.player2.tricksTakenList, valueOf(this.player2TricksTaken));
+      $add_5(this.team2.player1.tricksTakenList, valueOf(this.player3TricksTaken));
+      $add_5(this.team2.player2.tricksTakenList, valueOf(this.player4TricksTaken));
+      $add_5(this.team1.roundTrickesTaken, valueOf(this.player1TricksTaken + this.player2TricksTaken));
+      $add_5(this.team2.roundTrickesTaken, valueOf(this.player3TricksTaken + this.player4TricksTaken));
+      $add_5(this.team1.roundScores, valueOf(__parseAndValidateInt($getTextOrHtml(this.team1ScoreLabel.directionalTextHelper))));
+      $updateTotalScores(this.team1);
+      $add_5(this.team2.roundScores, valueOf(__parseAndValidateInt($getTextOrHtml(this.team2ScoreLabel.directionalTextHelper))));
+      $updateTotalScores(this.team2);
+      $resetFlexTables(this.spadesScores);
+      team1Score = dynamicCast($get_1(this.team1.totalScores, this.team1.totalScores.size - 1), 61);
+      team2Score = dynamicCast($get_1(this.team2.totalScores, this.team2.totalScores.size - 1), 61);
+      updateAnaylsisTable(this.team1.player1.betList.size, this.spadesScores.analysisFlexTable, initValues(_3Lcom_loeppky_spadesscores_client_Player_2_classLit, {74:1}, 73, [this.team1.player1, this.team1.player2, this.team2.player1, this.team2.player2]));
+      team1Score.value_0 >= this.spadesScores.objective.value_0 && team1Score.value_0 > team2Score.value_0 && new WinnerMessageDialogBox_0(this.team1);
+      team2Score.value_0 >= this.spadesScores.objective.value_0 && team2Score.value_0 > team1Score.value_0 && new WinnerMessageDialogBox_0(this.team2);
+    }
+  }
+   else 
+    equals__devirtual$(sender, this.cancelButton) && $hide_0(this);
+}
+;
+_.onMouseOut = function onMouseOut_1(event_0){
+  $updateTricksTaken(this);
+}
+;
+_.onMouseOver = function onMouseOver_1(event_0){
+  var sender;
+  sender = event_0.source;
+  sender != null && sender.castableTypeMap$ && !!sender.castableTypeMap$[60] && $selectAll(dynamicCast(sender, 60));
+}
+;
+_.castableTypeMap$ = {4:1, 8:1, 9:1, 18:1, 19:1, 20:1, 55:1, 67:1, 68:1, 71:1};
+_.player1LastBet = 0;
+_.player1TricksTaken = 0;
+_.player2LastBet = 0;
+_.player2TricksTaken = 0;
+_.player3LastBet = 0;
+_.player3TricksTaken = 0;
+_.player4LastBet = 0;
+_.player4TricksTaken = 0;
+_.spadesScores = null;
+_.team1 = null;
+_.team2 = null;
+function $setRating(this$static, rating){
+  this$static.rating = rating;
+}
+
+function Player_0(name_0){
+  this.betList = new ArrayList_0;
+  this.tricksTakenList = new ArrayList_0;
+  this.rating = valueOf(100);
+  this.name_0 = name_0;
+}
+
+function Player(){
+}
+
+_ = Player_0.prototype = Player.prototype = new Object_0;
+_.castableTypeMap$ = {73:1};
+_.name_0 = null;
+function $onModuleLoad(this$static){
+  $addDomHandler(this$static.player1TextBox, this$static, ($clinit_8() , $clinit_8() , TYPE_3));
+  $addDomHandler(this$static.player2TextBox, this$static, TYPE_3);
+  $addDomHandler(this$static.player3TextBox, this$static, TYPE_3);
+  $addDomHandler(this$static.player4TextBox, this$static, TYPE_3);
+  $addDomHandler(this$static.objectiveScore, this$static, TYPE_3);
+  $addDomHandler(this$static.team1NameTextBox, this$static, TYPE_3);
+  $addDomHandler(this$static.team2NameTextBox, this$static, TYPE_3);
+  $addDomHandler(this$static.addNewPlayersButton, this$static, ($clinit_4() , $clinit_4() , TYPE));
+  $addDomHandler(this$static.newBetsButton, this$static, TYPE);
+  $addDomHandler(this$static.newRoundScoresButton, this$static, TYPE);
+  $addDomHandler(this$static.editScoresButtons, this$static, TYPE);
+  $addDomHandler(this$static.objectiveScoreButton, this$static, TYPE);
+  $setText_0(this$static.objectiveScore, '' + this$static.objective.value_0);
+  $setWidget_0(this$static.gameControlsFlexTable, 0, 0, this$static.objectiveScoreLabel);
+  $setWidget_0(this$static.gameControlsFlexTable, 0, 1, this$static.objectiveScore);
+  $setWidget_0(this$static.gameControlsFlexTable, 0, 2, this$static.objectiveScoreButton);
+  $setWidget_0(this$static.gameControlsFlexTable, 1, 0, this$static.newBetsButton);
+  $setWidget_0(this$static.gameControlsFlexTable, 1, 1, this$static.newRoundScoresButton);
+  $setWidget_0(this$static.gameControlsFlexTable, 1, 2, this$static.editScoresButtons);
+  this$static.gameControlsFlexTable.tableElem['cellSpacing'] = 5;
+  this$static.gameControlsFlexTable.getStyleElement()['className'] = 'roundedCornersBorder';
+  this$static.team1NameTextBox.element['value'] = 'Team 1 Name ...';
+  this$static.team2NameTextBox.element['value'] = 'Team 2 Name ...';
+  this$static.player1TextBox.element['value'] = 'Player 1';
+  this$static.player2TextBox.element['value'] = 'Player 2';
+  this$static.player3TextBox.element['value'] = 'Player 3';
+  this$static.player4TextBox.element['value'] = 'Player 4';
+  $setWidget_0(this$static.newPlayersFlexTable, 0, 0, this$static.team1NameTextBox);
+  $setWidget_0(this$static.newPlayersFlexTable, 0, 4, this$static.team2NameTextBox);
+  $setWidget_0(this$static.newPlayersFlexTable, 1, 0, this$static.player1TextBox);
+  $setWidget_0(this$static.newPlayersFlexTable, 1, 1, this$static.andLabel1);
+  $setWidget_0(this$static.newPlayersFlexTable, 1, 2, this$static.player2TextBox);
+  $setWidget_0(this$static.newPlayersFlexTable, 1, 3, this$static.vsLabel);
+  $setWidget_0(this$static.newPlayersFlexTable, 1, 4, this$static.player3TextBox);
+  $setWidget_0(this$static.newPlayersFlexTable, 1, 5, this$static.andLabel2);
+  $setWidget_0(this$static.newPlayersFlexTable, 1, 6, this$static.player4TextBox);
+  $setWidget_0(this$static.newPlayersFlexTable, 1, 7, this$static.addNewPlayersButton);
+  this$static.newPlayersFlexTable.tableElem['cellSpacing'] = 5;
+  this$static.newPlayersFlexTable.getStyleElement()['className'] = 'roundedCornersBorder';
+  $setWidget_0(this$static.mainPanel, 0, 0, this$static.newPlayersFlexTable);
+  this$static.mainPanel.getStyleElement()['className'] = 'roundedCornersBorderWithGradient';
+  this$static.mainPanel.tableElem['cellSpacing'] = 5;
+  $add_0(($clinit_17() , get()), this$static.mainPanel);
+}
+
+function $resetFlexTables(this$static){
+  var integer, integer$iterator, row;
+  $removeAllRows(this$static.scoresTableTeam1);
+  $setupFlexTableHeaders(this$static);
+  row = 1;
+  for (integer$iterator = new AbstractList$IteratorImpl_0(this$static.team1.player1.betList); integer$iterator.i < integer$iterator.this$0_0.size_0();) {
+    integer = dynamicCast($next_3(integer$iterator), 61);
+    $setText(this$static.scoresTableTeam1, row, 0, '' + integer.value_0);
+    ++row;
+  }
+  row = 1;
+  for (integer$iterator = new AbstractList$IteratorImpl_0(this$static.team1.player2.betList); integer$iterator.i < integer$iterator.this$0_0.size_0();) {
+    integer = dynamicCast($next_3(integer$iterator), 61);
+    $setText(this$static.scoresTableTeam1, row, 1, '' + integer.value_0);
+    ++row;
+  }
+  row = 1;
+  for (integer$iterator = new AbstractList$IteratorImpl_0(this$static.team1.roundTrickesTaken); integer$iterator.i < integer$iterator.this$0_0.size_0();) {
+    integer = dynamicCast($next_3(integer$iterator), 61);
+    $setText(this$static.scoresTableTeam1, row, 2, '' + integer.value_0);
+    ++row;
+  }
+  row = 1;
+  for (integer$iterator = new AbstractList$IteratorImpl_0(this$static.team1.roundScores); integer$iterator.i < integer$iterator.this$0_0.size_0();) {
+    integer = dynamicCast($next_3(integer$iterator), 61);
+    $setText(this$static.scoresTableTeam1, row, 3, '' + integer.value_0);
+    ++row;
+  }
+  row = 1;
+  for (integer$iterator = new AbstractList$IteratorImpl_0(this$static.team1.totalScores); integer$iterator.i < integer$iterator.this$0_0.size_0();) {
+    integer = dynamicCast($next_3(integer$iterator), 61);
+    $setText(this$static.scoresTableTeam1, row, 4, '' + integer.value_0);
+    integer.value_0 < 0?$addStyleName(this$static.scoresTableTeam1.cellFormatter, row, 'red'):$addStyleName(this$static.scoresTableTeam1.cellFormatter, row, 'green');
+    ++row;
+  }
+  row = 1;
+  for (integer$iterator = new AbstractList$IteratorImpl_0(this$static.team2.player1.betList); integer$iterator.i < integer$iterator.this$0_0.size_0();) {
+    integer = dynamicCast($next_3(integer$iterator), 61);
+    $setText(this$static.scoresTableTeam2, row, 0, '' + integer.value_0);
+    ++row;
+  }
+  row = 1;
+  for (integer$iterator = new AbstractList$IteratorImpl_0(this$static.team2.player2.betList); integer$iterator.i < integer$iterator.this$0_0.size_0();) {
+    integer = dynamicCast($next_3(integer$iterator), 61);
+    $setText(this$static.scoresTableTeam2, row, 1, '' + integer.value_0);
+    ++row;
+  }
+  row = 1;
+  for (integer$iterator = new AbstractList$IteratorImpl_0(this$static.team2.roundTrickesTaken); integer$iterator.i < integer$iterator.this$0_0.size_0();) {
+    integer = dynamicCast($next_3(integer$iterator), 61);
+    $setText(this$static.scoresTableTeam2, row, 2, '' + integer.value_0);
+    ++row;
+  }
+  row = 1;
+  for (integer$iterator = new AbstractList$IteratorImpl_0(this$static.team2.roundScores); integer$iterator.i < integer$iterator.this$0_0.size_0();) {
+    integer = dynamicCast($next_3(integer$iterator), 61);
+    $setText(this$static.scoresTableTeam2, row, 3, '' + integer.value_0);
+    ++row;
+  }
+  row = 1;
+  for (integer$iterator = new AbstractList$IteratorImpl_0(this$static.team2.totalScores); integer$iterator.i < integer$iterator.this$0_0.size_0();) {
+    integer = dynamicCast($next_3(integer$iterator), 61);
+    $setText(this$static.scoresTableTeam2, row, 4, '' + integer.value_0);
+    integer.value_0 < 0?$addStyleName(this$static.scoresTableTeam2.cellFormatter, row, 'red'):$addStyleName(this$static.scoresTableTeam2.cellFormatter, row, 'green');
+    ++row;
+  }
+}
+
+function $setupFlexTableHeaders(this$static){
+  $setText(this$static.scoresTableTeam1, 0, 0, this$static.team1.player1.name_0 + ' Bets');
+  $setText(this$static.scoresTableTeam1, 0, 1, this$static.team1.player2.name_0 + ' Bets');
+  $setText(this$static.scoresTableTeam1, 0, 2, 'Tricks Taken');
+  $setText(this$static.scoresTableTeam1, 0, 3, 'Round Score');
+  $setText(this$static.scoresTableTeam1, 0, 4, 'Total Score');
+  $setText(this$static.scoresTableTeam2, 0, 0, this$static.team2.player1.name_0 + ' Bets');
+  $setText(this$static.scoresTableTeam2, 0, 1, this$static.team2.player2.name_0 + ' Bets');
+  $setText(this$static.scoresTableTeam2, 0, 2, 'Tricks Taken');
+  $setText(this$static.scoresTableTeam2, 0, 3, 'Round Score');
+  $setText(this$static.scoresTableTeam2, 0, 4, 'Total Score');
+  $addStyleName_0(this$static.scoresTableTeam1.rowFormatter, 'team1FlexTableHeader');
+  setStyleName(this$static.scoresTableTeam1.element, 'FlexTable', true);
+  $addStyleName_0(this$static.scoresTableTeam2.rowFormatter, 'team2FlexTableHeader');
+  setStyleName(this$static.scoresTableTeam2.element, 'FlexTable', true);
+}
+
+--></script>
+<script><!--
+function SpadesScores_0(){
+  this.objective = new Integer_0(500);
+  this.mainPanel = new FlexTable_0;
+  this.newPlayersFlexTable = new FlexTable_0;
+  this.team1NameTextBox = new TextBox_0;
+  this.team2NameTextBox = new TextBox_0;
+  this.player1TextBox = new TextBox_0;
+  this.andLabel1 = new Label_1('and');
+  this.player2TextBox = new TextBox_0;
+  this.vsLabel = new Label_1('vs.');
+  this.player3TextBox = new TextBox_0;
+  this.andLabel2 = new Label_1('and');
+  this.player4TextBox = new TextBox_0;
+  this.addNewPlayersButton = new Button_0('Add Players');
+  this.objectiveScoreLabel = new Label_1('Objective:');
+  this.objectiveScore = new TextBox_0;
+  this.objectiveScoreButton = new Button_0('Update');
+  this.newBetsButton = new Button_0('New Bets');
+  this.newRoundScoresButton = new Button_0('New Round Scores');
+  this.editScoresButtons = new Button_0('Edit Scores');
+  this.gameControlsFlexTable = new FlexTable_0;
+  this.scoresVPanelTeam1 = new VerticalPanel_0;
+  this.labelTeam1 = new Label_1('Team 1');
+  this.scoresTableTeam1 = new FlexTable_0;
+  this.scoresVPanelTeam2 = new VerticalPanel_0;
+  this.labelTeam2 = new Label_1('Team 2');
+  this.scoresTableTeam2 = new FlexTable_0;
+  this.analysisFlexTable = new FlexTable_0;
+}
+
+function SpadesScores(){
+}
+
+_ = SpadesScores_0.prototype = SpadesScores.prototype = new Object_0;
+_.onClick = function onClick_1(event_0){
+  var sender;
+  sender = event_0.source;
+  sender === this.addNewPlayersButton && (this.team1 = new Team_0($getPropertyString(this.team1NameTextBox.element, 'value'), new Player_0($getPropertyString(this.player1TextBox.element, 'value')), new Player_0($getPropertyString(this.player2TextBox.element, 'value'))) , this.team2 = new Team_0($getPropertyString(this.team2NameTextBox.element, 'value'), new Player_0($getPropertyString(this.player3TextBox.element, 'value')), new Player_0($getPropertyString(this.player4TextBox.element, 'value'))) , $setupFlexTableHeaders(this) , $setTextOrHtml(this.labelTeam1.directionalTextHelper, this.team1.name_0) , this.labelTeam1.getStyleElement()['className'] = 'nameLabel' , $add_3(this.scoresVPanelTeam1, this.labelTeam1) , $add_3(this.scoresVPanelTeam1, this.scoresTableTeam1) , this.scoresVPanelTeam1.table['cellSpacing'] = 5 , this.scoresVPanelTeam1.getStyleElement()['className'] = 'roundedCornersBorder' , $setTextOrHtml(this.labelTeam2.directionalTextHelper, this.team2.name_0) , this.labelTeam2.getStyleElement()['className'] = 'nameLabel' , $add_3(this.scoresVPanelTeam2, this.labelTeam2) , $add_3(this.scoresVPanelTeam2, this.scoresTableTeam2) , this.scoresVPanelTeam2.table['cellSpacing'] = 5 , this.scoresVPanelTeam2.getStyleElement()['className'] = 'roundedCornersBorder' , this.analysisFlexTable.getStyleElement()['className'] = 'FlexTable' , $setText(this.analysisFlexTable, 0, 0, 'Player') , $setText(this.analysisFlexTable, 0, 1, 'Total Bets') , $setText(this.analysisFlexTable, 0, 2, 'Total Tricks') , $setText(this.analysisFlexTable, 0, 3, 'Rating') , $setStyleName_0(this.analysisFlexTable.rowFormatter) , $setText(this.analysisFlexTable, 1, 0, this.team1.player1.name_0) , $setText(this.analysisFlexTable, 2, 0, this.team1.player2.name_0) , $setText(this.analysisFlexTable, 3, 0, this.team2.player1.name_0) , $setText(this.analysisFlexTable, 4, 0, this.team2.player2.name_0) , $setText(this.analysisFlexTable, 1, 1, '0') , $setText(this.analysisFlexTable, 2, 1, '0') , $setText(this.analysisFlexTable, 3, 1, '0') , $setText(this.analysisFlexTable, 4, 1, '0') , $setText(this.analysisFlexTable, 1, 2, '0') , $setText(this.analysisFlexTable, 2, 2, '0') , $setText(this.analysisFlexTable, 3, 2, '0') , $setText(this.analysisFlexTable, 4, 2, '0') , $setText(this.analysisFlexTable, 1, 3, '100') , $setText(this.analysisFlexTable, 2, 3, '100') , $setText(this.analysisFlexTable, 3, 3, '100') , $setText(this.analysisFlexTable, 4, 3, '100') , $setReadOnly(this.player1TextBox) , $setReadOnly(this.player2TextBox) , $setReadOnly(this.player3TextBox) , $setReadOnly(this.player4TextBox) , $clear(this.mainPanel) , $setWidget_0(this.mainPanel, 0, 0, this.gameControlsFlexTable) , $setWidget_0(this.mainPanel, 0, 1, this.analysisFlexTable) , $setWidget_0(this.mainPanel, 1, 0, this.scoresVPanelTeam1) , $setWidget_0(this.mainPanel, 1, 1, this.scoresVPanelTeam2) , undefined);
+  sender === this.newBetsButton && new NewBetsDialogBox_0(this, this.team1, this.team2);
+  sender === this.newRoundScoresButton && new NewRoundScoresDialogBox_0(this, this.team1, this.team2);
+  if (sender === this.objectiveScoreButton) {
+    if ($matches($getPropertyString(this.objectiveScore.element, 'value'), '[0-9//s]{1,4}')) {
+      this.objective = valueOf(__parseAndValidateInt($getPropertyString(this.objectiveScore.element, 'value')));
+      dynamicCast($get_1(this.team1.totalScores, this.team1.totalScores.size - 1), 61).value_0 >= this.objective.value_0 && dynamicCast($get_1(this.team1.totalScores, this.team1.totalScores.size - 1), 61).value_0 >= dynamicCast($get_1(this.team2.totalScores, this.team2.totalScores.size - 1), 61).value_0 && new WinnerMessageDialogBox_0(this.team1);
+      dynamicCast($get_1(this.team2.totalScores, this.team2.totalScores.size - 1), 61).value_0 >= this.objective.value_0 && dynamicCast($get_1(this.team2.totalScores, this.team2.totalScores.size - 1), 61).value_0 >= dynamicCast($get_1(this.team1.totalScores, this.team1.totalScores.size - 1), 61).value_0 && new WinnerMessageDialogBox_0(this.team2);
+    }
+     else {
+      $wnd.alert('The Objective must be a number');
+    }
+  }
+  sender === this.editScoresButtons && ($wnd.alert('Feature not finnished yet!') , undefined);
+}
+;
+_.onMouseOver = function onMouseOver_2(event_0){
+  var sender;
+  sender = event_0.source;
+  sender === this.player1TextBox && $selectAll(this.player1TextBox);
+  sender === this.player2TextBox && $selectAll(this.player2TextBox);
+  sender === this.player3TextBox && $selectAll(this.player3TextBox);
+  sender === this.player4TextBox && $selectAll(this.player4TextBox);
+  sender === this.objectiveScore && $selectAll(this.objectiveScore);
+  sender === this.team1NameTextBox && $selectAll(this.team1NameTextBox);
+  sender === this.team2NameTextBox && $selectAll(this.team2NameTextBox);
+}
+;
+_.castableTypeMap$ = {4:1, 9:1, 55:1};
+_.team1 = null;
+_.team2 = null;
+function addMouseOutHandler(handler, widgets){
+  var widget, widget$index, widget$max;
+  for (widget$index = 0 , widget$max = widgets.length; widget$index < widget$max; ++widget$index) {
+    widget = widgets[widget$index];
+    $addDomHandler(widget, handler, ($clinit_7() , $clinit_7() , TYPE_2));
+  }
+}
+
+function addMouseOverHandler(handler, widgets){
+  var widget, widget$index, widget$max;
+  for (widget$index = 0 , widget$max = widgets.length; widget$index < widget$max; ++widget$index) {
+    widget = widgets[widget$index];
+    $addDomHandler(widget, handler, ($clinit_8() , $clinit_8() , TYPE_3));
+  }
+}
+
+function updateAnaylsisTable(round, flexTable, players){
+  var bet, bet$iterator, player, player$index, player$max, playerLastBet, playerNumber, playerTricksTaken, sumOfBets, sumOfTricksTaken, tricksTaken, tricksTaken$iterator;
+  playerNumber = 0;
+  for (player$index = 0 , player$max = players.length; player$index < player$max; ++player$index) {
+    player = players[player$index];
+    ++playerNumber;
+    sumOfBets = valueOf(0);
+    for (bet$iterator = new AbstractList$IteratorImpl_0(player.betList); bet$iterator.i < bet$iterator.this$0_0.size_0();) {
+      bet = dynamicCast($next_3(bet$iterator), 61);
+      sumOfBets = valueOf(sumOfBets.value_0 + bet.value_0);
+    }
+    $setText(flexTable, 1 + playerNumber - 1, 1, '' + sumOfBets.value_0);
+    sumOfTricksTaken = valueOf(0);
+    for (tricksTaken$iterator = new AbstractList$IteratorImpl_0(player.tricksTakenList); tricksTaken$iterator.i < tricksTaken$iterator.this$0_0.size_0();) {
+      tricksTaken = dynamicCast($next_3(tricksTaken$iterator), 61);
+      sumOfTricksTaken = valueOf(sumOfTricksTaken.value_0 + tricksTaken.value_0);
+    }
+    $setText(flexTable, 1 + playerNumber - 1, 2, '' + sumOfTricksTaken.value_0);
+    playerLastBet = dynamicCast($get_1(player.betList, round - 1), 61).value_0;
+    playerTricksTaken = dynamicCast($get_1(player.tricksTakenList, round - 1), 61).value_0;
+    playerLastBet > playerTricksTaken?$setRating(player, valueOf(~~((player.rating.value_0 * (round - 1) + 100 - 30 * (playerLastBet - playerTricksTaken)) / round))):playerLastBet == 0?$setRating(player, valueOf(~~((player.rating.value_0 * (round - 1) + 120 - 60 * playerTricksTaken) / round))):playerTricksTaken > playerLastBet?$setRating(player, valueOf(~~((player.rating.value_0 * (round - 1) + 100 - 10 * (playerTricksTaken - playerLastBet)) / round))):$setRating(player, valueOf(~~((player.rating.value_0 * (round - 1) + 100) / round)));
+    $setText(flexTable, 1 + playerNumber - 1, 3, '' + player.rating.value_0);
+  }
+}
+
+function $updateTotalScores(this$static){
+  var newTotal, roundScore, roundScore$iterator;
+  newTotal = valueOf(0);
+  for (roundScore$iterator = new AbstractList$IteratorImpl_0(this$static.roundScores); roundScore$iterator.i < roundScore$iterator.this$0_0.size_0();) {
+    roundScore = dynamicCast($next_3(roundScore$iterator), 61);
+    newTotal = valueOf(newTotal.value_0 + roundScore.value_0);
+  }
+  $add_5(this$static.totalScores, newTotal);
+}
+
+function Team_0(name_0, player1, player2){
+  this.roundTrickesTaken = new ArrayList_0;
+  this.roundScores = new ArrayList_0;
+  this.totalScores = new ArrayList_0;
+  this.name_0 = name_0;
+  this.player1 = player1;
+  this.player2 = player2;
+}
+
+function Team(){
+}
+
+_ = Team_0.prototype = Team.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.name_0 = null;
+_.player1 = null;
+_.player2 = null;
+function WinnerMessageDialogBox_0(team){
+  this.label = new Label_1(team.name_0 + ' WINS!');
+  $addDomHandler(this.label, new WinnerMessageDialogBox$1_0(this), ($clinit_4() , $clinit_4() , TYPE));
+  this.label.getStyleElement()['className'] = 'winnerLabel';
+  this.dialogBox = new DialogBox_0;
+  this.dialogBox.isAnimationEnabled = true;
+  $setGlassEnabled(this.dialogBox);
+  $add_1(this.dialogBox, this.label);
+  $show_0(this.dialogBox);
+  $center(this.dialogBox);
+}
+
+function WinnerMessageDialogBox(){
+}
+
+_ = WinnerMessageDialogBox_0.prototype = WinnerMessageDialogBox.prototype = new Object_0;
+_.castableTypeMap$ = {};
+_.dialogBox = null;
+_.label = null;
+function WinnerMessageDialogBox$1_0(this$0){
+  this.this$0 = this$0;
+}
+
+function WinnerMessageDialogBox$1(){
+}
+
+_ = WinnerMessageDialogBox$1_0.prototype = WinnerMessageDialogBox$1.prototype = new Object_0;
+_.onClick = function onClick_2(event_0){
+  $hide_0(this.this$0.dialogBox);
+}
+;
+_.castableTypeMap$ = {4:1, 55:1};
+_.this$0 = null;
+function ArrayStoreException_0(){
+  $fillInStackTrace();
+}
+
+function ArrayStoreException(){
+}
+
+_ = ArrayStoreException_0.prototype = ArrayStoreException.prototype = new RuntimeException;
+_.castableTypeMap$ = {3:1, 15:1, 74:1};
+function digit(c){
+  if (c >= 48 && c < 58) {
+    return c - 48;
+  }
+  if (c >= 97 && c < 97) {
+    return c - 97 + 10;
+  }
+  if (c >= 65 && c < 65) {
+    return c - 65 + 10;
+  }
+  return -1;
+}
+
+function Class_0(){
+}
+
+function Class(){
+}
+
+_ = Class_0.prototype = Class.prototype = new Object_0;
+_.castableTypeMap$ = {};
+function ClassCastException_0(){
+  $fillInStackTrace();
+}
+
+function ClassCastException(){
+}
+
+_ = ClassCastException_0.prototype = ClassCastException.prototype = new RuntimeException;
+_.castableTypeMap$ = {3:1, 15:1, 74:1};
+function IllegalArgumentException_0(message){
+  $fillInStackTrace();
+}
+
+function IllegalArgumentException(){
+}
+
+_ = IllegalArgumentException_0.prototype = IllegalArgumentException.prototype = new RuntimeException;
+_.castableTypeMap$ = {3:1, 15:1, 74:1};
+function IllegalStateException_0(){
+  $fillInStackTrace();
+}
+
+function IllegalStateException_1(s){
+  $fillInStackTrace();
+}
+
+function IllegalStateException(){
+}
+
+_ = IllegalStateException_1.prototype = IllegalStateException_0.prototype = IllegalStateException.prototype = new RuntimeException;
+_.castableTypeMap$ = {3:1, 15:1, 74:1};
+function IndexOutOfBoundsException_0(){
+  $fillInStackTrace();
+}
+
+function IndexOutOfBoundsException_1(message){
+  $fillInStackTrace();
+}
+
+function IndexOutOfBoundsException(){
+}
+
+_ = IndexOutOfBoundsException_1.prototype = IndexOutOfBoundsException_0.prototype = IndexOutOfBoundsException.prototype = new RuntimeException;
+_.castableTypeMap$ = {3:1, 15:1, 74:1};
+function __parseAndValidateInt(s){
+  var i, length_0, startIndex, toReturn;
+  if (s == null) {
+    throw new NumberFormatException_0('null');
+  }
+  length_0 = s.length;
+  startIndex = length_0 > 0 && s.charCodeAt(0) == 45?1:0;
+  for (i = startIndex; i < length_0; ++i) {
+    if (digit(s.charCodeAt(i)) == -1) {
+      throw new NumberFormatException_0('For input string: "' + s + '"');
+    }
+  }
+  toReturn = parseInt(s, 10);
+  if (isNaN(toReturn)) {
+    throw new NumberFormatException_0('For input string: "' + s + '"');
+  }
+   else if (toReturn < -2147483648 || toReturn > 2147483647) {
+    throw new NumberFormatException_0('For input string: "' + s + '"');
+  }
+  return toReturn;
+}
+
+function Number_0(){
+}
+
+_ = Number_0.prototype = new Object_0;
+_.castableTypeMap$ = {74:1, 78:1};
+function Integer_0(value){
+  this.value_0 = value;
+}
+
+function valueOf(i){
+  var rebase, result;
+  if (i > -129 && i < 128) {
+    rebase = i + 128;
+    result = ($clinit_20() , boxedValues)[rebase];
+    !result && (result = boxedValues[rebase] = new Integer_0(i));
+    return result;
+  }
+  return new Integer_0(i);
+}
+
+function Integer(){
+}
+
+_ = Integer_0.prototype = Integer.prototype = new Number_0;
+_.equals$ = function equals_1(o){
+  return o != null && o.castableTypeMap$ && !!o.castableTypeMap$[61] && dynamicCast(o, 61).value_0 == this.value_0;
+}
+;
+_.hashCode$ = function hashCode_3(){
+  return this.value_0;
+}
+;
+_.castableTypeMap$ = {61:1, 74:1, 76:1, 78:1};
+_.value_0 = 0;
+function $clinit_20(){
+  $clinit_20 = nullMethod;
+  boxedValues = initDim(_3Ljava_lang_Integer_2_classLit, {74:1}, 61, 256, 0);
+}
+
+var boxedValues;
+function max(x){
+  return x > 0?x:0;
+}
+
+function NullPointerException_0(){
+  $fillInStackTrace();
+}
+
+function NullPointerException_1(message){
+  $fillInStackTrace();
+}
+
+function NullPointerException(){
+}
+
+_ = NullPointerException_1.prototype = NullPointerException_0.prototype = NullPointerException.prototype = new RuntimeException;
+_.castableTypeMap$ = {3:1, 15:1, 74:1};
+function NumberFormatException_0(message){
+  $fillInStackTrace();
+}
+
+function NumberFormatException(){
+}
+
+_ = NumberFormatException_0.prototype = NumberFormatException.prototype = new IllegalArgumentException;
+_.castableTypeMap$ = {3:1, 15:1, 74:1};
+function StackTraceElement_0(methodName){
+}
+
+function StackTraceElement(){
+}
+
+_ = StackTraceElement_0.prototype = StackTraceElement.prototype = new Object_0;
+_.castableTypeMap$ = {74:1, 79:1};
+function $equals(this$static, other){
+  if (!(other != null && other.castableTypeMap$ && !!other.castableTypeMap$[1])) {
+    return false;
+  }
+  return String(this$static) == other;
+}
+
+function $equalsIgnoreCase(this$static, other){
+  if (other == null)
+    return false;
+  return this$static == other || this$static.toLowerCase() == other.toLowerCase();
+}
+
+function $matches(this$static, regex){
+  var matchObj = (new RegExp(regex)).exec(this$static);
+  return matchObj == null?false:this$static == matchObj[0];
+}
+
+function $substring(this$static, beginIndex){
+  return this$static.substr(beginIndex, this$static.length - beginIndex);
+}
+
+function $trim(this$static){
+  if (this$static.length == 0 || this$static[0] > ' ' && this$static[this$static.length - 1] > ' ') {
+    return this$static;
+  }
+  var r1 = this$static.replace(/^(\s*)/, '');
+  var r2 = r1.replace(/\s*$/, '');
+  return r2;
+}
+
+_ = String.prototype;
+_.equals$ = function equals_2(other){
+  return $equals(this, other);
+}
+;
+_.hashCode$ = function hashCode_4(){
+  return getHashCode(this);
+}
+;
+_.castableTypeMap$ = {1:1, 74:1, 75:1, 76:1};
+function $clinit_21(){
+  $clinit_21 = nullMethod;
+  back_0 = {};
+  front = {};
+}
+
+function compute(str){
+  var hashCode, i, n, nBatch;
+  hashCode = 0;
+  n = str.length;
+  nBatch = n - 4;
+  i = 0;
+  while (i < nBatch) {
+    hashCode = str.charCodeAt(i + 3) + 31 * (str.charCodeAt(i + 2) + 31 * (str.charCodeAt(i + 1) + 31 * (str.charCodeAt(i) + 31 * hashCode))) | 0;
+    i += 4;
+  }
+  while (i < n) {
+    hashCode = hashCode * 31 + str.charCodeAt(i++);
+  }
+  return hashCode | 0;
+}
+
+function getHashCode(str){
+  $clinit_21();
+  var key = ':' + str;
+  var result = front[key];
+  if (result != null) {
+    return result;
+  }
+  result = back_0[key];
+  result == null && (result = compute(str));
+  increment();
+  return front[key] = result;
+}
+
+function increment(){
+  if (count == 256) {
+    back_0 = front;
+    front = {};
+    count = 0;
+  }
+  ++count;
+}
+
+var back_0, count = 0, front;
+function UnsupportedOperationException_0(message){
+  $fillInStackTrace();
+}
+
+function UnsupportedOperationException(){
+}
+
+_ = UnsupportedOperationException_0.prototype = UnsupportedOperationException.prototype = new RuntimeException;
+_.castableTypeMap$ = {3:1, 15:1, 74:1};
+function $advanceToFind(iter, o){
+  var t;
+  while (iter.hasNext()) {
+    t = iter.next_0();
+    if (o == null?t == null:equals__devirtual$(o, t)) {
+      return iter;
+    }
+  }
+  return null;
+}
+
+function AbstractCollection(){
+}
+
+_ = AbstractCollection.prototype = new Object_0;
+_.add = function add_0(o){
+  throw new UnsupportedOperationException_0('Add not supported on this collection');
+}
+;
+_.contains_0 = function contains(o){
+  var iter;
+  iter = $advanceToFind(this.iterator(), o);
+  return !!iter;
+}
+;
+_.isEmpty = function isEmpty(){
+  return this.size_0() == 0;
+}
+;
+_.remove_1 = function remove_9(o){
+  var iter;
+  iter = $advanceToFind(this.iterator(), o);
+  if (iter) {
+    iter.remove_0();
+    return true;
+  }
+   else {
+    return false;
+  }
+}
+;
+_.toArray = function toArray(a){
+  var i, it, size;
+  size = this.size_0();
+  a.length < size && (a = createFrom(a, size));
+  it = this.iterator();
+  for (i = 0; i < size; ++i) {
+    setCheck(a, i, it.next_0());
+  }
+  a.length > size && setCheck(a, size, null);
+  return a;
+}
+;
+_.castableTypeMap$ = {};
+function $keySet(this$static){
+  var entrySet;
+  entrySet = new AbstractHashMap$EntrySet_0(this$static);
+  return new AbstractMap$1_0(this$static, entrySet);
+}
+
+function AbstractMap(){
+}
+
+_ = AbstractMap.prototype = new Object_0;
+_.equals$ = function equals_3(obj){
+  var entry, entry$iterator, otherKey, otherMap, otherValue;
+  if (obj === this) {
+    return true;
+  }
+  if (!(obj != null && obj.castableTypeMap$ && !!obj.castableTypeMap$[56])) {
+    return false;
+  }
+  otherMap = dynamicCast(obj, 56);
+  if (this.size != otherMap.size) {
+    return false;
+  }
+  for (entry$iterator = new AbstractHashMap$EntrySetIterator_0((new AbstractHashMap$EntrySet_0(otherMap)).this$0); $hasNext(entry$iterator.iter);) {
+    entry = entry$iterator.last = dynamicCast($next_3(entry$iterator.iter), 80);
+    otherKey = entry.getKey();
+    otherValue = entry.getValue();
+    if (!(otherKey == null?this.nullSlotLive:otherKey != null && otherKey.castableTypeMap$ && !!otherKey.castableTypeMap$[1]?':' + dynamicCast(otherKey, 1) in this.stringMap:$hasHashValue(this, otherKey, ~~hashCode__devirtual$(otherKey)))) {
+      return false;
+    }
+    if (!equalsWithNullCheck(otherValue, otherKey == null?this.nullSlot:otherKey != null && otherKey.castableTypeMap$ && !!otherKey.castableTypeMap$[1]?this.stringMap[':' + dynamicCast(otherKey, 1)]:$getHashValue(this, otherKey, ~~hashCode__devirtual$(otherKey)))) {
+      return false;
+    }
+  }
+  return true;
+}
+;
+_.hashCode$ = function hashCode_5(){
+  var entry, entry$iterator, hashCode;
+  hashCode = 0;
+  for (entry$iterator = new AbstractHashMap$EntrySetIterator_0((new AbstractHashMap$EntrySet_0(this)).this$0); $hasNext(entry$iterator.iter);) {
+    entry = entry$iterator.last = dynamicCast($next_3(entry$iterator.iter), 80);
+    hashCode += entry.hashCode$();
+    hashCode = ~~hashCode;
+  }
+  return hashCode;
+}
+;
+_.castableTypeMap$ = {56:1};
+function $addAllHashEntries(this$static, dest){
+  var hashCodeMap = this$static.hashCodeMap;
+  for (var hashCode in hashCodeMap) {
+    var hashCodeInt = parseInt(hashCode, 10);
+    if (hashCode == hashCodeInt) {
+      var array = hashCodeMap[hashCodeInt];
+      for (var i = 0, c = array.length; i < c; ++i) {
+        dest.add(array[i]);
+      }
+    }
+  }
+}
+
+function $addAllStringEntries(this$static, dest){
+  var stringMap = this$static.stringMap;
+  for (var key in stringMap) {
+    if (key.charCodeAt(0) == 58) {
+      var entry = new AbstractHashMap$MapEntryString_0(this$static, key.substring(1));
+      dest.add(entry);
+    }
+  }
+}
+
+function $clearImpl(this$static){
+  this$static.hashCodeMap = [];
+  this$static.stringMap = {};
+  this$static.nullSlotLive = false;
+  this$static.nullSlot = null;
+  this$static.size = 0;
+}
+
+function $containsKey(this$static, key){
+  return key == null?this$static.nullSlotLive:key != null && key.castableTypeMap$ && !!key.castableTypeMap$[1]?$hasStringValue(this$static, dynamicCast(key, 1)):$hasHashValue(this$static, key, ~~hashCode__devirtual$(key));
+}
+
+function $get_0(this$static, key){
+  return key == null?this$static.nullSlot:key != null && key.castableTypeMap$ && !!key.castableTypeMap$[1]?this$static.stringMap[':' + dynamicCast(key, 1)]:$getHashValue(this$static, key, ~~hashCode__devirtual$(key));
+}
+
+function $getHashValue(this$static, key, hashCode){
+  var array = this$static.hashCodeMap[hashCode];
+  if (array) {
+    for (var i = 0, c = array.length; i < c; ++i) {
+      var entry = array[i];
+      var entryKey = entry.getKey();
+      if (this$static.equalsBridge(key, entryKey)) {
+        return entry.getValue();
+      }
+    }
+  }
+  return null;
+}
+
+function $hasHashValue(this$static, key, hashCode){
+  var array = this$static.hashCodeMap[hashCode];
+  if (array) {
+    for (var i = 0, c = array.length; i < c; ++i) {
+      var entry = array[i];
+      var entryKey = entry.getKey();
+      if (this$static.equalsBridge(key, entryKey)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function $hasStringValue(this$static, key){
+  return ':' + key in this$static.stringMap;
+}
+
+function $put_0(this$static, key, value){
+  return key == null?$putNullSlot(this$static, value):key != null && key.castableTypeMap$ && !!key.castableTypeMap$[1]?$putStringValue(this$static, dynamicCast(key, 1), value):$putHashValue(this$static, key, value, ~~hashCode__devirtual$(key));
+}
+
+function $putHashValue(this$static, key, value, hashCode){
+  var array = this$static.hashCodeMap[hashCode];
+  if (array) {
+    for (var i = 0, c = array.length; i < c; ++i) {
+      var entry = array[i];
+      var entryKey = entry.getKey();
+      if (this$static.equalsBridge(key, entryKey)) {
+        var previous = entry.getValue();
+        entry.setValue(value);
+        return previous;
+      }
+    }
+  }
+   else {
+    array = this$static.hashCodeMap[hashCode] = [];
+  }
+  var entry = new MapEntryImpl_0(key, value);
+  array.push(entry);
+  ++this$static.size;
+  return null;
+}
+
+function $putNullSlot(this$static, value){
+  var result;
+  result = this$static.nullSlot;
+  this$static.nullSlot = value;
+  if (!this$static.nullSlotLive) {
+    this$static.nullSlotLive = true;
+    ++this$static.size;
+  }
+  return result;
+}
+
+function $putStringValue(this$static, key, value){
+  var result, stringMap = this$static.stringMap;
+  key = ':' + key;
+  key in stringMap?(result = stringMap[key]):++this$static.size;
+  stringMap[key] = value;
+  return result;
+}
+
+function $remove_5(this$static, key){
+  return key == null?$removeNullSlot(this$static):key != null && key.castableTypeMap$ && !!key.castableTypeMap$[1]?$removeStringValue(this$static, dynamicCast(key, 1)):$removeHashValue(this$static, key, ~~hashCode__devirtual$(key));
+}
+
+function $removeHashValue(this$static, key, hashCode){
+  var array = this$static.hashCodeMap[hashCode];
+  if (array) {
+    for (var i = 0, c = array.length; i < c; ++i) {
+      var entry = array[i];
+      var entryKey = entry.getKey();
+      if (this$static.equalsBridge(key, entryKey)) {
+        array.length == 1?delete this$static.hashCodeMap[hashCode]:array.splice(i, 1);
+        --this$static.size;
+        return entry.getValue();
+      }
+    }
+  }
+  return null;
+}
+
+function $removeNullSlot(this$static){
+  var result;
+  result = this$static.nullSlot;
+  this$static.nullSlot = null;
+  if (this$static.nullSlotLive) {
+    this$static.nullSlotLive = false;
+    --this$static.size;
+  }
+  return result;
+}
+
+function $removeStringValue(this$static, key){
+  var result, stringMap = this$static.stringMap;
+  key = ':' + key;
+  if (key in stringMap) {
+    result = stringMap[key];
+    --this$static.size;
+    delete stringMap[key];
+  }
+  return result;
+}
+
+function AbstractHashMap(){
+}
+
+_ = AbstractHashMap.prototype = new AbstractMap;
+_.equalsBridge = function equalsBridge(value1, value2){
+  return (value1 == null?null:value1) === (value2 == null?null:value2) || value1 != null && equals__devirtual$(value1, value2);
+}
+;
+_.castableTypeMap$ = {56:1};
+_.hashCodeMap = null;
+_.nullSlot = null;
+_.nullSlotLive = false;
+_.size = 0;
+_.stringMap = null;
+function AbstractSet(){
+}
+
+_ = AbstractSet.prototype = new AbstractCollection;
+_.equals$ = function equals_4(o){
+  var iter, other, otherItem;
+  if (o === this) {
+    return true;
+  }
+  if (!(o != null && o.castableTypeMap$ && !!o.castableTypeMap$[81])) {
+    return false;
+  }
+  other = dynamicCast(o, 81);
+  if (other.size_0() != this.size_0()) {
+    return false;
+  }
+  for (iter = other.iterator(); iter.hasNext();) {
+    otherItem = iter.next_0();
+    if (!this.contains_0(otherItem)) {
+      return false;
+    }
+  }
+  return true;
+}
+;
+_.hashCode$ = function hashCode_6(){
+  var hashCode, iter, next;
+  hashCode = 0;
+  for (iter = this.iterator(); iter.hasNext();) {
+    next = iter.next_0();
+    if (next != null) {
+      hashCode += hashCode__devirtual$(next);
+      hashCode = ~~hashCode;
+    }
+  }
+  return hashCode;
+}
+;
+_.castableTypeMap$ = {81:1};
+function $contains(this$static, o){
+  var entry, key, value;
+  if (o != null && o.castableTypeMap$ && !!o.castableTypeMap$[80]) {
+    entry = dynamicCast(o, 80);
+    key = entry.getKey();
+    if ($containsKey(this$static.this$0, key)) {
+      value = $get_0(this$static.this$0, key);
+      return $equals_0(entry.getValue(), value);
+    }
+  }
+  return false;
+}
+
+function AbstractHashMap$EntrySet_0(this$0){
+  this.this$0 = this$0;
+}
+
+function AbstractHashMap$EntrySet(){
+}
+
+_ = AbstractHashMap$EntrySet_0.prototype = AbstractHashMap$EntrySet.prototype = new AbstractSet;
+_.contains_0 = function contains_0(o){
+  return $contains(this, o);
+}
+;
+_.iterator = function iterator_4(){
+  return new AbstractHashMap$EntrySetIterator_0(this.this$0);
+}
+;
+_.remove_1 = function remove_10(entry){
+  var key;
+  if ($contains(this, entry)) {
+    key = dynamicCast(entry, 80).getKey();
+    $remove_5(this.this$0, key);
+    return true;
+  }
+  return false;
+}
+;
+_.size_0 = function size_0(){
+  return this.this$0.size;
+}
+;
+_.castableTypeMap$ = {81:1};
+_.this$0 = null;
+function $next_2(this$static){
+  return this$static.last = dynamicCast($next_3(this$static.iter), 80);
+}
+
+function $remove_6(this$static){
+  if (!this$static.last) {
+    throw new IllegalStateException_1('Must call next() before remove().');
+  }
+   else {
+    $remove_7(this$static.iter);
+    $remove_5(this$static.this$0, this$static.last.getKey());
+    this$static.last = null;
+  }
+}
+
+function AbstractHashMap$EntrySetIterator_0(this$0){
+  var list;
+  this.this$0 = this$0;
+  list = new ArrayList_0;
+  this$0.nullSlotLive && $add_5(list, new AbstractHashMap$MapEntryNull_0(this$0));
+  $addAllStringEntries(this$0, list);
+  $addAllHashEntries(this$0, list);
+  this.iter = new AbstractList$IteratorImpl_0(list);
+}
+
+function AbstractHashMap$EntrySetIterator(){
+}
+
+_ = AbstractHashMap$EntrySetIterator_0.prototype = AbstractHashMap$EntrySetIterator.prototype = new Object_0;
+_.hasNext = function hasNext_2(){
+  return $hasNext(this.iter);
+}
+;
+_.next_0 = function next_3(){
+  return this.last = dynamicCast($next_3(this.iter), 80);
+}
+;
+_.remove_0 = function remove_11(){
+  $remove_6(this);
+}
+;
+_.castableTypeMap$ = {};
+_.iter = null;
+_.last = null;
+_.this$0 = null;
+function AbstractMapEntry(){
+}
+
+_ = AbstractMapEntry.prototype = new Object_0;
+_.equals$ = function equals_5(other){
+  var entry;
+  if (other != null && other.castableTypeMap$ && !!other.castableTypeMap$[80]) {
+    entry = dynamicCast(other, 80);
+    if (equalsWithNullCheck(this.getKey(), entry.getKey()) && equalsWithNullCheck(this.getValue(), entry.getValue())) {
+      return true;
+    }
+  }
+  return false;
+}
+;
+_.hashCode$ = function hashCode_7(){
+  var keyHash, valueHash;
+  keyHash = 0;
+  valueHash = 0;
+  this.getKey() != null && (keyHash = hashCode__devirtual$(this.getKey()));
+  this.getValue() != null && (valueHash = hashCode__devirtual$(this.getValue()));
+  return keyHash ^ valueHash;
+}
+;
+_.castableTypeMap$ = {80:1};
+function AbstractHashMap$MapEntryNull_0(this$0){
+  this.this$0 = this$0;
+}
+
+function AbstractHashMap$MapEntryNull(){
+}
+
+_ = AbstractHashMap$MapEntryNull_0.prototype = AbstractHashMap$MapEntryNull.prototype = new AbstractMapEntry;
+_.getKey = function getKey(){
+  return null;
+}
+;
+_.getValue = function getValue(){
+  return this.this$0.nullSlot;
+}
+;
+_.setValue = function setValue(object){
+  return $putNullSlot(this.this$0, object);
+}
+;
+_.castableTypeMap$ = {80:1};
+_.this$0 = null;
+function AbstractHashMap$MapEntryString_0(this$0, key){
+  this.this$0 = this$0;
+  this.key = key;
+}
+
+function AbstractHashMap$MapEntryString(){
+}
+
+_ = AbstractHashMap$MapEntryString_0.prototype = AbstractHashMap$MapEntryString.prototype = new AbstractMapEntry;
+_.getKey = function getKey_0(){
+  return this.key;
+}
+;
+_.getValue = function getValue_0(){
+  return this.this$0.stringMap[':' + this.key];
+}
+;
+_.setValue = function setValue_0(object){
+  return $putStringValue(this.this$0, this.key, object);
+}
+;
+_.castableTypeMap$ = {80:1};
+--></script>
+<script><!--
+_.key = null;
+_.this$0 = null;
+function checkIndex(index, size){
+  (index < 0 || index >= size) && indexOutOfBounds(index, size);
+}
+
+function indexOutOfBounds(index, size){
+  throw new IndexOutOfBoundsException_1('Index: ' + index + ', Size: ' + size);
+}
+
+function AbstractList(){
+}
+
+_ = AbstractList.prototype = new AbstractCollection;
+_.add = function add_1(obj){
+  this.add_0(this.size_0(), obj);
+  return true;
+}
+;
+_.add_0 = function add_2(index, element){
+  throw new UnsupportedOperationException_0('Add not supported on this list');
+}
+;
+_.equals$ = function equals_6(o){
+  var elem, elemOther, iter, iterOther, other;
+  if (o === this) {
+    return true;
+  }
+  if (!(o != null && o.castableTypeMap$ && !!o.castableTypeMap$[57])) {
+    return false;
+  }
+  other = dynamicCast(o, 57);
+  if (this.size_0() != other.size_0()) {
+    return false;
+  }
+  iter = new AbstractList$IteratorImpl_0(this);
+  iterOther = other.iterator();
+  while (iter.i < iter.this$0_0.size_0()) {
+    elem = $next_3(iter);
+    elemOther = $next_3(iterOther);
+    if (!(elem == null?elemOther == null:equals__devirtual$(elem, elemOther))) {
+      return false;
+    }
+  }
+  return true;
+}
+;
+_.hashCode$ = function hashCode_8(){
+  var iter, k, obj;
+  k = 1;
+  iter = new AbstractList$IteratorImpl_0(this);
+  while (iter.i < iter.this$0_0.size_0()) {
+    obj = $next_3(iter);
+    k = 31 * k + (obj == null?0:hashCode__devirtual$(obj));
+    k = ~~k;
+  }
+  return k;
+}
+;
+_.iterator = function iterator_5(){
+  return new AbstractList$IteratorImpl_0(this);
+}
+;
+_.listIterator = function listIterator(){
+  return new AbstractList$ListIteratorImpl_0(this, 0);
+}
+;
+_.listIterator_0 = function listIterator_0(from){
+  return new AbstractList$ListIteratorImpl_0(this, from);
+}
+;
+_.remove_2 = function remove_12(index){
+  throw new UnsupportedOperationException_0('Remove not supported on this list');
+}
+;
+_.castableTypeMap$ = {57:1};
+function $hasNext(this$static){
+  return this$static.i < this$static.this$0_0.size_0();
+}
+
+function $next_3(this$static){
+  if (this$static.i >= this$static.this$0_0.size_0()) {
+    throw new NoSuchElementException_0;
+  }
+  return this$static.this$0_0.get(this$static.last = this$static.i++);
+}
+
+function $remove_7(this$static){
+  if (this$static.last < 0) {
+    throw new IllegalStateException_0;
+  }
+  this$static.this$0_0.remove_2(this$static.last);
+  this$static.i = this$static.last;
+  this$static.last = -1;
+}
+
+function AbstractList$IteratorImpl_0(this$0){
+  this.this$0_0 = this$0;
+}
+
+function AbstractList$IteratorImpl(){
+}
+
+_ = AbstractList$IteratorImpl_0.prototype = AbstractList$IteratorImpl.prototype = new Object_0;
+_.hasNext = function hasNext_3(){
+  return this.i < this.this$0_0.size_0();
+}
+;
+_.next_0 = function next_4(){
+  return $next_3(this);
+}
+;
+_.remove_0 = function remove_13(){
+  $remove_7(this);
+}
+;
+_.castableTypeMap$ = {};
+_.i = 0;
+_.last = -1;
+_.this$0_0 = null;
+function $previous(this$static){
+  if (this$static.i <= 0) {
+    throw new NoSuchElementException_0;
+  }
+  return this$static.this$0.get(this$static.last = --this$static.i);
+}
+
+function AbstractList$ListIteratorImpl_0(this$0, start){
+  var size;
+  this.this$0 = this$0;
+  this.this$0_0 = this$0;
+  size = this$0.size_0();
+  (start < 0 || start > size) && indexOutOfBounds(start, size);
+  this.i = start;
+}
+
+function AbstractList$ListIteratorImpl(){
+}
+
+_ = AbstractList$ListIteratorImpl_0.prototype = AbstractList$ListIteratorImpl.prototype = new AbstractList$IteratorImpl;
+_.castableTypeMap$ = {};
+_.this$0 = null;
+function AbstractMap$1_0(this$0, val$entrySet){
+  this.this$0 = this$0;
+  this.val$entrySet = val$entrySet;
+}
+
+function AbstractMap$1(){
+}
+
+_ = AbstractMap$1_0.prototype = AbstractMap$1.prototype = new AbstractSet;
+_.contains_0 = function contains_1(key){
+  return $containsKey(this.this$0, key);
+}
+;
+_.iterator = function iterator_6(){
+  var outerIter;
+  return outerIter = new AbstractHashMap$EntrySetIterator_0(this.val$entrySet.this$0) , new AbstractMap$1$1_0(outerIter);
+}
+;
+_.size_0 = function size_1(){
+  return this.val$entrySet.this$0.size;
+}
+;
+_.castableTypeMap$ = {81:1};
+_.this$0 = null;
+_.val$entrySet = null;
+function AbstractMap$1$1_0(val$outerIter){
+  this.val$outerIter = val$outerIter;
+}
+
+function AbstractMap$1$1(){
+}
+
+_ = AbstractMap$1$1_0.prototype = AbstractMap$1$1.prototype = new Object_0;
+_.hasNext = function hasNext_4(){
+  return $hasNext(this.val$outerIter.iter);
+}
+;
+_.next_0 = function next_5(){
+  var entry;
+  entry = $next_2(this.val$outerIter);
+  return entry.getKey();
+}
+;
+_.remove_0 = function remove_14(){
+  $remove_6(this.val$outerIter);
+}
+;
+_.castableTypeMap$ = {};
+_.val$outerIter = null;
+function $add_5(this$static, o){
+  setCheck(this$static.array, this$static.size++, o);
+  return true;
+}
+
+function $get_1(this$static, index){
+  checkIndex(index, this$static.size);
+  return this$static.array[index];
+}
+
+function $indexOf_0(this$static, o, index){
+  for (; index < this$static.size; ++index) {
+    if (equalsWithNullCheck(o, this$static.array[index])) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+function $remove_8(this$static, index){
+  var previous;
+  previous = (checkIndex(index, this$static.size) , this$static.array[index]);
+  this$static.array.splice(index, 1);
+  --this$static.size;
+  return previous;
+}
+
+function $remove_9(this$static, o){
+  var i;
+  i = $indexOf_0(this$static, o, 0);
+  if (i == -1) {
+    return false;
+  }
+  $remove_8(this$static, i);
+  return true;
+}
+
+function $set(this$static, index, o){
+  var previous;
+  previous = (checkIndex(index, this$static.size) , this$static.array[index]);
+  setCheck(this$static.array, index, o);
+  return previous;
+}
+
+function $toArray(this$static, out){
+  var i, a, result;
+  out.length < this$static.size && (out = (a = out , result = createFromSeed(0, this$static.size) , initValues(a.arrayClass$, a.castableTypeMap$, a.queryId$, result) , result));
+  for (i = 0; i < this$static.size; ++i) {
+    setCheck(out, i, this$static.array[i]);
+  }
+  out.length > this$static.size && setCheck(out, this$static.size, null);
+  return out;
+}
+
+function ArrayList_0(){
+  this.array = initDim(_3Ljava_lang_Object_2_classLit, {74:1}, 0, 0, 0);
+}
+
+function ArrayList(){
+}
+
+_ = ArrayList_0.prototype = ArrayList.prototype = new AbstractList;
+_.add = function add_3(o){
+  return setCheck(this.array, this.size++, o) , true;
+}
+;
+_.add_0 = function add_4(index, o){
+  (index < 0 || index > this.size) && indexOutOfBounds(index, this.size);
+  this.array.splice(index, 0, o);
+  ++this.size;
+}
+;
+_.contains_0 = function contains_2(o){
+  return $indexOf_0(this, o, 0) != -1;
+}
+;
+_.get = function get_0(index){
+  return checkIndex(index, this.size) , this.array[index];
+}
+;
+_.isEmpty = function isEmpty_0(){
+  return this.size == 0;
+}
+;
+_.remove_2 = function remove_15(index){
+  return $remove_8(this, index);
+}
+;
+_.remove_1 = function remove_16(o){
+  return $remove_9(this, o);
+}
+;
+_.size_0 = function size_2(){
+  return this.size;
+}
+;
+_.toArray = function toArray_0(out){
+  return $toArray(this, out);
+}
+;
+_.castableTypeMap$ = {57:1, 74:1};
+_.size = 0;
+function $clinit_22(){
+  $clinit_22 = nullMethod;
+  EMPTY_LIST = new Collections$EmptyList_0;
+}
+
+var EMPTY_LIST;
+function Collections$EmptyList_0(){
+}
+
+function Collections$EmptyList(){
+}
+
+_ = Collections$EmptyList_0.prototype = Collections$EmptyList.prototype = new AbstractList;
+_.contains_0 = function contains_3(object){
+  return false;
+}
+;
+_.get = function get_1(location_0){
+  throw new IndexOutOfBoundsException_0;
+}
+;
+_.size_0 = function size_3(){
+  return 0;
+}
+;
+_.castableTypeMap$ = {57:1, 74:1};
+function $equals_0(value1, value2){
+  return (value1 == null?null:value1) === (value2 == null?null:value2) || value1 != null && equals__devirtual$(value1, value2);
+}
+
+function HashMap_0(){
+  $clearImpl(this);
+}
+
+function HashMap(){
+}
+
+_ = HashMap_0.prototype = HashMap.prototype = new AbstractHashMap;
+_.castableTypeMap$ = {56:1, 74:1};
+function $add_6(this$static, o){
+  var old;
+  old = $put_0(this$static.map, o, this$static);
+  return old == null;
+}
+
+function HashSet_0(){
+  this.map = new HashMap_0;
+}
+
+function HashSet(){
+}
+
+_ = HashSet_0.prototype = HashSet.prototype = new AbstractSet;
+_.add = function add_5(o){
+  var old;
+  return old = $put_0(this.map, o, this) , old == null;
+}
+;
+_.contains_0 = function contains_4(o){
+  return $containsKey(this.map, o);
+}
+;
+_.isEmpty = function isEmpty_1(){
+  return this.map.size == 0;
+}
+;
+_.iterator = function iterator_7(){
+  var outerIter;
+  return outerIter = new AbstractHashMap$EntrySetIterator_0($keySet(this.map).val$entrySet.this$0) , new AbstractMap$1$1_0(outerIter);
+}
+;
+_.remove_1 = function remove_17(o){
+  return $remove_5(this.map, o) != null;
+}
+;
+_.size_0 = function size_4(){
+  return this.map.size;
+}
+;
+_.castableTypeMap$ = {74:1, 81:1};
+_.map = null;
+function MapEntryImpl_0(key, value){
+  this.key = key;
+  this.value_0 = value;
+}
+
+function MapEntryImpl(){
+}
+
+_ = MapEntryImpl_0.prototype = MapEntryImpl.prototype = new AbstractMapEntry;
+_.getKey = function getKey_1(){
+  return this.key;
+}
+;
+_.getValue = function getValue_1(){
+  return this.value_0;
+}
+;
+_.setValue = function setValue_1(value){
+  var old;
+  old = this.value_0;
+  this.value_0 = value;
+  return old;
+}
+;
+_.castableTypeMap$ = {80:1};
+_.key = null;
+_.value_0 = null;
+function NoSuchElementException_0(){
+  $fillInStackTrace();
+}
+
+function NoSuchElementException(){
+}
+
+_ = NoSuchElementException_0.prototype = NoSuchElementException.prototype = new RuntimeException;
+_.castableTypeMap$ = {3:1, 15:1, 74:1};
+function equalsWithNullCheck(a, b){
+  return (a == null?null:a) === (b == null?null:b) || a != null && equals__devirtual$(a, b);
+}
+
+var $entry = entry_0;
+function gwtOnLoad(errFn, modName, modBase, softPermutationId){
+  $moduleName = modName;
+  $moduleBase = modBase;
+  if (errFn)
+    try {
+      $entry(init)();
+    }
+     catch (e) {
+      errFn(modName);
+    }
+   else {
+    $entry(init)();
+  }
+}
+
+var _3Lcom_google_gwt_animation_client_Animation_2_classLit = new Class_0, _3Ljava_lang_StackTraceElement_2_classLit = new Class_0, _3Ljava_lang_String_2_classLit = new Class_0, _3Lcom_google_gwt_dom_client_Style$Display_2_classLit = new Class_0, _3Lcom_google_gwt_dom_client_Style$Position_2_classLit = new Class_0, _3Lcom_google_gwt_dom_client_Style$Unit_2_classLit = new Class_0, _3Lcom_google_gwt_i18n_client_HasDirection$Direction_2_classLit = new Class_0, _3Lcom_google_gwt_user_client_ui_Widget_2_classLit = new Class_0, _3Lcom_google_gwt_user_client_ui_ValueBoxBase$TextAlignment_2_classLit = new Class_0, _3Ljava_lang_Throwable_2_classLit = new Class_0, _3Lcom_google_gwt_user_client_ui_FocusWidget_2_classLit = new Class_0, _3Lcom_loeppky_spadesscores_client_Player_2_classLit = new Class_0, _3Ljava_lang_Integer_2_classLit = new Class_0, _3Ljava_lang_Object_2_classLit = new Class_0;
+$stats && $stats({moduleName:'spadesscores',sessionId:$sessionId,subSystem:'startup',evtGroup:'moduleStartup',millis:(new Date()).getTime(),type:'moduleEvalEnd'});
+if ($wnd.spadesscores) $wnd.spadesscores.onScriptLoad();
+--></script></body></html>

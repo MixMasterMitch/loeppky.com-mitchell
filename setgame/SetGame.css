@@ -1,0 +1,63 @@
+/** Add css rules here for your application. */
+
+
+/** Example rules used by the template application (remove for your app) */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #777777;
+  margin: 40px 0px 70px;
+  text-align: center;
+}
+
+.sendButton {
+  display: block;
+  font-size: 16pt;
+}
+
+.card {
+	width: 250px;
+	height: 130px;
+	boarder: 1px solid;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,lightgrey), color-stop(45%,white), color-stop(56%,white), color-stop(100%,lightgrey));
+	padding: 2px 4px;
+	box-shadow: 3px 3px 25px #aaaaaa;
+}
+
+.cardSelected {
+	width: 250px;
+	height: 130px;
+	boarder: 1px solid;
+	border-radius: 10px;
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,lightblue), color-stop(45%,white), color-stop(56%,white), color-stop(100%,lightblue));
+	padding: 2px 4px;
+	shadow: 3px 3px 25px #aaaaaa;
+}
+
+.background {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(30%,#0e0e0e), color-stop(100%,#7d7e7d));
+}
+
+/*
+.gradient4 {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(30%,#000000), color-stop(100%,#000000));
+	padding: 30px 0 60px 30px;
+	margin: 30px 0 50px;
+}
+.gradient4 h1 {
+	font: normal 340%/100% "Tahoma", Arial, sans-serif;
+	position: relative;
+	margin: 0;
+	color: #fff;
+}
+
+.gradient4 span {
+	background: url(images/gradient-dark.png) repeat-x;
+	position: absolute;
+	display: block;
+	bottom: 0px;
+	width: 100%;
+	height: 29px;
+}
+*/

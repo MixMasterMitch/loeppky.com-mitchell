@@ -1,0 +1,56 @@
+/** Add css rules here for your application. */
+/** Example rules used by the template application (remove for your app) */
+h1 {
+	font-size: 2em;
+	font-weight: bold;
+	color: #777777;
+	margin: 40px 0px 70px;
+	text-align: center;
+}
+
+.gwt-Label {
+	font-weight: bold;
+}
+
+.validCellData {
+	padding: 5px 4px;
+	border: 1px solid #ccc;
+	border-top: 1px solid #999;
+	font-size: small;
+	font-family: Arial Unicode MS, Arial, sans-serif;
+	background-color: #99FFCC;
+}
+
+.inValidCellData {
+	padding: 5px 4px;
+	border: 1px solid #ccc;
+	border-top: 1px solid #999;
+	font-size: small;
+	font-family: Arial Unicode MS, Arial, sans-serif;
+	background-color: #FF3333;
+}
+
+.scrollPanel {
+	border: 1px solid #ccc;
+}
+
+.scrollPanelGray {
+	border: 1px solid #ccc;
+	background-color: #eee;
+}
+
+.decoratorPanel {
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	padding: 4px;
+}
+
+.matrixFlexTable {
+	background-color: #ccc;
+}
+
+.matrixFlexTableCell {
+	background-color: #eee;
+	width: 20px;
+	padding: 5px;
+}
